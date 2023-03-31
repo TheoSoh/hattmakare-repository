@@ -5,6 +5,7 @@
 nbproject/private/
 dist/
 build/
+databasfiler/
 
 # Log file
 *.log

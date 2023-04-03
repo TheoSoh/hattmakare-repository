@@ -2,7 +2,7 @@
 *.class
 
 # Directories
-nbproject/private/
+nbproject/
 dist/
 build/
 

@@ -17,9 +17,6 @@ public class LoginPage extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String password;
-    private boolean ottoSelected;
-    private boolean judithSelected;
-    private boolean barnBarnSelected;
     
     /**
      * Creates new form LoginPage
@@ -38,6 +35,7 @@ public class LoginPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGroup = new javax.swing.ButtonGroup();
         lblChooseUser = new javax.swing.JLabel();
         tglBtnJudith = new javax.swing.JToggleButton();
         tglBtnOtto = new javax.swing.JToggleButton();
@@ -52,26 +50,14 @@ public class LoginPage extends javax.swing.JFrame {
         lblChooseUser.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         lblChooseUser.setText("Välj användare");
 
+        btnGroup.add(tglBtnJudith);
         tglBtnJudith.setText("Judith");
-        tglBtnJudith.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tglBtnJudithActionPerformed(evt);
-            }
-        });
 
+        btnGroup.add(tglBtnOtto);
         tglBtnOtto.setText("Otto");
-        tglBtnOtto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tglBtnOttoActionPerformed(evt);
-            }
-        });
 
+        btnGroup.add(tglBtnBarnBarn);
         tglBtnBarnBarn.setText("Barnbarn");
-        tglBtnBarnBarn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tglBtnBarnBarnActionPerformed(evt);
-            }
-        });
 
         pwField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,89 +132,32 @@ public class LoginPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tglBtnOttoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglBtnOttoActionPerformed
-        if(tglBtnOtto.isSelected()) {
-            ottoSelected = true;
-            judithSelected = false;
-            barnBarnSelected = false;
-            tglBtnJudith.setSelected(false);
-            tglBtnBarnBarn.setSelected(false);
-        }
-    }//GEN-LAST:event_tglBtnOttoActionPerformed
-
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String selectedUser = checkSelectedUser();
+        if(selectedUser.equals("")) {
+            lblError.setText("Vänligen välj användare!");
+            return;
+        }
         if(checkEmpty(pwField)) {
             lblError.setText("Vänligen ange ett lösenord!");
+            return;
         }
-        else {
-            try{
-                String password = pwField.getText();
-                if((!ottoSelected) && (!judithSelected) && (!barnBarnSelected)) {
-                    lblError.setText("Vänligen välj användare!");
-                }
-                if(judithSelected){
-                    String sqlQueryJudith = "Select Password from Employee where Name = 'Judith';";
-                    String resultJudith = idb.fetchSingle(sqlQueryJudith); 
-                    
-                    if(password.equals(resultJudith)){
-                        new UserPage().setVisible(true);
-                        dispose();
-                    }
-                    else {
-                        lblError.setText("Ogiltigt lösenord!");
-                    }
-                }
-                if(ottoSelected){
-                    String sqlQueryOtto = "Select Password from Employee where Name = 'Otto' ;" ;
-                    String resultOtto = idb.fetchSingle(sqlQueryOtto);
-                    
-                    if(password.equals(resultOtto)){
-                        new UserPage().setVisible(true);
-                        dispose();
-                    }
-                    else {
-                        lblError.setText("Ogiltigt lösenord!");
-                    }
-                }
-                if(barnBarnSelected){
-                    String sqlQueryBarnBarn = "Select Password from Employee where Name = 'Barnbarn' ;" ;
-                    String resultBarnBarn = idb.fetchSingle(sqlQueryBarnBarn);
-                    
-                    if(password.equals(resultBarnBarn)){
-                        new UserPage().setVisible(true);
-                        dispose();
-                    }
-                    else {
-                        lblError.setText("Ogiltigt lösenord!");
-                    }
-                }
+        try{
+            String password = pwField.getText();
+            String sqlQuery = "Select Password from Employee where Name = '" + selectedUser + "';";
+            String result = idb.fetchSingle(sqlQuery); 
+            if(!password.equals(result)){
+                lblError.setText("Ogiltigt lösenord!");
+                return;
             }
-            catch(InfException e) {
-                JOptionPane.showMessageDialog(null, "Databasfel");
-                System.out.println("Databasfel " + e.getMessage());
-            }
+            new UserPage().setVisible(true);
+            dispose();
+        }
+        catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel");
+            System.out.println("Databasfel " + e.getMessage());
         }
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void tglBtnJudithActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglBtnJudithActionPerformed
-        if(tglBtnJudith.isSelected()) {
-            judithSelected = true;
-            ottoSelected = false;
-            barnBarnSelected = false;
-            tglBtnOtto.setSelected(false);
-            tglBtnBarnBarn.setSelected(false);
-        }
-    }//GEN-LAST:event_tglBtnJudithActionPerformed
-
-    private void tglBtnBarnBarnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglBtnBarnBarnActionPerformed
-        if(tglBtnBarnBarn.isSelected()) {
-            barnBarnSelected = true;
-            judithSelected = false;
-            ottoSelected = false;
-            tglBtnJudith.setSelected(false);
-            tglBtnBarnBarn.setSelected(false);
-        }
-    }//GEN-LAST:event_tglBtnBarnBarnActionPerformed
 
     private void pwFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwFieldActionPerformed
         
@@ -242,7 +171,22 @@ public class LoginPage extends javax.swing.JFrame {
         return isEmpty;
     }
     
+    private String checkSelectedUser() {
+        String selectedUser = "";
+        if(tglBtnOtto.isSelected()) {
+            selectedUser = "Otto";
+        }
+        if(tglBtnJudith.isSelected()) {
+            selectedUser = "Judith";
+        }
+        if(tglBtnBarnBarn.isSelected()) {
+            selectedUser = "Barnbarn";
+        }
+        return selectedUser;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel lblChooseUser;
     private javax.swing.JLabel lblError;

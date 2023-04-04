@@ -28,5 +28,6 @@ public class Start {
         {
             Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
         }
+        new LoginPage(idb).setVisible(true);
     }
 }

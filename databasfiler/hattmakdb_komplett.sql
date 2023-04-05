@@ -18,15 +18,15 @@
 --
 --  Create database
 --
-CREATE DATABASE hattmakdb CHARACTER SET utf8mb4 COLLATE utf8mb4_sv_0900_ai_ci;
-USE hattmakdb;
+CREATE DATABASE hattdb CHARACTER SET utf8mb4 COLLATE utf8mb4_sv_0900_ai_ci;
+USE hattdb;
 /*This code is to create the database to enable the creation of a user for connecting to the database and the creation of the tables and example data*/
 --
 -- Create user for connecting to the database
 --
-CREATE USER hattdba@localhost IDENTIFIED BY 'hattkey';
-GRANT ALL PRIVILEGES ON hattmakdb.* TO hattdba@localhost;
-/*This code is to enable a connection to the database hattmakdb*/
+CREATE USER hattdban@localhost IDENTIFIED BY 'hattkey';
+GRANT ALL PRIVILEGES ON hattdb.* TO hattdban@localhost;
+/*This code is to enable a connection to the database hattdb*/
 
 --
 -- Table structure for table `Employee`

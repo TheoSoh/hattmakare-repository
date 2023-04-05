@@ -24,8 +24,8 @@ USE hattdb;
 --
 -- Create user for connecting to the database
 --
-CREATE USER hattdban@localhost IDENTIFIED BY 'hattkey';
-GRANT ALL PRIVILEGES ON hattdb.* TO hattdban@localhost;
+CREATE USER hatta@localhost IDENTIFIED BY 'hattkey';
+GRANT ALL PRIVILEGES ON hattdb.* TO hatta@localhost;
 /*This code is to enable a connection to the database hattdb*/
 
 --
@@ -148,7 +148,7 @@ CREATE TABLE `Order` (
   `Order_complete_status` bit NOT NULL,
   `Created_by_employee` int(10) NOT NULL,
   `Customer` int(10) NOT NULL,
-  `Picture` blob,
+  `Picture_exist` varchar(50),
   PRIMARY KEY (`OrderID`),
   CONSTRAINT `Order_Created_by_employee_EmployeeID_fk` FOREIGN KEY (`Created_by_employee`) REFERENCES `Employee` (`EmployeeID`),
   CONSTRAINT `Order_Customer_CustomerID_fk` FOREIGN KEY (`Customer`) REFERENCES `Customer` (`CustomerID`)
@@ -161,7 +161,7 @@ CREATE TABLE `Order` (
 
 LOCK TABLES `Order` WRITE;
 /*!40000 ALTER TABLE `Order` DISABLE KEYS */;
-INSERT INTO `Order` VALUES (1,1,'','2023-03-31','',0,0,0,1,1);
+INSERT INTO `Order` VALUES (1,1,'','2023-03-31','',0,0,0,1,1,'Finns');
 /*!40000 ALTER TABLE `Order` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -49,7 +49,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES ('Otto','panda'),(2,'Judith','tiger1'),(3,'Barnbarn','fernet');
+INSERT INTO `Employee` VALUES (1,'Otto','panda'),(2,'Judith','tiger1'),(3,'Barnbarn','fernet');
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 

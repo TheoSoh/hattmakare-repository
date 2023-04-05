@@ -22,7 +22,7 @@ public class Start {
      */
     public static void main(String[] args) throws InfException {
         try {
-            idb = new InfDB("hattmakdb","3306","hattdba","hattkey");
+            idb = new InfDB("hattdb","3306","hatta","hattkey");
         }
         catch (InfException ex)
         {

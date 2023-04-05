@@ -49,7 +49,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES (1,'Otto','panda'),(2,'Judith','tiger1'),(3,'Barnbarn','fernet');
+INSERT INTO `Employee` VALUES ('Otto','panda'),(2,'Judith','tiger1'),(3,'Barnbarn','fernet');
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,7 +161,7 @@ CREATE TABLE `Order` (
 
 LOCK TABLES `Order` WRITE;
 /*!40000 ALTER TABLE `Order` DISABLE KEYS */;
-INSERT INTO `Order` VALUES (178,1,'','2023-03-31','',0,0,0,1,1);
+INSERT INTO `Order` VALUES (1,1,'','2023-03-31','',0,0,0,1,1);
 /*!40000 ALTER TABLE `Order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +188,7 @@ CREATE TABLE `Hat` (
 
 LOCK TABLES `Hat` WRITE;
 /*!40000 ALTER TABLE `Hat` DISABLE KEYS */;
-INSERT INTO `Hat` VALUES (331,'41','1200','Red','A large red hat filled with flowers at the top. The hat should also have a white linen band around it.');
+INSERT INTO `Hat` VALUES (1,'41','1200','Red','A large red hat filled with flowers at the top. The hat should also have a white linen band around it.');
 /*!40000 ALTER TABLE `Hat` ENABLE KEYS */;
 UNLOCK TABLES;
 

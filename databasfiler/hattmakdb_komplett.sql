@@ -36,7 +36,7 @@ DROP TABLE IF EXISTS `Employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `Employee` (
-  `EmployeeID` int(10) NOT NULL,
+  `EmployeeID` int(10) NOT NULL AUTO_INCREMENT,
   `Name` varchar(30) NOT NULL,
   `Password` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`EmployeeID`)
@@ -61,7 +61,7 @@ DROP TABLE IF EXISTS `Customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `Customer` (
-  `CustomerID` int(10) NOT NULL,
+  `CustomerID` int(10) NOT NULL AUTO_INCREMENT,
   `Name` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`CustomerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_sv_0900_ai_ci;
@@ -85,7 +85,7 @@ DROP TABLE IF EXISTS `Email`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `Email` (
-  `EmailID` int(20) NOT NULL,
+  `EmailID` int(20) NOT NULL AUTO_INCREMENT,
   `Email_address` varchar(50) DEFAULT NULL,
   `Customer` int(10) NOT NULL,
   PRIMARY KEY (`EmailID`),
@@ -111,7 +111,7 @@ DROP TABLE IF EXISTS `Address`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `Address` (
-  `AddressID` int(20) NOT NULL,
+  `AddressID` int(20) NOT NULL AUTO_INCREMENT,
   `Street` varchar(20) DEFAULT NULL,
   `House_number` varchar(5) DEFAULT NULL,
   `Customer` int(10) DEFAULT NULL,
@@ -138,7 +138,7 @@ DROP TABLE IF EXISTS `Order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `Order` (
-  `OrderID` int(14) NOT NULL,
+  `OrderID` int(14) NOT NULL AUTO_INCREMENT,
   `Amount` int(3) DEFAULT NULL,
   `Total_Price` double DEFAULT NULL,
   `Order_date` date NOT NULL,
@@ -148,6 +148,7 @@ CREATE TABLE `Order` (
   `Order_complete_status` bit NOT NULL,
   `Created_by_employee` int(10) NOT NULL,
   `Customer` int(10) NOT NULL,
+  `Picture` blob,
   PRIMARY KEY (`OrderID`),
   CONSTRAINT `Order_Created_by_employee_EmployeeID_fk` FOREIGN KEY (`Created_by_employee`) REFERENCES `Employee` (`EmployeeID`),
   CONSTRAINT `Order_Customer_CustomerID_fk` FOREIGN KEY (`Customer`) REFERENCES `Customer` (`CustomerID`)
@@ -172,7 +173,7 @@ DROP TABLE IF EXISTS `Hat`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `Hat` (
-  `HatID` int(30) NOT NULL,
+  `HatID` int(30) NOT NULL AUTO_INCREMENT,
   `Size` double NOT NULL,
   `Price` double DEFAULT NULL,
   `Color` varchar(20) NOT NULL,

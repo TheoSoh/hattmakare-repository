@@ -48,8 +48,8 @@ public class RegisterOrder extends javax.swing.JFrame {
         try {
             allCustomerNames = idb.fetchColumn(fraga);
             
-            for(String namn:allCustomerNames) {
-                cboAllCustomers.addItem(namn);   
+            for(String aName:allCustomerNames) {
+                cboAllCustomers.addItem(aName);   
             }
             
         }catch(InfException e) {
@@ -326,21 +326,33 @@ public class RegisterOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_cboOptionalDiscountActionPerformed
 
     private void btnRegisterOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterOrderActionPerformed
+    
     String size = txtHatSize.getText();
     String color = cboHatColor.getSelectedItem().toString();
     String description = txtHatDescription.getText();
+    
 
     
     try{
-        String sizeQuery = "INSERT INTO Hat (Size) VALUES ('" + size + "')";
         
-        String colorQuery = "INSERT INTO Hat (Color) VALUES ('" + color + "')";
+        //String nextHatId = "(SELECT MAX(HatID) FROM Hat)";
         
-        String descriptionQuery = "INSERT INTO Hat (Description) VALUES ('" + description + "')";
+       // String hatIdQuery = "INSERT INTO Hat (HatID) VALUES ('" + nextHatId + "')";
         
-        idb.insert(sizeQuery);
-        idb.insert(colorQuery);
-        idb.insert(descriptionQuery);
+        //String sizeQuery = "INSERT INTO Hat (Size) VALUES ('" + size + "')";
+        
+        //String colorQuery = "INSERT INTO Hat (Color) VALUES ('" + color + "')";
+        
+        //String descriptionQuery = "INSERT INTO Hat (Description) VALUES ('" + description + "')";
+        
+        idb.insert("Insert into Hat Values(" + size + ", '"+ color +"', '" + description + "')");
+        
+        
+        
+        //idb.insert(hatIdQuery);
+        //idb.insert(sizeQuery);
+        //idb.insert(colorQuery);
+        //idb.insert(descriptionQuery);
         
             JOptionPane.showMessageDialog(null, "Din förfrågan är skapad! <3");
 

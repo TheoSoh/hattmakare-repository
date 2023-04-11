@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -33,6 +34,7 @@ public class RegisterOrder extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         fillBoxWithCustomer();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);   
     }
 
    
@@ -89,6 +91,8 @@ public class RegisterOrder extends javax.swing.JFrame {
         btnRegisterOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1235, 1235));
+        setSize(new java.awt.Dimension(100, 150));
 
         cboAllCustomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -345,7 +345,7 @@ public class RegisterOrder extends javax.swing.JFrame {
         
         //String descriptionQuery = "INSERT INTO Hat (Description) VALUES ('" + description + "')";
         
-        idb.insert("Insert into Hat Values(" + size + ", '"+ color +"', '" + description + "')");
+        idb.insert("Insert into Hat Values(" + size + ", null,'"+ color +"', '" + description + "')");
         
         
         

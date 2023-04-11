@@ -153,7 +153,7 @@ public class UserPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterCustomerActionPerformed
-        // TODO add your handling code here:
+        new RegistreraKund(idb).setVisible(true);
     }//GEN-LAST:event_btnRegisterCustomerActionPerformed
 
     private void btnRegisterOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterOrderActionPerformed

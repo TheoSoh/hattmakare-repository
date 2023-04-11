@@ -1,6 +1,7 @@
 
 package hattmakare_projekt;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import oru.inf.InfDB;
@@ -16,7 +17,6 @@ public class RegistreraKund extends javax.swing.JFrame {
     public RegistreraKund(InfDB idb) {
         initComponents();
         this.idb = idb;
-        lblSuccess.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -33,17 +33,20 @@ public class RegistreraKund extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnReg = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        lblSuccess = new javax.swing.JLabel();
-        lblError = new javax.swing.JLabel();
+        lblResult = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
         jLabel1.setText("Namn:");
 
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
         jLabel2.setText("Adress:");
 
+        jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
         jLabel3.setText("Husnummer:");
 
+        jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
         jLabel4.setText("E-post:");
 
         btnReg.setText("Registrera");
@@ -53,9 +56,10 @@ public class RegistreraKund extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 22)); // NOI18N
         jLabel5.setText("Registrera ny kund");
 
-        lblSuccess.setText("Registreringen lyckades!");
+        lblResult.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,9 +93,7 @@ public class RegistreraKund extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSuccess, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
@@ -108,7 +110,7 @@ public class RegistreraKund extends javax.swing.JFrame {
                     .addComponent(txtFieldStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(20, 20, 20)
-                .addComponent(lblSuccess, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -117,11 +119,8 @@ public class RegistreraKund extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(48, 48, 48)
                         .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblError)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                    .addComponent(txtFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(btnReg)
                 .addContainerGap())
         );
@@ -137,24 +136,31 @@ public class RegistreraKund extends javax.swing.JFrame {
         }
         return isEmpty;
     }
+    public boolean checkLength(JTextField aTxtField) {
+        boolean result = false;
+        if(aTxtField.getText().length() <= 2) {
+            result = true;
+        }
+        return result;
+    }
     
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
         
-        
+        lblResult.setForeground(Color.RED);
         if(checkEmpty(txtFieldName)) {
-            lblError.setText("Inga tomma rutor!");
+            lblResult.setText("Inga tomma rutor!");
             return;
         }
         if(checkEmpty(txtFieldStreet)) {
-            lblError.setText("Inga tomma rutor!");
+            lblResult.setText("Inga tomma rutor!");
             return;
         }
         if(checkEmpty(txtFieldHouseNumber)) {
-            lblError.setText("Inga tomma rutor!");
+            lblResult.setText("Inga tomma rutor!");
             return;
         }
         if(checkEmpty(txtFieldEmail)) {
-            lblError.setText("Inga tomma rutor!");
+            lblResult.setText("Inga tomma rutor!");
             return;
         }
         
@@ -164,20 +170,20 @@ public class RegistreraKund extends javax.swing.JFrame {
         String HouseNumber = txtFieldHouseNumber.getText();
         String Email = txtFieldEmail.getText();
         
-        if (!Name.matches("[a-zA-Z_]+")) {
-             JOptionPane.showMessageDialog(null, "Inga specialtecken i namn");
+        if (!Name.matches("^[a-öA-Ö\\s]+$")) {
+            lblResult.setText("Inga specialtecken i namn");
              return;
         }
-        if (!Street.matches("[a-zA-Z_]+")) {
-             JOptionPane.showMessageDialog(null, "Inga specialtecken i adress");
+        if (!Street.matches("^[a-öA-Ö\\s]+$")) {
+            lblResult.setText("Inga specialtecken i adress");
              return;
         }
-        if(!Email.matches("^[A-Za-z0-9+_.-]+@(.+)$"))  {
-                JOptionPane.showMessageDialog(null, "Ange en korrekt email-adress");
+        if(!Email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"))  {
+            lblResult.setText("Ange en korrekt email-adress");
              return;
             }
-        if (!HouseNumber.matches("^[1-9][0-9]?$|^100$")) {
-            JOptionPane.showMessageDialog(null, "Ange siffror i husnummer");
+        if (!HouseNumber.matches("^[1-9][0-9][0-9]?$|^100$")) {
+            lblResult.setText("Ange siffror i husnummer");
              return;
         }
 
@@ -195,8 +201,8 @@ public class RegistreraKund extends javax.swing.JFrame {
         idb.insert(query2);
         idb.insert(query3);
         
-        lblSuccess.setVisible(true);
-        lblError.setText("");
+        lblResult.setText("Registrering lyckades!");
+        lblResult.setForeground(Color.GREEN);
         }
         
        
@@ -207,10 +213,6 @@ public class RegistreraKund extends javax.swing.JFrame {
             System.out.println("Fel" + e.getMessage());
         }
 
-
-
-        
-        
     }//GEN-LAST:event_btnRegActionPerformed
 
 
@@ -221,8 +223,7 @@ public class RegistreraKund extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel lblError;
-    private javax.swing.JLabel lblSuccess;
+    private javax.swing.JLabel lblResult;
     private javax.swing.JTextField txtFieldEmail;
     private javax.swing.JTextField txtFieldHouseNumber;
     private javax.swing.JTextField txtFieldName;

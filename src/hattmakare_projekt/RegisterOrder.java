@@ -336,17 +336,19 @@ public class RegisterOrder extends javax.swing.JFrame {
     try{
         
         String nextHatId = "(SELECT MAX(HatID) FROM Hat)";
+        String nextOrderId = "(SELECT MAX(OrderID) FROM Order)";
         
       
        
         String hatQuery = "INSERT INTO Hat (Size,Price,Color,Description) VALUES ('" + size + "', null, '" + color + "', '" + description + "')";
         
-        
+        String orderAndHatQuery = "INSERT INTO Hat_in_order(HatID,OrderID) VALUES ('" + nextHatId + "', '" + nextOrderId+"')";
         
         
         
       
         idb.insert(hatQuery);
+        idb.insert(orderAndHatQuery);
         
         
             JOptionPane.showMessageDialog(null, "Din förfrågan är skapad! <3");

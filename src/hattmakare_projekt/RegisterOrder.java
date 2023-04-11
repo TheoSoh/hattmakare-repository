@@ -91,6 +91,7 @@ public class RegisterOrder extends javax.swing.JFrame {
         lblEstimatedPrice = new javax.swing.JLabel();
         cboOptionalDiscount = new javax.swing.JComboBox<>();
         txtChooseDiscount = new javax.swing.JLabel();
+        btnRegisterOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -169,6 +170,13 @@ public class RegisterOrder extends javax.swing.JFrame {
 
         txtChooseDiscount.setText("Välj rabatt:");
 
+        btnRegisterOrder.setText("Skicka");
+        btnRegisterOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterOrderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,15 +190,10 @@ public class RegisterOrder extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnEstimatedCost))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnSearchHatSketch, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(lblHatDescription)
-                                .addGap(66, 66, 66)
-                                .addComponent(txtHatDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(cboHatColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,9 +209,21 @@ public class RegisterOrder extends javax.swing.JFrame {
                                     .addComponent(lblHatColor))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtChooseDiscount))
-                            .addComponent(lblEstimatedTime)
-                            .addComponent(lblEstimatedCost)
-                            .addComponent(lblRubrik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lblRubrik, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnSearchHatSketch)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblHatDescription)
+                                        .addGap(66, 66, 66)
+                                        .addComponent(txtHatDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnRegisterOrder))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblEstimatedTime, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblEstimatedCost, javax.swing.GroupLayout.Alignment.TRAILING))))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -264,9 +279,12 @@ public class RegisterOrder extends javax.swing.JFrame {
                     .addComponent(txtHatDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSearchHatSketch)
-                    .addComponent(lblHatSketch, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblHatSketch, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSearchHatSketch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRegisterOrder)))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
@@ -312,9 +330,43 @@ public class RegisterOrder extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboOptionalDiscountActionPerformed
 
+    private void btnRegisterOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterOrderActionPerformed
+    String size = txtHatSize.getText();
+    String color = cboHatColor.getSelectedItem().toString();
+    String description = txtHatDescription.getText();
+
+    
+    try{
+        String sizeQuery = "INSERT INTO Hat (Size) VALUES ('" + size + "')";
+        
+        String colorQuery = "INSERT INTO Hat (Color) VALUES ('" + color + "')";
+        
+        String descriptionQuery = "INSERT INTO Hat (Description) VALUES ('" + description + "')";
+        
+        idb.insert(sizeQuery);
+        idb.insert(colorQuery);
+        idb.insert(descriptionQuery);
+        
+            JOptionPane.showMessageDialog(null, "Din förfrågan är skapad! <3");
+
+              
+//        lblSuccess.setVisible(true);
+//        lblError.setText("");
+        }
+        
+       
+        
+        
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "System error");
+            System.out.println("Fel" + e.getMessage());
+        }
+    }//GEN-LAST:event_btnRegisterOrderActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEstimatedCost;
+    private javax.swing.JButton btnRegisterOrder;
     private javax.swing.JButton btnSearchHatSketch;
     private javax.swing.JComboBox<String> cboAllCustomers;
     private javax.swing.JComboBox<String> cboHatColor;

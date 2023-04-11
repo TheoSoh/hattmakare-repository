@@ -42,15 +42,9 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="btnEstimatedCost" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnSearchHatSketch" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblHatDescription" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                              <Component id="txtHatDescription" min="-2" pref="309" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
@@ -73,9 +67,26 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="txtChooseDiscount" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="lblEstimatedTime" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEstimatedCost" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblRubrik" alignment="1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnSearchHatSketch" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblHatDescription" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                                      <Component id="txtHatDescription" min="-2" pref="309" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="btnRegisterOrder" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblEstimatedTime" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEstimatedCost" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -152,10 +163,14 @@
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnSearchHatSketch" min="-2" max="-2" attributes="0"/>
                   <Component id="lblHatSketch" min="-2" pref="340" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="btnSearchHatSketch" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnRegisterOrder" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="68" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -316,6 +331,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="V&#xe4;lj rabatt:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnRegisterOrder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Skicka"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegisterOrderActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

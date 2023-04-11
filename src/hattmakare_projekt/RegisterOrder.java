@@ -335,30 +335,24 @@ public class RegisterOrder extends javax.swing.JFrame {
     
     try{
         
-        //String nextHatId = "(SELECT MAX(HatID) FROM Hat)";
+        String nextHatId = "(SELECT MAX(HatID) FROM Hat)";
         
-       // String hatIdQuery = "INSERT INTO Hat (HatID) VALUES ('" + nextHatId + "')";
-        
-        //String sizeQuery = "INSERT INTO Hat (Size) VALUES ('" + size + "')";
-        
-        //String colorQuery = "INSERT INTO Hat (Color) VALUES ('" + color + "')";
-        
-        //String descriptionQuery = "INSERT INTO Hat (Description) VALUES ('" + description + "')";
-        
-        idb.insert("Insert into Hat Values(" + size + ", null,'"+ color +"', '" + description + "')");
+      
+       
+        String hatQuery = "INSERT INTO Hat (Size,Price,Color,Description) VALUES ('" + size + "', null, '" + color + "', '" + description + "')";
         
         
         
-        //idb.insert(hatIdQuery);
-        //idb.insert(sizeQuery);
-        //idb.insert(colorQuery);
-        //idb.insert(descriptionQuery);
+        
+        
+      
+        idb.insert(hatQuery);
+        
         
             JOptionPane.showMessageDialog(null, "Din förfrågan är skapad! <3");
 
               
-//        lblSuccess.setVisible(true);
-//        lblError.setText("");
+
         }
         
        

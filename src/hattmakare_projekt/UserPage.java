@@ -3,18 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hattmakare_projekt;
-
+import oru.inf.InfDB;
+import oru.inf.InfException;
 /**
  *
  * @author theosohlman
  */
 public class UserPage extends javax.swing.JFrame {
+    private static InfDB idb;
+    
 
     /**
      * Creates new form UserPage
      */
-    public UserPage() {
+    public UserPage(InfDB idb) {
         initComponents();
+        this.idb = idb;
     }
 
     /**
@@ -149,11 +153,11 @@ public class UserPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterCustomerActionPerformed
-        // TODO add your handling code here:
+        new RegistreraKund(idb).setVisible(true);
     }//GEN-LAST:event_btnRegisterCustomerActionPerformed
 
     private void btnRegisterOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterOrderActionPerformed
-        // TODO add your handling code here:
+      new RegisterOrder(idb).setVisible(true);
     }//GEN-LAST:event_btnRegisterOrderActionPerformed
 
     private void btnShowOrderInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowOrderInfoActionPerformed

@@ -150,7 +150,7 @@ public class LoginPage extends javax.swing.JFrame {
                 lblError.setText("Ogiltigt lösenord!");
                 return;
             }
-            new UserPage().setVisible(true);
+            new UserPage(idb).setVisible(true);
             dispose();
         }
         catch(InfException e) {

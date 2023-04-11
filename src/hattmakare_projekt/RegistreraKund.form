@@ -28,19 +28,19 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" pref="54" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" pref="79" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtFieldName" min="-2" pref="221" max="-2" attributes="0"/>
                                   <Component id="txtFieldStreet" min="-2" pref="221" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtFieldEmail" min="-2" pref="221" max="-2" attributes="0"/>
                                   <Component id="txtFieldHouseNumber" min="-2" pref="221" max="-2" attributes="0"/>

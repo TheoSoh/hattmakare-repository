@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -31,7 +32,7 @@ public class RegisterOrder extends javax.swing.JFrame {
     public RegisterOrder(InfDB idb) {
         initComponents();
         this.idb = idb;
-        fillCustomerName();
+        fillBoxWithCustomer();
     }
 
     /**
@@ -39,6 +40,26 @@ public class RegisterOrder extends javax.swing.JFrame {
      */
     public RegisterOrder() {
         initComponents();
+    }
+    
+    
+    private void fillBoxWithCustomer() {
+        
+         
+        String fraga = "SELECT Name from Customer";
+        
+        ArrayList <String> allCustomerNames;
+        
+        try {
+            allCustomerNames = idb.fetchColumn(fraga);
+            
+            for(String namn:allCustomerNames) {
+                cboAllCustomers.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }
     }
 
     /**
@@ -73,7 +94,6 @@ public class RegisterOrder extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cboAllCustomers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboAllCustomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboAllCustomersActionPerformed(evt);
@@ -292,25 +312,6 @@ public class RegisterOrder extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboOptionalDiscountActionPerformed
 
-    private void fillCustomerName() {
-        String question = "SELECT Name FROM Customer";
-
-        ArrayList<String> allCustomers;
-
-        try {
-           allCustomers = idb.fetchColumn(question);
-
-            for (String name :allCustomers) {
-                cboAllCustomers.addItem(name);
-            }
-        /*} catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel med uppkopplingen till databasen");
-            System.out.println(e.getMessage());
-        }*/
-        }   catch (InfException ex) {
-            Logger.getLogger(RegisterOrder.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEstimatedCost;

@@ -29,7 +29,7 @@ public class LoginPage extends javax.swing.JFrame {
     }
 
     
-    private int GetIdFromEmployee () {
+    private int GetIdFromEmployee() {
     
     int id = 0;
     try{
@@ -172,7 +172,7 @@ public class LoginPage extends javax.swing.JFrame {
                 return;
             }
             
-            int employeeId = GetIdFromEmployee ();
+            int employeeId = GetIdFromEmployee();
             new UserPage(idb,employeeId).setVisible(true);
             dispose();
         }

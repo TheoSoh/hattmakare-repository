@@ -24,17 +24,20 @@ import oru.inf.InfException;
 public class RegisterOrder extends javax.swing.JFrame {
 
     private InfDB idb;
+    private int employeeId;
     
     
     /**
      * Creates new form RegisterOrder
      * @param idb
      */
-    public RegisterOrder(InfDB idb) {
+    public RegisterOrder(InfDB idb, int employeeId) {
         initComponents();
         this.idb = idb;
+        this.employeeId = employeeId;
         fillBoxWithCustomer();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);   
+        setExtendedState(JFrame.MAXIMIZED_BOTH);  
+        
     }
 
    
@@ -276,11 +279,12 @@ public class RegisterOrder extends javax.swing.JFrame {
                             .addComponent(txtChooseDiscount)
                             .addComponent(cboOptionalDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEstimatedCost)
-                    .addComponent(lblEstimatedPrice)
-                    .addComponent(lblAmount)
-                    .addComponent(cboHatAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cboHatAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEstimatedCost)
+                        .addComponent(lblEstimatedPrice)
+                        .addComponent(lblAmount)))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHatDescription)
@@ -345,20 +349,22 @@ public class RegisterOrder extends javax.swing.JFrame {
     String description = txtHatDescription.getText();
     String amount = cboHatAmount.getSelectedItem().toString();
     String customerName = cboAllCustomers.getSelectedItem().toString();
-    //String employee = "Select EmployeeID from Employee where Name = " + ;
+   
     String customer = "Select CustomerID from Customer where Name = '" + customerName + "'";
+
 
     
     try{
         
         String nextHatId = "(SELECT MAX(HatID) FROM Hat)";
         String nextOrderId = "(SELECT MAX(OrderID) FROM Order)";
-        
-      
        
         String hatQuery = "INSERT INTO Hat (Size,Price,Color,Description) VALUES ('" + size + "', null, '" + color + "', '" + description + "')";
         
-        String orderQuery = "INSERT INTO Order (Amount,Total_Price,Order_date,Shipment_date,Invoice_sent_status,Payment_status,Order_complete_status,Created_by_employee,Customer,Picture_exist) VAlUES ('" + amount + "',null,curdate(), null,null,null,null,null, (" + customer + "),null)"; 
+        String orderQuery = "INSERT INTO Order(Amount,Total_Price,Order_date,Shipment_date,Invoice_sent_status,Payment_status,Order_complete_status,Created_by_employee,Customer,Picture_exist) VAlUES (" + amount + ",null, curdate(), null, 0 , 0 , 0 ," + employeeId + "," + customer + ",null)"; 
+        
+        
+        
         
         String orderAndHatQuery = "INSERT INTO Hat_in_order (HatID,OrderID) VALUES (" + nextHatId + ", " + nextOrderId + ")";
         

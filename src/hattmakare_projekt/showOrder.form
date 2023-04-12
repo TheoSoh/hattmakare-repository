@@ -133,11 +133,13 @@
                   <Component id="lblOrderDate" min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblTotalPriceHeadline" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblTotalPrice" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="lblShippmentDateHeadline" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblShippingDate" alignment="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblTotalPriceHeadline" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTotalPrice" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="lblShippmentDateHeadline" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

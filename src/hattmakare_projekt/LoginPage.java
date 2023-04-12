@@ -4,6 +4,7 @@
  */
 package hattmakare_projekt;
 
+import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import oru.inf.InfDB;
@@ -18,6 +19,7 @@ public class LoginPage extends javax.swing.JFrame {
     private static InfDB idb;
     private String password;
     
+    
     /**
      * Creates new form LoginPage
      */
@@ -25,6 +27,25 @@ public class LoginPage extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
     }
+
+    
+    private int GetIdFromEmployee () {
+    
+    int id = 0;
+    try{
+    String getSelectedUserId = "Select EmployeeID from Employee where Name = '" + checkSelectedUser() + "';";
+    String result =  idb.fetchSingle(getSelectedUserId);
+    id = parseInt(result);
+ 
+    
+    
+    }catch(InfException e){
+         JOptionPane.showMessageDialog(null, "Något gick fel");
+        
+    }
+    return id;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -150,7 +171,9 @@ public class LoginPage extends javax.swing.JFrame {
                 lblError.setText("Ogiltigt lösenord!");
                 return;
             }
-            new UserPage(idb).setVisible(true);
+            
+            int employeeId = GetIdFromEmployee ();
+            new UserPage(idb,employeeId).setVisible(true);
             dispose();
         }
         catch(InfException e) {

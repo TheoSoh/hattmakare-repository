@@ -11,14 +11,17 @@ import oru.inf.InfException;
  */
 public class UserPage extends javax.swing.JFrame {
     private static InfDB idb;
+    private int employeeIdet;
     
 
     /**
      * Creates new form UserPage
      */
-    public UserPage(InfDB idb) {
+    public UserPage(InfDB idb,int employeeId) {
         initComponents();
         this.idb = idb;
+        this.employeeIdet = employeeIdet;
+        
     }
 
     /**
@@ -157,7 +160,8 @@ public class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegisterCustomerActionPerformed
 
     private void btnRegisterOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterOrderActionPerformed
-      new RegisterOrder(idb).setVisible(true);
+      new RegisterOrder(idb,employeeIdet).setVisible(true);
+     
     }//GEN-LAST:event_btnRegisterOrderActionPerformed
 
     private void btnShowOrderInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowOrderInfoActionPerformed

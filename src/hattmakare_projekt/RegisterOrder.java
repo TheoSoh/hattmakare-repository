@@ -7,11 +7,13 @@ package hattmakare_projekt;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -23,16 +25,20 @@ import oru.inf.InfException;
 public class RegisterOrder extends javax.swing.JFrame {
 
     private InfDB idb;
+    private int employeeId;
     
     
     /**
      * Creates new form RegisterOrder
      * @param idb
      */
-    public RegisterOrder(InfDB idb) {
+    public RegisterOrder(InfDB idb, int employeeId) {
         initComponents();
         this.idb = idb;
+        this.employeeId = employeeId;
         fillBoxWithCustomer();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);  
+        
     }
 
    
@@ -87,8 +93,12 @@ public class RegisterOrder extends javax.swing.JFrame {
         cboOptionalDiscount = new javax.swing.JComboBox<>();
         txtChooseDiscount = new javax.swing.JLabel();
         btnRegisterOrder = new javax.swing.JButton();
+        lblAmount = new javax.swing.JLabel();
+        cboHatAmount = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1235, 1235));
+        setSize(new java.awt.Dimension(100, 150));
 
         cboAllCustomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,53 +182,54 @@ public class RegisterOrder extends javax.swing.JFrame {
             }
         });
 
+        lblAmount.setText("Antal:");
+
+        cboHatAmount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "välj", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblHatSketch, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(336, 336, 336))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblAmount)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEstimatedCost))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblChooseCustomer)
+                                        .addComponent(lblHatSize))
+                                    .addGap(70, 70, 70)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cboAllCustomers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtHatSize))
+                                    .addGap(5, 5, 5))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cboHatAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboHatColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblHatColor))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtChooseDiscount))
+                    .addComponent(lblRubrik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSearchHatSketch)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(cboHatColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblChooseCustomer)
-                                                .addComponent(lblHatSize))
-                                            .addGap(70, 70, 70)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(cboAllCustomers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(txtHatSize))
-                                            .addGap(5, 5, 5)))
-                                    .addComponent(lblHatColor))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtChooseDiscount))
-                            .addComponent(lblRubrik, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnSearchHatSketch)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblHatDescription)
-                                        .addGap(66, 66, 66)
-                                        .addComponent(txtHatDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btnRegisterOrder))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblEstimatedTime, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblEstimatedCost, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                                .addComponent(lblHatDescription)
+                                .addGap(66, 66, 66)
+                                .addComponent(txtHatDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnRegisterOrder))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEstimatedTime, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblEstimatedCost, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -233,6 +244,10 @@ public class RegisterOrder extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addComponent(lblEstimatedPrice)))
                 .addGap(622, 622, 622))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblHatSketch, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(336, 336, 336))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,10 +280,13 @@ public class RegisterOrder extends javax.swing.JFrame {
                             .addComponent(txtChooseDiscount)
                             .addComponent(cboOptionalDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEstimatedCost)
-                    .addComponent(lblEstimatedPrice))
-                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cboHatAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEstimatedCost)
+                        .addComponent(lblEstimatedPrice)
+                        .addComponent(lblAmount)))
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHatDescription)
                     .addComponent(txtHatDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -279,7 +297,7 @@ public class RegisterOrder extends javax.swing.JFrame {
                         .addComponent(btnSearchHatSketch)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRegisterOrder)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(18, 60, Short.MAX_VALUE))
         );
 
         pack();
@@ -330,24 +348,38 @@ public class RegisterOrder extends javax.swing.JFrame {
     String size = txtHatSize.getText();
     String color = cboHatColor.getSelectedItem().toString();
     String description = txtHatDescription.getText();
-    
+    String amount = cboHatAmount.getSelectedItem().toString();
+    String customerName = cboAllCustomers.getSelectedItem().toString();
+   
+   
+ 
+
 
     
     try{
         
+        
+    String customer = "Select CustomerID from Customer where Name = '" + customerName + "'";
+    String result =  idb.fetchSingle(customer);
+    int customerInt = parseInt(result);
+        
         String nextHatId = "(SELECT MAX(HatID) FROM Hat)";
         String nextOrderId = "(SELECT MAX(OrderID) FROM Order)";
-        
-      
        
         String hatQuery = "INSERT INTO Hat (Size,Price,Color,Description) VALUES ('" + size + "', null, '" + color + "', '" + description + "')";
         
-        String orderAndHatQuery = "INSERT INTO Hat_in_order(HatID,OrderID) VALUES ('" + nextHatId + "', '" + nextOrderId+"')";
+        String orderQuery = "INSERT INTO Order (Amount,Total_Price,Order_date,Shipment_date,Invoice_sent_status,Payment_status , Order_complete_status, Created_by_employee,Customer,Picture_exist) VALUES (" + amount + ",null, curdate(), null, 0 , 0 , 0 ," + employeeId + "," + customerInt + ",null)"; 
+        
+        
+        
+        
+        String orderAndHatQuery = "INSERT INTO Hat_in_order (HatID,OrderID) VALUES (" + nextHatId + ", " + nextOrderId + ")";
         
         
         
       
         idb.insert(hatQuery);
+        idb.insert(orderQuery);
         idb.insert(orderAndHatQuery);
         
         
@@ -372,9 +404,11 @@ public class RegisterOrder extends javax.swing.JFrame {
     private javax.swing.JButton btnRegisterOrder;
     private javax.swing.JButton btnSearchHatSketch;
     private javax.swing.JComboBox<String> cboAllCustomers;
+    private javax.swing.JComboBox<String> cboHatAmount;
     private javax.swing.JComboBox<String> cboHatColor;
     private javax.swing.JComboBox<String> cboOptionalDiscount;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JLabel lblAmount;
     private javax.swing.JLabel lblChooseCustomer;
     private javax.swing.JLabel lblEstimatedCost;
     private javax.swing.JLabel lblEstimatedPrice;

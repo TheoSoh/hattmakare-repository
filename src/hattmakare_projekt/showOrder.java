@@ -325,7 +325,7 @@ public class showOrder extends javax.swing.JFrame {
     
     private void fetchTotalPrice(){
         try{
-            String query = "Select Totoal_Price from `Order` where OrderID = '"+ lblOrderID.getText()+ "'";
+            String query = "Select Total_Price from `Order` where OrderID = '"+ lblOrderID.getText()+ "'";
             String result = idb.fetchSingle(query);
             lblTotalPrice.setText(result);
         } catch (InfException ex){

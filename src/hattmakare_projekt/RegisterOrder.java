@@ -7,6 +7,7 @@ package hattmakare_projekt;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -350,18 +351,24 @@ public class RegisterOrder extends javax.swing.JFrame {
     String amount = cboHatAmount.getSelectedItem().toString();
     String customerName = cboAllCustomers.getSelectedItem().toString();
    
-    String customer = "Select CustomerID from Customer where Name = '" + customerName + "'";
+   
+ 
 
 
     
     try{
+        
+        
+    String customer = "Select CustomerID from Customer where Name = '" + customerName + "'";
+    String result =  idb.fetchSingle(customer);
+    int customerInt = parseInt(result);
         
         String nextHatId = "(SELECT MAX(HatID) FROM Hat)";
         String nextOrderId = "(SELECT MAX(OrderID) FROM Order)";
        
         String hatQuery = "INSERT INTO Hat (Size,Price,Color,Description) VALUES ('" + size + "', null, '" + color + "', '" + description + "')";
         
-        String orderQuery = "INSERT INTO Order(Amount,Total_Price,Order_date,Shipment_date,Invoice_sent_status,Payment_status,Order_complete_status,Created_by_employee,Customer,Picture_exist) VAlUES (" + amount + ",null, curdate(), null, 0 , 0 , 0 ," + employeeId + "," + customer + ",null)"; 
+        String orderQuery = "INSERT INTO Order (Amount,Total_Price,Order_date,Shipment_date,Invoice_sent_status,Payment_status , Order_complete_status, Created_by_employee,Customer,Picture_exist) VALUES (" + amount + ",null, curdate(), null, 0 , 0 , 0 ," + employeeId + "," + customerInt + ",null)"; 
         
         
         

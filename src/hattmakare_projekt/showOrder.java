@@ -230,7 +230,7 @@ public class showOrder extends javax.swing.JFrame {
        
         if(cmbChangeStatus.getSelectedItem().toString().equals("Förfrågan")){
             try {
-                idb.update("UPDATE `Order` SET Order_complete_status = true AND Payment_status = FALSE AND Invoice_sent_status = FALSE WHERE OrderID = '1'");
+                idb.update("UPDATE `Order` SET Order_complete_status = TRUE WHERE OrderID = '1'" + "UPDATE `Order` SET Payment_status = FALSE WHERE OrderID = '1'" + "UPDATE `Order` SET Invoice_sent_status = FALSE WHERE OrderID = '1'");
                 
             } catch (InfException ex) {
                 Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
@@ -240,7 +240,7 @@ public class showOrder extends javax.swing.JFrame {
             
             if(cmbChangeStatus.getSelectedItem().toString().equals("Beställning")){
                 try {
-                    idb.update("UPDATE `Order` SET Payment_status = true AND Order_complete_status = FALSE AND Invoice_sent_status = FALSE WHERE OrderID = '1'");
+                    idb.update("UPDATE `Order` SET Payment_status = TRUE WHERE OrderID = '1'" + "UPDATE `Order` SET Invoice_sent_status = FALSE WHERE OrderID = '1'" + "UPDATE `Order` SET Order_complete_status = FALSE WHERE OrderID = '1'");
                 } catch (InfException ex) {
                     Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -248,7 +248,7 @@ public class showOrder extends javax.swing.JFrame {
             } else {
                 if(cmbChangeStatus.getSelectedItem().toString().equals("Skickad")){
                     try {
-                        idb.update("UPDATE `Order` SET Invoice_sent_status = true AND Payment_status = FALSE AND Order_complete_status = FALSE WHERE OrderID = '1'");
+                        idb.update("UPDATE `Order` SET Invoice_sent_status = TRUE WHERE OrderID = '1'" + "UPDATE `Order` SET Payment_status = FALSE WHERE OrderID = '1'" + "UPDATE `Order` SET Order_complete_status = FALSE WHERE OrderID = '1'");
                     
                     } catch (InfException ex) {
                         

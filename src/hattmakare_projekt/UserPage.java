@@ -162,6 +162,7 @@ public class UserPage extends javax.swing.JFrame {
 
     private void btnShowOrderInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowOrderInfoActionPerformed
         // TODO add your handling code here:
+        new searchOrder(idb).setVisible(true);
     }//GEN-LAST:event_btnShowOrderInfoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

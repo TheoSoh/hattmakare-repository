@@ -4,6 +4,7 @@
  */
 package hattmakare_projekt;
 
+import java.awt.event.KeyEvent;
 import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -83,6 +84,11 @@ public class LoginPage extends javax.swing.JFrame {
         pwField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pwFieldActionPerformed(evt);
+            }
+        });
+        pwField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pwFieldKeyPressed(evt);
             }
         });
 
@@ -185,6 +191,38 @@ public class LoginPage extends javax.swing.JFrame {
     private void pwFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwFieldActionPerformed
         
     }//GEN-LAST:event_pwFieldActionPerformed
+
+    private void pwFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwFieldKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        
+            String selectedUser = checkSelectedUser();
+        if(selectedUser.equals("")) {
+            lblError.setText("Vänligen välj användare!");
+            return;
+        }
+        if(checkEmpty(pwField)) {
+            lblError.setText("Vänligen ange ett lösenord!");
+            return;
+        }
+        try{
+            String password = pwField.getText();
+            String sqlQuery = "Select Password from Employee where Name = '" + selectedUser + "';";
+            String result = idb.fetchSingle(sqlQuery); 
+            if(!password.equals(result)){
+                lblError.setText("Ogiltigt lösenord!");
+                return;
+            }
+            
+            int employeeId = GetIdFromEmployee();
+            new UserPage(idb,employeeId).setVisible(true);
+            dispose();
+        }
+        catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel");
+            System.out.println("Databasfel " + e.getMessage());
+        }
+        }
+    }//GEN-LAST:event_pwFieldKeyPressed
 
     public boolean checkEmpty(JPasswordField aPwField) {
         boolean isEmpty = false;

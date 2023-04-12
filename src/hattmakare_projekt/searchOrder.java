@@ -13,12 +13,16 @@ import oru.inf.InfException;
 public class searchOrder extends javax.swing.JFrame {
     
     private InfDB idb;
+    
     /**
      * Creates new form searchOrder
+     * @param idb
      */
-    public searchOrder() {
+    public searchOrder(InfDB idb) {
         initComponents();
+        this.idb = idb;
         fillCustomerBox();
+        
     }
 
     /**
@@ -127,6 +131,9 @@ public class searchOrder extends javax.swing.JFrame {
     
     private void btnShowOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowOrderActionPerformed
         // TODO add your handling code here:
+        new showOrder(idb).setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_btnShowOrderActionPerformed
 
     
@@ -162,7 +169,7 @@ public class searchOrder extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new searchOrder().setVisible(true);
+                new searchOrder(idb).setVisible(true);
             }
         });
     }

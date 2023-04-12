@@ -12,13 +12,16 @@ import oru.inf.InfException;
 
 public class showOrder extends javax.swing.JFrame {
 
-    private InfDB hattdb;
-   
+    private InfDB idb;
+    
+    
     /**
      * Creates new form showOrder
+     * @param idb
      */
-    public showOrder() {
+    public showOrder(InfDB idb) {
         initComponents();
+        this.idb = idb;
         fetchCustomer();
         fetchColor();
         fetchSize();
@@ -51,7 +54,6 @@ public class showOrder extends javax.swing.JFrame {
         lblAmountHeadline = new javax.swing.JLabel();
         lblTotalPriceHeadline = new javax.swing.JLabel();
         lblOrderID = new javax.swing.JLabel();
-        lblOrderStatus = new javax.swing.JLabel();
         lblCustomerName = new javax.swing.JLabel();
         lblHatColor = new javax.swing.JLabel();
         lblHatSize = new javax.swing.JLabel();
@@ -64,6 +66,7 @@ public class showOrder extends javax.swing.JFrame {
         lblOrderDate = new javax.swing.JLabel();
         lblShippingDate = new javax.swing.JLabel();
         btnBackToSearch = new javax.swing.JButton();
+        cmbChangeStatus = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +88,8 @@ public class showOrder extends javax.swing.JFrame {
 
         lblTotalPriceHeadline.setText("Totalpris:");
 
+        lblOrderID.setText("1");
+
         lblShippmentDateHeadline.setText("Leveransdatum:");
 
         lblPictureHeadline.setText("Bild:");
@@ -97,14 +102,21 @@ public class showOrder extends javax.swing.JFrame {
             }
         });
 
+        cmbChangeStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Förfrågan", "Beställning", "Skickad" }));
+        cmbChangeStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbChangeStatusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lblDescriptionHeadline)
                         .addGap(18, 18, 18)
                         .addComponent(lblHatDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -131,6 +143,12 @@ public class showOrder extends javax.swing.JFrame {
                             .addComponent(lblAmountHeadline, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPictureHeadline, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(lblOrderIDHeadline)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -139,37 +157,33 @@ public class showOrder extends javax.swing.JFrame {
                                     .addComponent(lblHatColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblHatSize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(lblOrderIDHeadline)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblStatusHeadline)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblOrderStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblStatusHeadline)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbChangeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 30, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblOrderIDHeadline)
-                    .addComponent(lblStatusHeadline)
-                    .addComponent(lblOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblOrderStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBackToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCustomerNameHeadline)
-                    .addComponent(lblCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblOrderIDHeadline)
+                            .addComponent(lblStatusHeadline)
+                            .addComponent(lblOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBackToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblCustomerNameHeadline)
+                            .addComponent(lblCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cmbChangeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHatColor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblColorHeadline, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHatSize, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSizeHeadline))
@@ -206,16 +220,50 @@ public class showOrder extends javax.swing.JFrame {
     
     private void btnBackToSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackToSearchActionPerformed
         
-        new searchOrder().setVisible();
+        new searchOrder(idb).setVisible(true);
         dispose();
         
     }//GEN-LAST:event_btnBackToSearchActionPerformed
+
+    private void cmbChangeStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbChangeStatusActionPerformed
+        // TODO add your handling code here:
+       
+        if(cmbChangeStatus.getSelectedItem().toString().equals("Förfrågan")){
+            try {
+                idb.update("UPDATE  order SET Order_complete_status = true AND Payment_status = FALSE AND Invoice_sent_status = FALSE WHERE OrderID = '1'");
+                
+            } catch (InfException ex) {
+                Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          
+        } else {
+            
+            if(cmbChangeStatus.getSelectedItem().toString().equals("Beställning")){
+                try {
+                    idb.update("UPDATE  order SET Payment_status = true AND Order_complete_status = FALSE AND Invoice_sent_status = FALSE WHERE OrderID = '1'");
+                } catch (InfException ex) {
+                    Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            } else {
+                if(cmbChangeStatus.getSelectedItem().toString().equals("Skickad")){
+                    try {
+                        idb.update("UPDATE  order SET Invoice_sent_status = true AND Payment_status = FALSE AND Order_complete_status = FALSE WHERE OrderID = '1'");
+                    
+                    } catch (InfException ex) {
+                        
+                        Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_cmbChangeStatusActionPerformed
 
     
     private void fetchCustomer(){
         try{
             String query = "Select Name from Customer JOIN `Order` O on Customer.CustomerID = O.Customer where OrderID = '" + lblOrderID.getText() + "'";
-            String result = hattdb.fetchSingle(query);
+            String result = idb.fetchSingle(query);
             lblCustomerName.setText(result);
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
@@ -227,7 +275,7 @@ public class showOrder extends javax.swing.JFrame {
         try{
            
         String query = "Select Color from Hat JOIN Hat_in_order Hio on Hat.HatID = Hio.HatID JOIN `Order` O on O.OrderID = Hio.OrderID where O.OrderID = '"+ lblOrderID.getText()+ "'";
-        String result = hattdb.fetchSingle(query);
+        String result = idb.fetchSingle(query);
         lblHatColor.setText(result);
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
@@ -237,7 +285,7 @@ public class showOrder extends javax.swing.JFrame {
     private void fetchSize(){
         try{
             String query = "Select Size from Hat JOIN Hat_in_order Hio on Hat.HatID = Hio.HatID JOIN `Order` O on O.OrderID = Hio.OrderID where O.OrderID = '"+ lblOrderID.getText()+ "'";
-            String result = hattdb.fetchSingle(query);
+            String result = idb.fetchSingle(query);
             lblHatSize.setText(result);
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
@@ -247,7 +295,7 @@ public class showOrder extends javax.swing.JFrame {
     private void fetchAmount(){
         try{
             String query = "Select Amount from `Order`where OrderID = '" + lblOrderID.getText() + "'";
-            String result = hattdb.fetchSingle(query);
+            String result = idb.fetchSingle(query);
             lblAmount.setText(result);
             
         } catch(InfException ex){
@@ -258,7 +306,7 @@ public class showOrder extends javax.swing.JFrame {
     private void fetchPicture(){
         try{
             String query = "Select Picture_exist from `Order` where OrderID = '"+ lblOrderID.getText()+ "'";
-            String result = hattdb.fetchSingle(query);
+            String result = idb.fetchSingle(query);
             lblPictureStatus.setText(result);
         } catch (InfException ex){
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
@@ -268,7 +316,7 @@ public class showOrder extends javax.swing.JFrame {
     private void fetchDescription(){
         try{
             String query = "Select Description from Hat JOIN Hat_in_order Hio on Hat.HatID = Hio.HatID JOIN `Order` O on O.OrderID = Hio.OrderID where O.OrderID = '"+ lblOrderID.getText()+ "'";
-            String result = hattdb.fetchSingle(query);
+            String result = idb.fetchSingle(query);
             lblHatDescription.setText(result);
         } catch (InfException ex){
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
@@ -278,7 +326,7 @@ public class showOrder extends javax.swing.JFrame {
     private void fetchTotalPrice(){
         try{
             String query = "Select Totoal_Price from `Order` where OrderID = '"+ lblOrderID.getText()+ "'";
-            String result = hattdb.fetchSingle(query);
+            String result = idb.fetchSingle(query);
             lblTotalPrice.setText(result);
         } catch (InfException ex){
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
@@ -288,7 +336,7 @@ public class showOrder extends javax.swing.JFrame {
     private void fetchOrderDate(){
         try{
             String query = "Select Order_date from `Order` where OrderID = '"+ lblOrderID.getText()+ "'";
-            String result = hattdb.fetchSingle(query);
+            String result = idb.fetchSingle(query);
             lblOrderDate.setText(result);
         } catch (InfException ex){
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
@@ -298,7 +346,7 @@ public class showOrder extends javax.swing.JFrame {
     private void fetchShippingDate(){
         try{
             String query = "Select Shipment_date from `Order` where OrderID = '"+ lblOrderID.getText()+ "'";
-            String result = hattdb.fetchSingle(query);
+            String result = idb.fetchSingle(query);
             lblShippingDate.setText(result);
         } catch (InfException ex){
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
@@ -309,6 +357,7 @@ public class showOrder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackToSearch;
+    private javax.swing.JComboBox<String> cmbChangeStatus;
     private javax.swing.JLabel lblAmount;
     private javax.swing.JLabel lblAmountHeadline;
     private javax.swing.JLabel lblColorHeadline;
@@ -322,7 +371,6 @@ public class showOrder extends javax.swing.JFrame {
     private javax.swing.JLabel lblOrderDateHeadline;
     private javax.swing.JLabel lblOrderID;
     private javax.swing.JLabel lblOrderIDHeadline;
-    private javax.swing.JLabel lblOrderStatus;
     private javax.swing.JLabel lblPictureHeadline;
     private javax.swing.JLabel lblPictureStatus;
     private javax.swing.JLabel lblShippingDate;
@@ -332,4 +380,8 @@ public class showOrder extends javax.swing.JFrame {
     private javax.swing.JLabel lblTotalPrice;
     private javax.swing.JLabel lblTotalPriceHeadline;
     // End of variables declaration//GEN-END:variables
+
+    void setVisible() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

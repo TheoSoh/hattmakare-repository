@@ -25,14 +25,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="lblDescriptionHeadline" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="lblHatDescription" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblOrderDateHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblShippmentDateHeadline" max="32767" attributes="0"/>
@@ -48,7 +48,7 @@
                       <Component id="lblTotalPrice" min="-2" pref="73" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="btnBackToSearch" pref="0" max="32767" attributes="0"/>
                           <Component id="lblCustomerNameHeadline" alignment="1" max="32767" attributes="0"/>
@@ -58,6 +58,13 @@
                           <Component id="lblPictureHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <Component id="lblOrderIDHeadline" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblOrderID" min="-2" pref="67" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -69,18 +76,11 @@
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                              <Component id="lblOrderIDHeadline" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="lblOrderID" min="-2" pref="67" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblStatusHeadline" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblOrderStatus" min="-2" pref="88" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
+                      <Component id="lblStatusHeadline" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="cmbChangeStatus" min="-2" pref="117" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -91,23 +91,27 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblOrderIDHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblStatusHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblOrderID" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="lblOrderStatus" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="btnBackToSearch" min="-2" pref="23" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblCustomerNameHeadline" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblCustomerName" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblOrderIDHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblStatusHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblOrderID" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="btnBackToSearch" min="-2" pref="23" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblCustomerNameHeadline" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCustomerName" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="cmbChangeStatus" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblHatColor" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="lblColorHeadline" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblHatSize" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="lblSizeHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -193,8 +197,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblOrderID">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblOrderStatus">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCustomerName">
     </Component>
@@ -234,6 +239,23 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackToSearchActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbChangeStatus">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="F&#xf6;rfr&#xe5;gan"/>
+            <StringItem index="1" value="Best&#xe4;llning"/>
+            <StringItem index="2" value="Skickad"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbChangeStatusActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

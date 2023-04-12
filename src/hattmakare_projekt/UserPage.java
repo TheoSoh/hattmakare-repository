@@ -20,7 +20,7 @@ public class UserPage extends javax.swing.JFrame {
     public UserPage(InfDB idb,int employeeId) {
         initComponents();
         this.idb = idb;
-        this.employeeIdet = employeeIdet;
+        this.employeeIdet = employeeId;
         
     }
 

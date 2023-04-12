@@ -164,7 +164,7 @@ public class RegisterOrder extends javax.swing.JFrame {
             }
         });
 
-        lblEstimatedPrice.setText("jLabel1");
+        lblEstimatedPrice.setText("Visa kostnad");
 
         cboOptionalDiscount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0%", "5%", "10%", "15%", "20%", "25%" }));
         cboOptionalDiscount.addActionListener(new java.awt.event.ActionListener() {
@@ -364,23 +364,23 @@ public class RegisterOrder extends javax.swing.JFrame {
     int customerInt = parseInt(result);
         
         String nextHatId = "(SELECT MAX(HatID) FROM Hat)";
-        String nextOrderId = "(SELECT MAX(OrderID) FROM Order)";
+        String nextOrderId = "(SELECT MAX(OrderID) FROM `Order`)";
        
         String hatQuery = "INSERT INTO Hat (Size,Price,Color,Description) VALUES ('" + size + "', null, '" + color + "', '" + description + "')";
         
-        //String orderQuery = "INSERT INTO Order (Amount,Total_Price,Order_date,Shipment_date,Invoice_sent_status,Payment_status , Order_complete_status, Created_by_employee,Customer,Picture_exist) VALUES (" + amount + ",null, curdate(), null, 0 , 0 , 0 ," + employeeId + "," + customerInt + ",null)"; 
+        String orderQuery = "INSERT INTO `Order` (Amount,Total_Price,Order_date,Shipment_date,Invoice_sent_status,Payment_status , Order_complete_status, Created_by_employee,Customer,Picture_exist) VALUES (" + amount + ",null, curdate(), null, 0 , 0 , 0 ," + employeeId + "," + customerInt + ",null)"; 
         
         
         
         
-        //String orderAndHatQuery = "INSERT INTO Hat_in_order (HatID,OrderID) VALUES (" + nextHatId + ", " + nextOrderId + ")";
+        String orderAndHatQuery = "INSERT INTO Hat_in_order (HatID,OrderID) VALUES (" + nextHatId + ", " + nextOrderId + ")";
         
         
         
       
         idb.insert(hatQuery);
-        //idb.insert(orderQuery);
-        //idb.insert(orderAndHatQuery);
+        idb.insert(orderQuery);
+        idb.insert(orderAndHatQuery);
         
         
             JOptionPane.showMessageDialog(null, "Din förfrågan är skapad! <3");

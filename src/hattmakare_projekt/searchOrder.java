@@ -49,11 +49,9 @@ public class searchOrder extends javax.swing.JFrame {
         lblHeadline.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         lblHeadline.setText("Visa en beställning");
 
-        cmbChooseCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         lblChooseOrderHeadline.setText("Välj vilken av denna kunds beställningar du vill visa");
 
-        cmbChooseOrder.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbChooseOrder.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Order 1" }));
 
         btnShowOrder.setText("Visa");
         btnShowOrder.addActionListener(new java.awt.event.ActionListener() {

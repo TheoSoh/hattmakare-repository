@@ -109,11 +109,13 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btnBack" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblChooseCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cboAllCustomers" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblEstimatedTime" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtEstimatedTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblChooseCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cboAllCustomers" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtEstimatedTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">

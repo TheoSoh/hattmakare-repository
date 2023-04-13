@@ -69,6 +69,11 @@ public class UserPage extends javax.swing.JFrame {
         });
 
         btnChangeOrderInfo.setText("Ändra i order");
+        btnChangeOrderInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeOrderInfoActionPerformed(evt);
+            }
+        });
 
         btnShowOrderInfo.setText("Visa order");
         btnShowOrderInfo.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +173,11 @@ public class UserPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         new searchOrder(idb).setVisible(true);
     }//GEN-LAST:event_btnShowOrderInfoActionPerformed
+
+    private void btnChangeOrderInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeOrderInfoActionPerformed
+       new ChooseCustomerAndOrder(idb).setVisible(true);
+       
+    }//GEN-LAST:event_btnChangeOrderInfoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangeInfoCustomer;

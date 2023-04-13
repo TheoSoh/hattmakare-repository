@@ -57,6 +57,8 @@ public class RegisterOrder extends javax.swing.JFrame {
     double total = x - (x * price3Percent);
     
     lblEstimatedPrice.setText(String.valueOf(total));
+    
+    lblCurrency.setText("kronor");
 
    }
     
@@ -116,6 +118,7 @@ public class RegisterOrder extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtHatDescription = new javax.swing.JTextPane();
+        lblCurrency = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(100, 150));
@@ -175,7 +178,7 @@ public class RegisterOrder extends javax.swing.JFrame {
         lblEstimatedTime.setText("Uppskattad arbetstid:");
 
         txtEstimatedTime.setForeground(new java.awt.Color(153, 153, 153));
-        txtEstimatedTime.setText("Ange antal timmar");
+        txtEstimatedTime.setText("Antal timmar per hatt");
         txtEstimatedTime.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtEstimatedTimeFocusGained(evt);
@@ -198,7 +201,7 @@ public class RegisterOrder extends javax.swing.JFrame {
         lblEstimatedCost.setText("Uppskattad materialkostnad:");
 
         txtEstimatedMaterialCost.setForeground(new java.awt.Color(153, 153, 153));
-        txtEstimatedMaterialCost.setText("Materialkostnad i kronor");
+        txtEstimatedMaterialCost.setText("Kostnad i kronor per hatt");
         txtEstimatedMaterialCost.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtEstimatedMaterialCostFocusGained(evt);
@@ -219,6 +222,8 @@ public class RegisterOrder extends javax.swing.JFrame {
                 btnEstimatedCostActionPerformed(evt);
             }
         });
+
+        lblEstimatedPrice.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         cboOptionalDiscount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "5", "10", "15", "20", "25" }));
         cboOptionalDiscount.addActionListener(new java.awt.event.ActionListener() {
@@ -292,13 +297,19 @@ public class RegisterOrder extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblHatSketch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtEstimatedTime)
-                    .addComponent(txtEstimatedMaterialCost, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cboOptionalDiscount, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblEstimatedPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRegisterOrder))
-                .addGap(189, 189, 189))
+                    .addComponent(txtEstimatedTime)
+                    .addComponent(txtEstimatedMaterialCost, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegisterOrder)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(lblEstimatedPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCurrency, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(179, 179, 179))
             .addGroup(layout.createSequentialGroup()
                 .addGap(232, 232, 232)
                 .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -340,6 +351,7 @@ public class RegisterOrder extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblCurrency, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblEstimatedPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEstimatedCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -456,7 +468,7 @@ public class RegisterOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEstimatedTimeKeyPressed
 
     private void txtEstimatedTimeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstimatedTimeFocusGained
-    if(txtEstimatedTime.getText().equals("Ange antal timmar"))
+    if(txtEstimatedTime.getText().equals("Antal timmar per hatt"))
         {
             txtEstimatedTime.setText("");
             txtEstimatedTime.setForeground(new Color(0,0,0));
@@ -465,7 +477,7 @@ public class RegisterOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEstimatedTimeFocusGained
 
     private void txtEstimatedMaterialCostFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstimatedMaterialCostFocusGained
-    if(txtEstimatedMaterialCost.getText().equals("Materialkostnad i kronor"))
+    if(txtEstimatedMaterialCost.getText().equals("Kostnad i kronor per hatt"))
         {
             txtEstimatedMaterialCost.setText("");
             txtEstimatedMaterialCost.setForeground(new Color(0,0,0));
@@ -485,7 +497,7 @@ public class RegisterOrder extends javax.swing.JFrame {
     private void txtEstimatedTimeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstimatedTimeFocusLost
         if(txtEstimatedTime.getText().equals(""))
         {
-            txtEstimatedTime.setText("Ange antal timmar");
+            txtEstimatedTime.setText("Antal timmar per hatt");
             txtEstimatedTime.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_txtEstimatedTimeFocusLost
@@ -493,7 +505,7 @@ public class RegisterOrder extends javax.swing.JFrame {
     private void txtEstimatedMaterialCostFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstimatedMaterialCostFocusLost
         if(txtEstimatedMaterialCost.getText().equals(""))
         {
-            txtEstimatedMaterialCost.setText("Materialkostnad i kronor");
+            txtEstimatedMaterialCost.setText("Kostnad i kronor per hatt");
             txtEstimatedMaterialCost.setForeground(new Color(153,153,153));
 
         }
@@ -522,6 +534,7 @@ public class RegisterOrder extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAmount;
     private javax.swing.JLabel lblChooseCustomer;
+    private javax.swing.JLabel lblCurrency;
     private javax.swing.JLabel lblEstimatedCost;
     public javax.swing.JLabel lblEstimatedPrice;
     private javax.swing.JLabel lblEstimatedTime;

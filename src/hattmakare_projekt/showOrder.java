@@ -13,15 +13,19 @@ import oru.inf.InfException;
 public class showOrder extends javax.swing.JFrame {
 
     private InfDB idb;
+    private String selectedOrderID;
     
     
     /**
      * Creates new form showOrder
      * @param idb
      */
-    public showOrder(InfDB idb) {
+    public showOrder(InfDB idb, String selectedOrderID) {
         initComponents();
         this.idb = idb;
+        this.selectedOrderID = selectedOrderID;
+        fillIDLabel();
+        fillStatusLabel();
         fetchCustomer();
         fetchColor();
         fetchSize();
@@ -67,6 +71,7 @@ public class showOrder extends javax.swing.JFrame {
         lblShippingDate = new javax.swing.JLabel();
         btnBackToSearch = new javax.swing.JButton();
         cmbChangeStatus = new javax.swing.JComboBox<>();
+        lblCurrentStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,8 +92,6 @@ public class showOrder extends javax.swing.JFrame {
         lblAmountHeadline.setText("Antal:");
 
         lblTotalPriceHeadline.setText("Totalpris:");
-
-        lblOrderID.setText("1");
 
         lblShippmentDateHeadline.setText("Leveransdatum:");
 
@@ -117,11 +120,6 @@ public class showOrder extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDescriptionHeadline)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblHatDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(37, 37, 37))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblOrderDateHeadline)
                             .addComponent(lblShippmentDateHeadline, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -135,39 +133,51 @@ public class showOrder extends javax.swing.JFrame {
                         .addComponent(lblTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnBackToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(lblCustomerNameHeadline, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblColorHeadline, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSizeHeadline, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAmountHeadline, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPictureHeadline, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(lblOrderIDHeadline)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblPictureStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                                    .addComponent(lblCustomerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblHatColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblHatSize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(lblStatusHeadline)
-                        .addGap(18, 18, 18)
-                        .addComponent(cmbChangeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 30, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnBackToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(lblCustomerNameHeadline, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblColorHeadline, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblSizeHeadline, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAmountHeadline, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPictureHeadline, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(17, 17, 17)
+                                        .addComponent(lblOrderIDHeadline)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lblPictureStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                                            .addComponent(lblCustomerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblHatColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblHatSize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblStatusHeadline)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cmbChangeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblCurrentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDescriptionHeadline)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblHatDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(37, 37, 37))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblOrderIDHeadline)
@@ -178,7 +188,10 @@ public class showOrder extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCustomerNameHeadline)
                             .addComponent(lblCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(cmbChangeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cmbChangeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCurrentStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHatColor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,7 +243,9 @@ public class showOrder extends javax.swing.JFrame {
        
         if(cmbChangeStatus.getSelectedItem().toString().equals("Förfrågan")){
             try {
-                idb.update("UPDATE `Order` SET Order_complete_status = TRUE WHERE OrderID = '1'" + "UPDATE `Order` SET Payment_status = FALSE WHERE OrderID = '1'" + "UPDATE `Order` SET Invoice_sent_status = FALSE WHERE OrderID = '1'");
+                idb.update("UPDATE `Order` SET Order_complete_status = TRUE WHERE OrderID = '1'");
+                idb.update("UPDATE `Order` SET Payment_status = FALSE WHERE OrderID = '1'");
+                idb.update("UPDATE `Order` SET Invoice_sent_status = FALSE WHERE OrderID = '1'");
                 
             } catch (InfException ex) {
                 Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
@@ -240,7 +255,9 @@ public class showOrder extends javax.swing.JFrame {
             
             if(cmbChangeStatus.getSelectedItem().toString().equals("Beställning")){
                 try {
-                    idb.update("UPDATE `Order` SET Payment_status = TRUE WHERE OrderID = '1'" + "UPDATE `Order` SET Invoice_sent_status = FALSE WHERE OrderID = '1'" + "UPDATE `Order` SET Order_complete_status = FALSE WHERE OrderID = '1'");
+                    idb.update("UPDATE `Order` SET Payment_status = TRUE WHERE OrderID = '1'");
+                    idb.update("UPDATE `Order` SET Invoice_sent_status = FALSE WHERE OrderID = '1'");
+                    idb.update("UPDATE `Order` SET Order_complete_status = FALSE WHERE OrderID = '1'");
                 } catch (InfException ex) {
                     Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -248,7 +265,9 @@ public class showOrder extends javax.swing.JFrame {
             } else {
                 if(cmbChangeStatus.getSelectedItem().toString().equals("Skickad")){
                     try {
-                        idb.update("UPDATE `Order` SET Invoice_sent_status = TRUE WHERE OrderID = '1'" + "UPDATE `Order` SET Payment_status = FALSE WHERE OrderID = '1'" + "UPDATE `Order` SET Order_complete_status = FALSE WHERE OrderID = '1'");
+                        idb.update("UPDATE `Order` SET Invoice_sent_status = TRUE WHERE OrderID = '1'");
+                        idb.update("UPDATE `Order` SET Payment_status = FALSE WHERE OrderID = '1'");
+                        idb.update("UPDATE `Order` SET Order_complete_status = FALSE WHERE OrderID = '1'");
                     
                     } catch (InfException ex) {
                         
@@ -259,6 +278,30 @@ public class showOrder extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbChangeStatusActionPerformed
 
+    private void fillIDLabel(){
+        lblOrderID.setText(selectedOrderID);
+    }
+    
+    private void fillStatusLabel(){
+     
+        String bestallningsQuery = "Select Order_complete_status from `Order` where OrderID = '" + lblOrderID.getText() + "'";
+        String forfragansQuery = "Select Payment_status from `Order` where OrderID = '" + lblOrderID.getText() + "'";
+        String skickadQuery = "Select Invoice_sent_status from `Order` where OrderID = '" + lblOrderID.getText() + "'";
+        
+        if(bestallningsQuery.equals("True")){
+            lblCurrentStatus.setText("Beställd");
+        } else{
+            if(forfragansQuery.equals("True")){
+                lblCurrentStatus.setText("Förfrågan");
+            } else{
+            if(skickadQuery.equals("True")){
+                lblCurrentStatus.setText("Skickad");
+            }
+                
+        }
+            
+    }
+    }
     
     private void fetchCustomer(){
         try{
@@ -361,6 +404,7 @@ public class showOrder extends javax.swing.JFrame {
     private javax.swing.JLabel lblAmount;
     private javax.swing.JLabel lblAmountHeadline;
     private javax.swing.JLabel lblColorHeadline;
+    private javax.swing.JLabel lblCurrentStatus;
     private javax.swing.JLabel lblCustomerName;
     private javax.swing.JLabel lblCustomerNameHeadline;
     private javax.swing.JLabel lblDescriptionHeadline;

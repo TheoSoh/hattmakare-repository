@@ -5,6 +5,8 @@
 package hattmakare_projekt;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import oru.inf.InfDB;
@@ -40,6 +42,7 @@ public class searchOrder extends javax.swing.JFrame {
         lblChooseOrderHeadline = new javax.swing.JLabel();
         cmbChooseOrder = new javax.swing.JComboBox<>();
         btnShowOrder = new javax.swing.JButton();
+        btnChooseCustomer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,12 +54,23 @@ public class searchOrder extends javax.swing.JFrame {
 
         lblChooseOrderHeadline.setText("Välj vilken av denna kunds beställningar du vill visa");
 
-        cmbChooseOrder.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Order 1" }));
+        cmbChooseOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbChooseOrderActionPerformed(evt);
+            }
+        });
 
         btnShowOrder.setText("Visa");
         btnShowOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowOrderActionPerformed(evt);
+            }
+        });
+
+        btnChooseCustomer.setText("Välj kund");
+        btnChooseCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChooseCustomerActionPerformed(evt);
             }
         });
 
@@ -83,7 +97,10 @@ public class searchOrder extends javax.swing.JFrame {
                         .addComponent(cmbChooseOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
-                        .addComponent(btnShowOrder)))
+                        .addComponent(btnShowOrder))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(btnChooseCustomer)))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -93,11 +110,13 @@ public class searchOrder extends javax.swing.JFrame {
                 .addComponent(lblHeadline, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblChooseCustomerHeadline)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbChooseCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(lblChooseOrderHeadline)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnChooseCustomer)
                 .addGap(18, 18, 18)
+                .addComponent(lblChooseOrderHeadline)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbChooseOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnShowOrder)
@@ -107,7 +126,13 @@ public class searchOrder extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
+ public String chosenOrder(){
+     String chosenOrderID = cmbChooseOrder.getSelectedItem().toString();
+        
+     
+     return chosenOrderID;
+ }
  private void fillCustomerBox() {
         
          
@@ -129,10 +154,38 @@ public class searchOrder extends javax.swing.JFrame {
     
     private void btnShowOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowOrderActionPerformed
         // TODO add your handling code here:
-        new showOrder(idb).setVisible(true);
+        String selectedOrderID = chosenOrder();
+        new showOrder(idb, selectedOrderID).setVisible(true);
         dispose();
         
     }//GEN-LAST:event_btnShowOrderActionPerformed
+
+    private void btnChooseCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCustomerActionPerformed
+        // TODO add your handling code here:
+        String chosenCustomer = cmbChooseCustomer.getSelectedItem().toString();
+        String query = "SELECT OrderID FROM `Order` JOIN customer on customer.CustomerID = `order`.Customer WHERE NAME = '" + chosenCustomer + "'";
+        
+        ArrayList <String> allOrdersForCustomer  ;
+        
+        try {
+            
+            allOrdersForCustomer = idb.fetchColumn(query);
+            
+            for(String orders:allOrdersForCustomer) {
+                cmbChooseOrder.addItem(orders);
+                
+        }
+  
+        } catch (InfException ex) {
+            Logger.getLogger(searchOrder.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+    }//GEN-LAST:event_btnChooseCustomerActionPerformed
+
+    private void cmbChooseOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbChooseOrderActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cmbChooseOrderActionPerformed
 
     
     
@@ -173,6 +226,7 @@ public class searchOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChooseCustomer;
     private javax.swing.JButton btnShowOrder;
     private javax.swing.JComboBox<String> cmbChooseCustomer;
     private javax.swing.JComboBox<String> cmbChooseOrder;

@@ -13,15 +13,18 @@ import oru.inf.InfException;
 public class showOrder extends javax.swing.JFrame {
 
     private InfDB idb;
+    private String selectedOrderID;
     
     
     /**
      * Creates new form showOrder
      * @param idb
      */
-    public showOrder(InfDB idb) {
+    public showOrder(InfDB idb, String selectedOrderID) {
         initComponents();
         this.idb = idb;
+        this.selectedOrderID = selectedOrderID;
+        fillIDLabel();
         fetchCustomer();
         fetchColor();
         fetchSize();
@@ -87,8 +90,6 @@ public class showOrder extends javax.swing.JFrame {
         lblAmountHeadline.setText("Antal:");
 
         lblTotalPriceHeadline.setText("Totalpris:");
-
-        lblOrderID.setText("1");
 
         lblShippmentDateHeadline.setText("Leveransdatum:");
 
@@ -259,6 +260,9 @@ public class showOrder extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbChangeStatusActionPerformed
 
+    private void fillIDLabel(){
+        lblOrderID.setText(selectedOrderID);
+    }
     
     private void fetchCustomer(){
         try{

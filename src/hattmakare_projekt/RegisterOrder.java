@@ -17,6 +17,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -90,6 +92,22 @@ public class RegisterOrder extends javax.swing.JFrame {
         }
         
     }
+            public boolean checkEmpty(JTextField aTxtField) {
+        boolean isEmpty = false;
+        if(aTxtField.getText().isEmpty()) {
+            isEmpty = true;
+        }
+        return isEmpty;
+    }
+        public boolean checkEmpty(JTextPane aTxttField) {
+        boolean isEmpty = false;
+        if(aTxttField.getText().isEmpty()) {
+            isEmpty = true;
+        }
+        return isEmpty;
+    }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -127,10 +145,12 @@ public class RegisterOrder extends javax.swing.JFrame {
         txtHatDescription = new javax.swing.JTextPane();
         lblCurrency = new javax.swing.JLabel();
         lblCostPerHat = new javax.swing.JLabel();
+        lblResult = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(100, 150));
 
+        cboAllCustomers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj" }));
         cboAllCustomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboAllCustomersActionPerformed(evt);
@@ -233,7 +253,7 @@ public class RegisterOrder extends javax.swing.JFrame {
 
         lblEstimatedTotalPrice.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        cboOptionalDiscount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "5", "10", "15", "20", "25" }));
+        cboOptionalDiscount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "0", "5", "10", "15", "20", "25" }));
         cboOptionalDiscount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboOptionalDiscountActionPerformed(evt);
@@ -325,6 +345,10 @@ public class RegisterOrder extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(lblCostPerHat)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(232, 232, 232)
@@ -386,7 +410,10 @@ public class RegisterOrder extends javax.swing.JFrame {
                         .addGap(61, 61, 61)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSearchHatSketch)
-                    .addComponent(btnRegisterOrder)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegisterOrder)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblHatSketch, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
         );
@@ -444,6 +471,44 @@ public class RegisterOrder extends javax.swing.JFrame {
     String estimatedPrice = lblEstimatedTotalPrice.getText();
     String sketch = lblHatSketch.getIcon().toString();
     
+    
+              lblResult.setForeground(Color.RED);
+        if(cboAllCustomers.getSelectedItem().equals("Välj")) {
+            lblResult.setText("Vänligen välj en kund");
+            return;
+        }
+        if(checkEmpty(txtHatSize)) {
+            lblResult.setText("Vänligen skriv in en storlek");
+            return;
+        }
+        if(cboHatColor.getSelectedItem().equals("Välj")) {
+            lblResult.setText("Vänligen välj en färg");
+            return;
+        }
+        if(cboHatAmount.getSelectedItem().equals("Välj")) {
+            lblResult.setText("Välj antal hattar");
+            return;
+        } 
+         if(checkEmpty(txtHatDescription)) {
+            lblResult.setText("Vänligen ange en beskrivning");
+            return;
+        }
+        if(checkEmpty(txtEstimatedTime)) {
+             lblResult.setText("Vänligen ange en uppskattad arbetstid för hatten");
+          return;
+        }
+        if(checkEmpty(txtEstimatedMaterialCost)) {
+             lblResult.setText("Vänligen ange en uppskattad kostnad för hatten");
+          return;
+        }
+        
+        if(cboOptionalDiscount.getSelectedItem().equals("Välj")) {
+            lblResult.setText("Ange en rabattsats");
+        return;
+        }
+        else {
+    
+        }
     try{
         
         
@@ -477,10 +542,11 @@ public class RegisterOrder extends javax.swing.JFrame {
         
        
         
-        
+    
         catch(Exception e) {
             JOptionPane.showMessageDialog(null, "System error");
             System.out.println("Fel" + e.getMessage());
+           
         }
     }//GEN-LAST:event_btnRegisterOrderActionPerformed
 
@@ -568,6 +634,7 @@ public class RegisterOrder extends javax.swing.JFrame {
     private javax.swing.JLabel lblHatDescription;
     private javax.swing.JLabel lblHatSize;
     private javax.swing.JLabel lblHatSketch;
+    private javax.swing.JLabel lblResult;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JLabel txtChooseDiscount;
     private javax.swing.JTextField txtEstimatedMaterialCost;

@@ -107,16 +107,14 @@ public class searchOrder extends javax.swing.JFrame {
                         .addGap(62, 62, 62)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblChooseCustomerHeadline)
-                            .addComponent(lblChooseOrderHeadline)))
+                            .addComponent(lblChooseOrderHeadline)
+                            .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addComponent(btnChooseCustomer))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(142, 142, 142)
-                        .addComponent(btnShowOrder))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnShowOrder)))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -173,7 +171,7 @@ public class searchOrder extends javax.swing.JFrame {
     
     private void btnShowOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowOrderActionPerformed
         // TODO add your handling code here:
-        if(btnChooseCustomer.getAction() == null){
+        if(cmbChooseOrder.getSelectedItem() == null){
         lblError.setForeground(Color.red);
         lblError.setText("Vänligen välj en order för att kunna visa");
         } else{

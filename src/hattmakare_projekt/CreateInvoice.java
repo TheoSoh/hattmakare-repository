@@ -16,12 +16,21 @@ import oru.inf.InfException;
 public class CreateInvoice extends javax.swing.JFrame {
 
     private InfDB idb;
+    private String selectedOrderID;
+    private final int employeeIdet;
     /**
      * Creates new form CreateInvoice
+     * @param idb
+     * @param selectedOrderID
+     * @param employeeIdet
      */
-    public CreateInvoice() {
+    public CreateInvoice(InfDB idb, String selectedOrderID, int employeeIdet) {
         initComponents();
         this.idb = idb;
+        this.selectedOrderID = selectedOrderID;
+        this.employeeIdet = employeeIdet;
+        fillEmployee();
+        fillIDLabel();
         fetchAmount();
         fetchTotalPrice();
         fetchDescription();
@@ -243,9 +252,9 @@ public class CreateInvoice extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblInvoiceHeadline, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblInvoiceDateHeadline, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblInvoiceDate, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblInvoiceDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblInvoiceDateHeadline, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblInvoiceNumberHeadline)
@@ -275,10 +284,9 @@ public class CreateInvoice extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblCustomerHouseNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblEmployeeHeadline, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblEmployeeName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblCustomerAdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblEmployeeHeadline, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblEmployeeName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCustomerAdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDescriptionHeadline)
@@ -309,6 +317,21 @@ public class CreateInvoice extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
+    private void fillIDLabel(){
+        lblOrderID.setText(selectedOrderID);
+    }
+    
+    private void fillEmployee(){
+        String query = "Select Name from Employee where EmployeeID = " + employeeIdet;
+        try {
+            String result = idb.fetchSingle(query);
+            lblEmployeeName.setText(result);
+            
+        } catch (InfException ex) {
+            Logger.getLogger(CreateInvoice.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void fetchAmount(){
         try{
             String query = "Select Amount from `Order`where OrderID = '" + lblOrderID.getText() + "'";

@@ -4,6 +4,7 @@
  */
 package hattmakare_projekt;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,15 +19,18 @@ import oru.inf.InfException;
 public class searchInvoice extends javax.swing.JFrame {
 
    private InfDB idb;
+    private int employeeIdet;
     
     /**
      * Creates new form searchInvoice
      * @param idb
+     * @param employeeIdet
      */
-    public searchInvoice(InfDB idb) {
+    public searchInvoice(InfDB idb, int employeeIdet) {
         initComponents();
         this.idb = idb;
         fillCustomerBox();
+        this.employeeIdet = employeeIdet;
     }
 
     /**
@@ -45,6 +49,7 @@ public class searchInvoice extends javax.swing.JFrame {
         lblChooseOrderHeadline = new javax.swing.JLabel();
         cmbChooseOrder = new javax.swing.JComboBox<>();
         btnChooseOrder = new javax.swing.JButton();
+        lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,7 +113,10 @@ public class searchInvoice extends javax.swing.JFrame {
                         .addGap(225, 225, 225)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cmbChooseOrder, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnChooseOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))))
+                            .addComponent(btnChooseOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 115, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -128,7 +136,9 @@ public class searchInvoice extends javax.swing.JFrame {
                 .addComponent(cmbChooseOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnChooseOrder)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,9 +183,15 @@ public class searchInvoice extends javax.swing.JFrame {
     
     private void btnChooseOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseOrderActionPerformed
         // TODO add your handling code here:
-       String selectedOrderID = chosenOrder();
-        
-        dispose();
+       if(cmbChooseOrder.getSelectedItem() == null){
+        lblError.setForeground(Color.red);
+        lblError.setText("Vänligen välj en order för att kunna visa");
+        } else{
+            
+            String selectedOrderID = chosenOrder();
+            new CreateInvoice(idb, selectedOrderID, employeeIdet).setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_btnChooseOrderActionPerformed
 
    private void fillCustomerBox() {
@@ -204,6 +220,7 @@ public class searchInvoice extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbChooseOrder;
     private javax.swing.JLabel lblChooseCustomerHeadline;
     private javax.swing.JLabel lblChooseOrderHeadline;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblFrameHeadline;
     // End of variables declaration//GEN-END:variables
 }

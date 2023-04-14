@@ -91,6 +91,11 @@ public class UserPage extends javax.swing.JFrame {
         btnShowStatistics.setText("Se statistik");
 
         btnCreateInvoice.setText("Skapa faktura");
+        btnCreateInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateInvoiceActionPerformed(evt);
+            }
+        });
 
         btnPrint.setText("Skriv ut frakt och tullsedel");
 
@@ -178,6 +183,11 @@ public class UserPage extends javax.swing.JFrame {
        new ChooseCustomerAndOrder(idb).setVisible(true);
        
     }//GEN-LAST:event_btnChangeOrderInfoActionPerformed
+
+    private void btnCreateInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateInvoiceActionPerformed
+        // TODO add your handling code here:
+        new searchInvoice(idb,employeeIdet).setVisible(true);
+    }//GEN-LAST:event_btnCreateInvoiceActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangeInfoCustomer;

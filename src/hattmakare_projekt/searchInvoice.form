@@ -52,6 +52,10 @@
                           <Component id="btnChooseOrder" pref="115" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
+                      <Component id="lblError" min="-2" pref="363" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="130" max="32767" attributes="0"/>
           </Group>
@@ -74,7 +78,9 @@
               <Component id="cmbChooseOrder" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnChooseOrder" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="59" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblError" min="-2" pref="25" max="-2" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -145,6 +151,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChooseOrderActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblError">
     </Component>
   </SubComponents>
 </Form>

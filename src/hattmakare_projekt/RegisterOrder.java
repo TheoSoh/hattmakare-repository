@@ -471,6 +471,7 @@ public class RegisterOrder extends javax.swing.JFrame {
     String description = txtHatDescription.getText();
     String amount = cboHatAmount.getSelectedItem().toString();
     String customerName = cboAllCustomers.getSelectedItem().toString();
+    String pricePerHat = lblCostPerHat.getText().toString();
     String estimatedPrice = lblEstimatedTotalPrice.getText();
     String sketch = lblHatSketch.getIcon().toString();
     
@@ -520,17 +521,17 @@ public class RegisterOrder extends javax.swing.JFrame {
     int customerInt = parseInt(result);
         
         String nextHatId = "(SELECT MAX(HatID) FROM Hat)";
+        
         String nextOrderId = "(SELECT MAX(OrderID) FROM `Order`)";
        
-        String hatQuery = "INSERT INTO Hat (Size,Price,Color,Description, image) VALUES ('" + size + "', null, '" + color + "', '" + description + "', '" + sketch + "')";
+        String hatQuery = "INSERT INTO Hat (Size, Price, Color, Description, image) VALUES ('" + size + "', '" + pricePerHat + "', '" + color + "', '" + description + "', '" + sketch + "')";
+//        String hatQuery = "INSERT INTO Hat (Size,Price,Color,Description) VALUES ('" + size + "', null, '" + color + "', '" + description + "')";
         
-//        String orderQuery = "INSERT INTO `Order` (Amount,Total_Price,Order_date,Shipment_date,Invoice_sent_status,Payment_status , Order_complete_status, Created_by_employee,Customer,Picture_exist) VALUES (" + amount + ",null, curdate(), null, 0 , 0 , 0 ," + employeeId + "," + customerInt + ",null)"; 
         String orderQuery = "INSERT INTO `Order` (Amount, Total_Price, Order_date, Shipment_date, Invoice_sent_status, Payment_status, Order_complete_status, Created_by_employee, Customer, Picture_exist) VALUES (" + amount + ", " + estimatedPrice + ", curdate(), null, 0, 0, 0, " + employeeId + ", " + customerInt + ", null)";
-
-
         
         String orderAndHatQuery = "INSERT INTO Hat_in_order (HatID,OrderID) VALUES (" + nextHatId + ", " + nextOrderId + ")";
         
+//        String sketchQuery = "INSERT INTO Hat (image) VALUES ('" + sketch + "')";
       
         idb.insert(hatQuery);
         idb.insert(orderQuery);

@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import java.util.Random;
 
 /**
  *
@@ -40,6 +41,7 @@ public class CreateInvoice extends javax.swing.JFrame {
         fetchPrice();
         fetchShippingDate();
         fetchCustomerID();
+        GenerateRandom();
         
     }
 
@@ -422,6 +424,13 @@ public class CreateInvoice extends javax.swing.JFrame {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    private void GenerateRandom(){
+        Random number = new Random();
+        int upperbound = 10;
+        int genRan = number.nextInt(upperbound);
+        lblInvoiceNumber.setText(Integer.toString(genRan));
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbl14Days;

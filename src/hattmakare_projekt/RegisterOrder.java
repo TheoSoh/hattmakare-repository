@@ -30,6 +30,7 @@ public class RegisterOrder extends javax.swing.JFrame {
 
     private InfDB idb;
     private int employeeId;
+    private String pathImage;
     
     
     /**
@@ -441,6 +442,8 @@ public class RegisterOrder extends javax.swing.JFrame {
     chooser.showOpenDialog(null);
     File file = chooser.getSelectedFile();
     String path = file.getAbsolutePath();
+    pathImage = path;
+    
     
     Image im = Toolkit.getDefaultToolkit().createImage(path);
     im = im.getScaledInstance(lblHatSketch.getWidth(), lblHatSketch.getHeight(), lblHatSketch.getHorizontalAlignment());
@@ -473,7 +476,7 @@ public class RegisterOrder extends javax.swing.JFrame {
     String customerName = cboAllCustomers.getSelectedItem().toString();
     String pricePerHat = lblCostPerHat.getText().toString();
     String estimatedPrice = lblEstimatedTotalPrice.getText();
-    String sketch = lblHatSketch.getIcon().toString();
+    String sketch = pathImage.toString();
     
     
               lblResult.setForeground(Color.RED);

@@ -4,6 +4,8 @@
  */
 package hattmakare_projekt;
 
+import java.awt.Color;
+import static java.awt.Color.black;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
@@ -15,6 +17,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -26,6 +30,7 @@ public class RegisterOrder extends javax.swing.JFrame {
 
     private InfDB idb;
     private int employeeId;
+    private String pathImage;
     
     
     /**
@@ -37,16 +42,42 @@ public class RegisterOrder extends javax.swing.JFrame {
         this.idb = idb;
         this.employeeId = employeeId;
         fillBoxWithCustomer();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);  
+//        setExtendedState(JFrame.MAXIMIZED_BOTH);  
         
     }
 
-   
+   public void calculateEstimatedPrice()
+   {
+    double price1 = Double.parseDouble(txtEstimatedTime.getText());
+    double price2 = Double.parseDouble(txtEstimatedMaterialCost.getText());
+    double price3 = Double.parseDouble(cboOptionalDiscount.getSelectedItem().toString());
+    double price4 = Double.parseDouble(cboHatAmount.getSelectedItem().toString());
+
+    double price3Percent = price3 / 100.0;
+    
+
+    double x = ((price1 * 800) + price2) * price4;
+    
+    double total = x - (x * price3Percent);
+            
+    double pricePerHat = ((price1 * 800) + price2);
+            
+    lblEstimatedTotalPrice.setText(String.valueOf(total));
+    
+    lblCostPerHat.setText(String.valueOf(pricePerHat));
+
+    
+    lblCurrency1.setText("Kostnad per hatt:");
+
+    lblCurrency.setText("Total kostnad för order:");
+
+   }
     
     
     private void fillBoxWithCustomer() {
         
-         
+        
+        
         String fraga = "SELECT Name from Customer";
         
         ArrayList <String> allCustomerNames;
@@ -61,7 +92,24 @@ public class RegisterOrder extends javax.swing.JFrame {
         }catch(InfException e) {
             JOptionPane.showMessageDialog(null, "fel");
         }
+        
     }
+            public boolean checkEmpty(JTextField aTxtField) {
+        boolean isEmpty = false;
+        if(aTxtField.getText().isEmpty()) {
+            isEmpty = true;
+        }
+        return isEmpty;
+    }
+        public boolean checkEmpty(JTextPane aTxttField) {
+        boolean isEmpty = false;
+        if(aTxttField.getText().isEmpty()) {
+            isEmpty = true;
+        }
+        return isEmpty;
+    }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,7 +128,6 @@ public class RegisterOrder extends javax.swing.JFrame {
         lblHatColor = new javax.swing.JLabel();
         cboHatColor = new javax.swing.JComboBox<>();
         lblHatDescription = new javax.swing.JLabel();
-        txtHatDescription = new javax.swing.JTextField();
         lblHatSketch = new javax.swing.JLabel();
         btnSearchHatSketch = new javax.swing.JButton();
         lblRubrik = new javax.swing.JLabel();
@@ -89,17 +136,25 @@ public class RegisterOrder extends javax.swing.JFrame {
         lblEstimatedCost = new javax.swing.JLabel();
         txtEstimatedMaterialCost = new javax.swing.JTextField();
         btnEstimatedCost = new javax.swing.JButton();
-        lblEstimatedPrice = new javax.swing.JLabel();
+        lblEstimatedTotalPrice = new javax.swing.JLabel();
         cboOptionalDiscount = new javax.swing.JComboBox<>();
         txtChooseDiscount = new javax.swing.JLabel();
         btnRegisterOrder = new javax.swing.JButton();
         lblAmount = new javax.swing.JLabel();
         cboHatAmount = new javax.swing.JComboBox<>();
         btnBack = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtHatDescription = new javax.swing.JTextPane();
+        lblCurrency = new javax.swing.JLabel();
+        lblCostPerHat = new javax.swing.JLabel();
+        lblResult = new javax.swing.JLabel();
+        lblCurrency1 = new javax.swing.JLabel();
+        lblEstimatedPriceError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(100, 150));
 
+        cboAllCustomers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj" }));
         cboAllCustomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboAllCustomersActionPerformed(evt);
@@ -108,8 +163,18 @@ public class RegisterOrder extends javax.swing.JFrame {
 
         lblChooseCustomer.setText("Välj kund:");
 
-        lblHatSize.setText("Storlek (cm)");
+        lblHatSize.setText("Storlek:");
 
+        txtHatSize.setForeground(new java.awt.Color(153, 153, 153));
+        txtHatSize.setText("Hattstorlek i centimeter");
+        txtHatSize.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtHatSizeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtHatSizeFocusLost(evt);
+            }
+        });
         txtHatSize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtHatSizeActionPerformed(evt);
@@ -142,41 +207,66 @@ public class RegisterOrder extends javax.swing.JFrame {
         lblRubrik.setPreferredSize(new java.awt.Dimension(234, 44));
         lblRubrik.setSize(new java.awt.Dimension(20, 20));
 
-        lblEstimatedTime.setText("Uppskattad arbetstid (h):");
+        lblEstimatedTime.setText("Uppskattad arbetstid:");
 
+        txtEstimatedTime.setForeground(new java.awt.Color(153, 153, 153));
+        txtEstimatedTime.setText("Antal timmar per hatt");
+        txtEstimatedTime.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEstimatedTimeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEstimatedTimeFocusLost(evt);
+            }
+        });
         txtEstimatedTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEstimatedTimeActionPerformed(evt);
             }
         });
+        txtEstimatedTime.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEstimatedTimeKeyPressed(evt);
+            }
+        });
 
-        lblEstimatedCost.setText("Uppskattad materialkostnad (kr):");
+        lblEstimatedCost.setText("Uppskattad materialkostnad:");
 
+        txtEstimatedMaterialCost.setForeground(new java.awt.Color(153, 153, 153));
+        txtEstimatedMaterialCost.setText("Kostnad i kronor per hatt");
+        txtEstimatedMaterialCost.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEstimatedMaterialCostFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEstimatedMaterialCostFocusLost(evt);
+            }
+        });
         txtEstimatedMaterialCost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEstimatedMaterialCostActionPerformed(evt);
             }
         });
 
-        btnEstimatedCost.setText("Uppskattad kostnad:");
+        btnEstimatedCost.setText("Uppskatta kostnad");
         btnEstimatedCost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEstimatedCostActionPerformed(evt);
             }
         });
 
-        lblEstimatedPrice.setText("Visa kostnad");
+        lblEstimatedTotalPrice.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        cboOptionalDiscount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0%", "5%", "10%", "15%", "20%", "25%" }));
+        cboOptionalDiscount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "0", "5", "10", "15", "20", "25" }));
         cboOptionalDiscount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboOptionalDiscountActionPerformed(evt);
             }
         });
 
-        txtChooseDiscount.setText("Välj rabatt:");
+        txtChooseDiscount.setText("Välj rabatt i procent:");
 
-        btnRegisterOrder.setText("Skicka");
+        btnRegisterOrder.setText("Registrera order!");
         btnRegisterOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisterOrderActionPerformed(evt);
@@ -185,7 +275,7 @@ public class RegisterOrder extends javax.swing.JFrame {
 
         lblAmount.setText("Antal:");
 
-        cboHatAmount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "välj", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        cboHatAmount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
 
         btnBack.setText("Tillbaka");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -194,121 +284,147 @@ public class RegisterOrder extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setViewportView(txtHatDescription);
+
+        lblCurrency.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCurrency.setToolTipText("");
+
+        lblCurrency1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(btnBack)
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHatColor)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(lblChooseCustomer)
-                                    .addComponent(lblHatSize))
-                                .addGap(70, 70, 70))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblHatColor)
-                                .addGap(109, 109, 109)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboHatColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cboAllCustomers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtHatSize)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtChooseDiscount))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblRubrik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEstimatedTime, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblEstimatedCost, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblAmount)
-                                .addGap(105, 105, 105)
-                                .addComponent(cboHatAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(63, 63, 63))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblHatSize)
+                                    .addGap(53, 53, 53)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAmount)
                                     .addComponent(lblHatDescription)
                                     .addComponent(btnSearchHatSketch))
-                                .addGap(66, 66, 66)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtHatDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
-                                    .addComponent(lblHatSketch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 286, Short.MAX_VALUE)
+                                .addGap(49, 49, 49)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRegisterOrder)
-                            .addComponent(btnEstimatedCost))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jScrollPane1)
+                                    .addComponent(txtHatSize, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(cboHatColor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cboHatAmount, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cboAllCustomers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblEstimatedCost)
+                                    .addComponent(lblEstimatedTime)
+                                    .addComponent(txtChooseDiscount)
+                                    .addComponent(btnEstimatedCost))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblHatSketch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(37, 37, 37)
-                            .addComponent(txtEstimatedTime, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtEstimatedMaterialCost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cboOptionalDiscount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cboOptionalDiscount, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtEstimatedTime, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEstimatedMaterialCost, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(btnRegisterOrder)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(179, 179, 179))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCurrency, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblCurrency1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCostPerHat, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEstimatedTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(167, 167, 167))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(lblEstimatedPrice)))
-                .addGap(622, 622, 622))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblEstimatedPriceError, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(12, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(439, 439, 439)
+                .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBack))
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBack)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblEstimatedTime)
+                        .addComponent(txtEstimatedTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblChooseCustomer)
+                        .addComponent(cboAllCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblChooseCustomer)
-                    .addComponent(cboAllCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEstimatedTime)
-                    .addComponent(txtEstimatedTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEstimatedMaterialCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHatSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHatSize)
+                    .addComponent(lblEstimatedCost))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEstimatedCost)
-                    .addComponent(txtEstimatedMaterialCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cboOptionalDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblHatColor)
+                        .addComponent(txtChooseDiscount))
+                    .addComponent(cboHatColor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblHatSize)
-                            .addComponent(txtHatSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cboHatAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAmount)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(btnEstimatedCost))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblHatColor)
-                            .addComponent(cboHatColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtChooseDiscount)
-                            .addComponent(cboOptionalDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboHatAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnEstimatedCost)
-                        .addComponent(lblEstimatedPrice)
-                        .addComponent(lblAmount)))
-                .addGap(41, 41, 41)
+                            .addComponent(lblCurrency1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCostPerHat, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEstimatedTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCurrency, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHatDescription)
-                    .addComponent(txtHatDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEstimatedPriceError, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblHatSketch, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchHatSketch)
-                    .addComponent(btnRegisterOrder))
-                .addContainerGap(278, Short.MAX_VALUE))
+                    .addComponent(lblHatSketch, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegisterOrder)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -331,6 +447,8 @@ public class RegisterOrder extends javax.swing.JFrame {
     chooser.showOpenDialog(null);
     File file = chooser.getSelectedFile();
     String path = file.getAbsolutePath();
+    pathImage = path;
+    
     
     Image im = Toolkit.getDefaultToolkit().createImage(path);
     im = im.getScaledInstance(lblHatSketch.getWidth(), lblHatSketch.getHeight(), lblHatSketch.getHorizontalAlignment());
@@ -347,7 +465,37 @@ public class RegisterOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEstimatedMaterialCostActionPerformed
 
     private void btnEstimatedCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstimatedCostActionPerformed
-        // TODO add your handling code here:
+        
+        
+                      lblEstimatedPriceError.setForeground(Color.RED);
+        if(cboHatAmount.getSelectedItem().equals("Välj")) {
+            lblEstimatedPriceError.setText("Välj antal hattar");
+            return;
+        } 
+        if(checkEmpty(txtEstimatedTime)) {
+             lblEstimatedPriceError.setText("Vänligen ange en uppskattad arbetstid för hatten");
+          return;
+        }
+        if(txtEstimatedTime.getText().equals("Antal timmar per hatt")){
+            lblEstimatedPriceError.setText("Vänligen ange en uppskattad arbetstid för hatten");
+          return;
+        }
+        if(checkEmpty(txtEstimatedMaterialCost)) {
+             lblEstimatedPriceError.setText("Vänligen ange en uppskattad materialkostnad för hatten");
+          return;
+        }
+        if(txtEstimatedMaterialCost.getText().equals("Kostnad i kronor per hatt")){
+            lblEstimatedPriceError.setText("Vänligen ange en uppskattad materialkostnad för hatten");
+          return;
+        } 
+        
+        if(cboOptionalDiscount.getSelectedItem().equals("Välj")) {
+            lblEstimatedPriceError.setText("Ange en rabattsats");
+        return;
+        }
+        else calculateEstimatedPrice();
+        lblEstimatedPriceError.setText("");
+        
     }//GEN-LAST:event_btnEstimatedCostActionPerformed
 
     private void cboOptionalDiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboOptionalDiscountActionPerformed
@@ -361,13 +509,69 @@ public class RegisterOrder extends javax.swing.JFrame {
     String description = txtHatDescription.getText();
     String amount = cboHatAmount.getSelectedItem().toString();
     String customerName = cboAllCustomers.getSelectedItem().toString();
+    String pricePerHat = lblCostPerHat.getText().toString();
+    String estimatedPrice = lblEstimatedTotalPrice.getText();
+    String sketch = pathImage.toString();
     
-   
-   
- 
-
-
     
+              lblResult.setForeground(Color.RED);
+        if(cboAllCustomers.getSelectedItem().equals("Välj")) {
+            lblResult.setText("Vänligen välj en kund");
+            return;
+        }
+        if(checkEmpty(txtHatSize)) {
+            lblResult.setText("Vänligen skriv in en storlek");
+            return;
+        }
+        if(txtHatSize.getText().equals("Hattstorlek i centimeter")){
+            lblResult.setText("Vänligen skriv in en storlek");
+          return;
+        } 
+        
+        if(cboHatColor.getSelectedItem().equals("Välj")) {
+            lblResult.setText("Vänligen välj en färg");
+            return;
+        }
+        if(cboHatAmount.getSelectedItem().equals("Välj")) {
+            lblResult.setText("Välj antal hattar");
+            return;
+        } 
+         if(checkEmpty(txtHatDescription)) {
+            lblResult.setText("Vänligen ange en beskrivning");
+            return;
+        }
+        if(checkEmpty(txtEstimatedTime)) {
+             lblResult.setText("Vänligen ange en uppskattad arbetstid för hatten");
+          return;
+        }
+        if(txtEstimatedTime.getText().equals("Antal timmar per hatt")){
+            lblResult.setText("Vänligen ange en uppskattad arbetstid för hatten");
+          return;
+        }
+        if(checkEmpty(txtEstimatedMaterialCost)) {
+             lblResult.setText("Vänligen ange en uppskattad materialkostnad för hatten");
+          return;
+        }
+        if(txtEstimatedMaterialCost.getText().equals("Kostnad i kronor per hatt")){
+            lblResult.setText("Vänligen ange en uppskattad materialkostnad för hatten");
+          return;
+        } 
+        
+        if(cboOptionalDiscount.getSelectedItem().equals("Välj")) {
+            lblResult.setText("Ange en rabattsats");
+        return;
+        }
+        
+        if(lblCostPerHat.getText().isEmpty()){
+            lblResult.setText("Uppskatta kostnaden för hatten"); 
+        }
+//        if(lblHatSketch.) {
+//            lblResult.setText("");
+//        return;
+//        }
+        else {
+    
+        
     try{
         
         
@@ -376,26 +580,24 @@ public class RegisterOrder extends javax.swing.JFrame {
     int customerInt = parseInt(result);
         
         String nextHatId = "(SELECT MAX(HatID) FROM Hat)";
+        
         String nextOrderId = "(SELECT MAX(OrderID) FROM `Order`)";
        
-        String hatQuery = "INSERT INTO Hat (Size,Price,Color,Description) VALUES ('" + size + "', null, '" + color + "', '" + description + "')";
+        String hatQuery = "INSERT INTO Hat (Size, Price, Color, Description, image) VALUES ('" + size + "', '" + pricePerHat + "', '" + color + "', '" + description + "', '" + sketch + "')";
+//        String hatQuery = "INSERT INTO Hat (Size,Price,Color,Description) VALUES ('" + size + "', null, '" + color + "', '" + description + "')";
         
-        String orderQuery = "INSERT INTO `Order` (Amount,Total_Price,Order_date,Shipment_date,Invoice_sent_status,Payment_status , Order_complete_status, Created_by_employee,Customer,Picture_exist) VALUES (" + amount + ",null, curdate(), null, 0 , 0 , 0 ," + employeeId + "," + customerInt + ",null)"; 
-        
-        
-        
+        String orderQuery = "INSERT INTO `Order` (Amount, Total_Price, Order_date, Shipment_date, Invoice_sent_status, Payment_status, Order_complete_status, Created_by_employee, Customer, Picture_exist) VALUES (" + amount + ", " + estimatedPrice + ", curdate(), null, 0, 0, 0, " + employeeId + ", " + customerInt + ", null)";
         
         String orderAndHatQuery = "INSERT INTO Hat_in_order (HatID,OrderID) VALUES (" + nextHatId + ", " + nextOrderId + ")";
         
-        
-        
+//        String sketchQuery = "INSERT INTO Hat (image) VALUES ('" + sketch + "')";
       
         idb.insert(hatQuery);
         idb.insert(orderQuery);
         idb.insert(orderAndHatQuery);
+
         
-        
-            JOptionPane.showMessageDialog(null, "Din förfrågan är skapad! <3");
+            JOptionPane.showMessageDialog(null, "Ordern är registrerad!");
 
               
 
@@ -403,16 +605,75 @@ public class RegisterOrder extends javax.swing.JFrame {
         
        
         
-        
+    
         catch(Exception e) {
             JOptionPane.showMessageDialog(null, "System error");
             System.out.println("Fel" + e.getMessage());
+           
+        }
         }
     }//GEN-LAST:event_btnRegisterOrderActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtEstimatedTimeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstimatedTimeKeyPressed
+        
+    }//GEN-LAST:event_txtEstimatedTimeKeyPressed
+
+    private void txtEstimatedTimeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstimatedTimeFocusGained
+    if(txtEstimatedTime.getText().equals("Antal timmar per hatt"))
+        {
+            txtEstimatedTime.setText("");
+            txtEstimatedTime.setForeground(new Color(0,0,0));
+            
+        }
+    }//GEN-LAST:event_txtEstimatedTimeFocusGained
+
+    private void txtEstimatedMaterialCostFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstimatedMaterialCostFocusGained
+    if(txtEstimatedMaterialCost.getText().equals("Kostnad i kronor per hatt"))
+        {
+            txtEstimatedMaterialCost.setText("");
+            txtEstimatedMaterialCost.setForeground(new Color(0,0,0));
+
+        }
+    }//GEN-LAST:event_txtEstimatedMaterialCostFocusGained
+
+    private void txtHatSizeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHatSizeFocusGained
+        if(txtHatSize.getText().equals("Hattstorlek i centimeter"))
+        {
+            txtHatSize.setText("");
+            txtHatSize.setForeground(new Color(0,0,0));
+
+        }
+    }//GEN-LAST:event_txtHatSizeFocusGained
+
+    private void txtEstimatedTimeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstimatedTimeFocusLost
+        if(txtEstimatedTime.getText().equals(""))
+        {
+            txtEstimatedTime.setText("Antal timmar per hatt");
+            txtEstimatedTime.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtEstimatedTimeFocusLost
+
+    private void txtEstimatedMaterialCostFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstimatedMaterialCostFocusLost
+        if(txtEstimatedMaterialCost.getText().equals(""))
+        {
+            txtEstimatedMaterialCost.setText("Kostnad i kronor per hatt");
+            txtEstimatedMaterialCost.setForeground(new Color(153,153,153));
+
+        }
+    }//GEN-LAST:event_txtEstimatedMaterialCostFocusLost
+
+    private void txtHatSizeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHatSizeFocusLost
+        if(txtHatSize.getText().equals(""))
+        {
+            txtHatSize.setText("Hattstorlek i centimeter");
+            txtHatSize.setForeground(new Color(153,153,153));
+
+        }
+    }//GEN-LAST:event_txtHatSizeFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -425,20 +686,26 @@ public class RegisterOrder extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboHatColor;
     private javax.swing.JComboBox<String> cboOptionalDiscount;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAmount;
     private javax.swing.JLabel lblChooseCustomer;
+    private javax.swing.JLabel lblCostPerHat;
+    private javax.swing.JLabel lblCurrency;
+    private javax.swing.JLabel lblCurrency1;
     private javax.swing.JLabel lblEstimatedCost;
-    private javax.swing.JLabel lblEstimatedPrice;
+    private javax.swing.JLabel lblEstimatedPriceError;
     private javax.swing.JLabel lblEstimatedTime;
+    public javax.swing.JLabel lblEstimatedTotalPrice;
     private javax.swing.JLabel lblHatColor;
     private javax.swing.JLabel lblHatDescription;
     private javax.swing.JLabel lblHatSize;
     private javax.swing.JLabel lblHatSketch;
+    private javax.swing.JLabel lblResult;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JLabel txtChooseDiscount;
     private javax.swing.JTextField txtEstimatedMaterialCost;
     private javax.swing.JTextField txtEstimatedTime;
-    private javax.swing.JTextField txtHatDescription;
+    private javax.swing.JTextPane txtHatDescription;
     private javax.swing.JTextField txtHatSize;
     // End of variables declaration//GEN-END:variables
 

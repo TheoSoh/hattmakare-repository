@@ -27,12 +27,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="lblDescriptionHeadline" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lblHatDescription" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblOrderDateHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblShippmentDateHeadline" max="32767" attributes="0"/>
@@ -47,6 +41,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblTotalPrice" min="-2" pref="73" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblDescriptionHeadline" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblHatDescription" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -77,10 +77,24 @@
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="lblStatusHeadline" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="cmbChangeStatus" min="-2" pref="117" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace pref="46" max="32767" attributes="0"/>
+                              <Component id="cmbChangeStatus" min="-2" pref="117" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblChangeStatusHL" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblStatusHeadline" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblCurrentStatus" min="-2" pref="83" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -89,29 +103,39 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblOrderIDHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblStatusHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblOrderID" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="btnBackToSearch" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblOrderIDHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblStatusHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblOrderID" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="btnBackToSearch" min="-2" pref="23" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblCustomerNameHeadline" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCustomerName" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="lblCurrentStatus" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblCustomerNameHeadline" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCustomerName" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblHatColor" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="lblColorHeadline" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="cmbChangeStatus" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="lblChangeStatusHL" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cmbChangeStatus" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblHatColor" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="lblColorHeadline" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblHatSize" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="lblSizeHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -197,9 +221,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblOrderID">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCustomerName">
     </Component>
@@ -256,6 +277,13 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCurrentStatus">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblChangeStatusHL">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xc4;ndra status"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

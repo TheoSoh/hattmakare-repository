@@ -4,7 +4,10 @@
  */
 package hattmakare_projekt;
 
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import oru.inf.InfDB;
@@ -40,6 +43,9 @@ public class searchOrder extends javax.swing.JFrame {
         lblChooseOrderHeadline = new javax.swing.JLabel();
         cmbChooseOrder = new javax.swing.JComboBox<>();
         btnShowOrder = new javax.swing.JButton();
+        btnChooseCustomer = new javax.swing.JButton();
+        btnGoBack = new javax.swing.JButton();
+        lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,12 +57,31 @@ public class searchOrder extends javax.swing.JFrame {
 
         lblChooseOrderHeadline.setText("Välj vilken av denna kunds beställningar du vill visa");
 
-        cmbChooseOrder.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Order 1" }));
+        cmbChooseOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbChooseOrderActionPerformed(evt);
+            }
+        });
 
         btnShowOrder.setText("Visa");
         btnShowOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowOrderActionPerformed(evt);
+            }
+        });
+
+        btnChooseCustomer.setText("Välj kund");
+        btnChooseCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChooseCustomerActionPerformed(evt);
+            }
+        });
+
+        btnGoBack.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        btnGoBack.setText("Tillbaka");
+        btnGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoBackActionPerformed(evt);
             }
         });
 
@@ -67,47 +92,64 @@ public class searchOrder extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
+                        .addGap(96, 96, 96)
                         .addComponent(lblHeadline, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(lblChooseCustomerHeadline))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(123, 123, 123)
                         .addComponent(cmbChooseCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(lblChooseOrderHeadline))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(121, 121, 121)
                         .addComponent(cmbChooseOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
+                        .addContainerGap()
+                        .addComponent(btnGoBack))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblChooseCustomerHeadline)
+                            .addComponent(lblChooseOrderHeadline)
+                            .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(btnChooseCustomer))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(142, 142, 142)
                         .addComponent(btnShowOrder)))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addComponent(btnGoBack, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addComponent(lblHeadline, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblChooseCustomerHeadline)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbChooseCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnChooseCustomer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblChooseOrderHeadline)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbChooseOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnShowOrder)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
+ public String chosenOrder(){
+     String chosenOrderID = cmbChooseOrder.getSelectedItem().toString();
+        
+     
+     return chosenOrderID;
+ }
  private void fillCustomerBox() {
         
          
@@ -129,10 +171,49 @@ public class searchOrder extends javax.swing.JFrame {
     
     private void btnShowOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowOrderActionPerformed
         // TODO add your handling code here:
-        new showOrder(idb).setVisible(true);
+        if(cmbChooseOrder.getSelectedItem() == null){
+        lblError.setForeground(Color.red);
+        lblError.setText("Vänligen välj en order för att kunna visa");
+        } else{
+            
+            String selectedOrderID = chosenOrder();
+        new showOrder(idb, selectedOrderID).setVisible(true);
         dispose();
+        }
         
     }//GEN-LAST:event_btnShowOrderActionPerformed
+
+    private void btnChooseCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCustomerActionPerformed
+        // TODO add your handling code here:
+        String chosenCustomer = cmbChooseCustomer.getSelectedItem().toString();
+        String query = "SELECT OrderID FROM `Order` JOIN customer on customer.CustomerID = `order`.Customer WHERE NAME = '" + chosenCustomer + "'";
+        
+        ArrayList <String> allOrdersForCustomer  ;
+        
+        try {
+            
+            allOrdersForCustomer = idb.fetchColumn(query);
+            
+            for(String orders:allOrdersForCustomer) {
+                cmbChooseOrder.addItem(orders);
+                
+        }
+  
+        } catch (InfException ex) {
+            Logger.getLogger(searchOrder.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+    }//GEN-LAST:event_btnChooseCustomerActionPerformed
+
+    private void cmbChooseOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbChooseOrderActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cmbChooseOrderActionPerformed
+
+    private void btnGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoBackActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnGoBackActionPerformed
 
     
     
@@ -173,11 +254,14 @@ public class searchOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChooseCustomer;
+    private javax.swing.JButton btnGoBack;
     private javax.swing.JButton btnShowOrder;
     private javax.swing.JComboBox<String> cmbChooseCustomer;
     private javax.swing.JComboBox<String> cmbChooseOrder;
     private javax.swing.JLabel lblChooseCustomerHeadline;
     private javax.swing.JLabel lblChooseOrderHeadline;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblHeadline;
     // End of variables declaration//GEN-END:variables
 

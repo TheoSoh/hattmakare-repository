@@ -493,7 +493,7 @@ public class RegisterOrder extends javax.swing.JFrame {
             return;
         }
         if(cboHatAmount.getSelectedItem().equals("Välj")) {
-            lblResult.setText("Välj antal hattar");
+            lblResult.setText("Vänligen välj antal hattar");
             return;
         } 
          if(checkEmpty(txtHatDescription)) {
@@ -510,7 +510,7 @@ public class RegisterOrder extends javax.swing.JFrame {
         }
         
         if(cboOptionalDiscount.getSelectedItem().equals("Välj")) {
-            lblResult.setText("Ange en rabattsats");
+            lblResult.setText("Vänligen ange en rabattsats");
         return;
         }
         else {

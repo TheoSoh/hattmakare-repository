@@ -70,14 +70,14 @@
                                   <Component id="cboHatAmount" alignment="0" max="32767" attributes="0"/>
                                   <Component id="cboAllCustomers" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="129" max="32767" attributes="0"/>
+                              <EmptySpace pref="126" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblEstimatedCost" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblEstimatedTime" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtChooseDiscount" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnEstimatedCost" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <EmptySpace pref="20" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="lblHatSketch" min="-2" pref="300" max="-2" attributes="0"/>
@@ -87,16 +87,11 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="lblResult" min="-2" pref="188" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="cboOptionalDiscount" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtEstimatedTime" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtEstimatedMaterialCost" alignment="0" pref="213" max="32767" attributes="0"/>
+                          <Component id="txtEstimatedMaterialCost" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btnRegisterOrder" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -115,6 +110,16 @@
                           <Component id="lblEstimatedTotalPrice" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblResult" min="-2" pref="386" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Component id="lblEstimatedPriceError" min="-2" pref="371" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -188,6 +193,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblHatDescription" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="lblEstimatedPriceError" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -461,6 +467,8 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEstimatedPriceError">
     </Component>
   </SubComponents>
 </Form>

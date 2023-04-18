@@ -4,17 +4,20 @@
  */
 package hattmakare_projekt;
 
+import oru.inf.InfDB;
 /**
  *
  * @author filippabostrom
  */
 public class ChangeOrder extends javax.swing.JFrame {
-
+    private static InfDB idb;
+    private 
     /**
      * Creates new form ChangeOrder
      */
-    public ChangeOrder() {
+    public ChangeOrder(InfDB idb) {
         initComponents();
+        this.idb = idb;
     }
 
     /**
@@ -32,11 +35,11 @@ public class ChangeOrder extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 584, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 516, Short.MAX_VALUE)
         );
 
         pack();
@@ -72,7 +75,7 @@ public class ChangeOrder extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangeOrder().setVisible(true);
+                new ChangeOrder(idb).setVisible(true);
             }
         });
     }

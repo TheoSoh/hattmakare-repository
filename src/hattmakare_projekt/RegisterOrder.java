@@ -43,6 +43,7 @@ public class RegisterOrder extends javax.swing.JFrame {
         this.employeeId = employeeId;
         fillBoxWithCustomer();
 //        setExtendedState(JFrame.MAXIMIZED_BOTH);  
+        btnRemoveImage.setVisible(false);
         
     }
 
@@ -150,6 +151,7 @@ public class RegisterOrder extends javax.swing.JFrame {
         lblResult = new javax.swing.JLabel();
         lblCurrency1 = new javax.swing.JLabel();
         lblEstimatedPriceError = new javax.swing.JLabel();
+        btnRemoveImage = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(100, 150));
@@ -291,6 +293,13 @@ public class RegisterOrder extends javax.swing.JFrame {
 
         lblCurrency1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
+        btnRemoveImage.setText("Ta bort...");
+        btnRemoveImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveImageActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -311,12 +320,16 @@ public class RegisterOrder extends javax.swing.JFrame {
                                     .addComponent(lblHatSize)
                                     .addGap(53, 53, 53)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblAmount)
                                     .addComponent(lblHatDescription)
-                                    .addComponent(btnSearchHatSketch))
-                                .addGap(49, 49, 49)))
+                                    .addComponent(btnRemoveImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnSearchHatSketch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(43, 43, 43)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblHatSketch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jScrollPane1)
@@ -324,16 +337,13 @@ public class RegisterOrder extends javax.swing.JFrame {
                                     .addComponent(cboHatColor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cboHatAmount, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cboAllCustomers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblEstimatedCost)
                                     .addComponent(lblEstimatedTime)
                                     .addComponent(txtChooseDiscount)
                                     .addComponent(btnEstimatedCost))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblHatSketch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -359,7 +369,7 @@ public class RegisterOrder extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(lblEstimatedPriceError, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(12, Short.MAX_VALUE))))
+                        .addContainerGap(25, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(439, 439, 439)
                 .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,7 +428,10 @@ public class RegisterOrder extends javax.swing.JFrame {
                     .addComponent(lblEstimatedPriceError, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSearchHatSketch)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSearchHatSketch)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRemoveImage))
                     .addComponent(lblHatSketch, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnRegisterOrder)
@@ -454,6 +467,8 @@ public class RegisterOrder extends javax.swing.JFrame {
     im = im.getScaledInstance(lblHatSketch.getWidth(), lblHatSketch.getHeight(), lblHatSketch.getHorizontalAlignment());
     ImageIcon ii = new ImageIcon(im);
     lblHatSketch.setIcon(ii);
+    
+    btnRemoveImage.setVisible(true);
     }//GEN-LAST:event_btnSearchHatSketchActionPerformed
 
     private void txtEstimatedTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstimatedTimeActionPerformed
@@ -675,11 +690,16 @@ public class RegisterOrder extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtHatSizeFocusLost
 
+    private void btnRemoveImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveImageActionPerformed
+        lblHatSketch.setIcon(null);
+    }//GEN-LAST:event_btnRemoveImageActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEstimatedCost;
     private javax.swing.JButton btnRegisterOrder;
+    private javax.swing.JButton btnRemoveImage;
     private javax.swing.JButton btnSearchHatSketch;
     private javax.swing.JComboBox<String> cboAllCustomers;
     private javax.swing.JComboBox<String> cboHatAmount;

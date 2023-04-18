@@ -53,15 +53,20 @@
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="lblAmount" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblHatDescription" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnSearchHatSketch" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnRemoveImage" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnSearchHatSketch" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="lblHatSketch" min="-2" pref="300" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="jScrollPane1" max="32767" attributes="0"/>
@@ -70,7 +75,7 @@
                                   <Component id="cboHatAmount" alignment="0" max="32767" attributes="0"/>
                                   <Component id="cboAllCustomers" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="126" max="32767" attributes="0"/>
+                              <EmptySpace pref="107" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblEstimatedCost" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblEstimatedTime" min="-2" max="-2" attributes="0"/>
@@ -78,10 +83,6 @@
                                   <Component id="btnEstimatedCost" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="20" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="lblHatSketch" min="-2" pref="300" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -119,7 +120,7 @@
                               <Component id="lblEstimatedPriceError" min="-2" pref="371" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -197,7 +198,11 @@
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnSearchHatSketch" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnSearchHatSketch" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnRemoveImage" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="lblHatSketch" min="-2" pref="181" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnRegisterOrder" min="-2" max="-2" attributes="0"/>
@@ -469,6 +474,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEstimatedPriceError">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnRemoveImage">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ta bort..."/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveImageActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -69,11 +69,6 @@ public class UserPage extends javax.swing.JFrame {
         });
 
         btnChangeOrderInfo.setText("Ändra i order");
-        btnChangeOrderInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChangeOrderInfoActionPerformed(evt);
-            }
-        });
 
         btnShowOrderInfo.setText("Visa order");
         btnShowOrderInfo.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +78,11 @@ public class UserPage extends javax.swing.JFrame {
         });
 
         btnShowCustomerInfo.setText("Se information om kund");
+        btnShowCustomerInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowCustomerInfoActionPerformed(evt);
+            }
+        });
 
         btnChangeInfoCustomer.setText("Ändra information om kund");
 
@@ -91,11 +91,6 @@ public class UserPage extends javax.swing.JFrame {
         btnShowStatistics.setText("Se statistik");
 
         btnCreateInvoice.setText("Skapa faktura");
-        btnCreateInvoice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateInvoiceActionPerformed(evt);
-            }
-        });
 
         btnPrint.setText("Skriv ut frakt och tullsedel");
 
@@ -179,15 +174,9 @@ public class UserPage extends javax.swing.JFrame {
         new searchOrder(idb).setVisible(true);
     }//GEN-LAST:event_btnShowOrderInfoActionPerformed
 
-    private void btnChangeOrderInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeOrderInfoActionPerformed
-       new ChooseCustomerAndOrder(idb).setVisible(true);
-       
-    }//GEN-LAST:event_btnChangeOrderInfoActionPerformed
-
-    private void btnCreateInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateInvoiceActionPerformed
-        // TODO add your handling code here:
-        new searchInvoice(idb,employeeIdet).setVisible(true);
-    }//GEN-LAST:event_btnCreateInvoiceActionPerformed
+    private void btnShowCustomerInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowCustomerInfoActionPerformed
+        new showCustomerInfo(idb).setVisible(true);
+    }//GEN-LAST:event_btnShowCustomerInfoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangeInfoCustomer;

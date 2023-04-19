@@ -4,6 +4,7 @@
  */
 package hattmakare_projekt;
 
+import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -267,8 +268,10 @@ public class ChangeOrder extends javax.swing.JFrame {
           
         String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
         String hatID = idb.fetchSingle(query);
+        int id = parseInt(hatID);
+        
          
-         idb.update("UPDATE Hat SET Size = '"+ newSize + "' where HatID = "+ "'" + hatID +"'");
+         idb.update("UPDATE Hat SET Size = '"+ newSize + "' where HatID = "+ id +"");
           JOptionPane.showMessageDialog(null, "Storlek ändrad!");
          
          

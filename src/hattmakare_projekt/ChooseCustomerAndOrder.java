@@ -89,12 +89,6 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
         lblChooseOrder.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         lblChooseOrder.setText("Välj order att ändra ");
 
-        cmbOrderId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbOrderIdActionPerformed(evt);
-            }
-        });
-
         cmbCustomerName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbCustomerNameActionPerformed(evt);
@@ -152,8 +146,9 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbCustomerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCustomerNameActionPerformed
-        String customerName = cmbCustomerName.getSelectedItem().toString();
+        
         try {
+            String customerName = cmbCustomerName.getSelectedItem().toString();
             String idQuery = "select CustomerID from Customer where Name = '" + customerName + "';";
             String id = idb.fetchSingle(idQuery);
             customerId = parseInt(id);
@@ -166,13 +161,11 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbCustomerNameActionPerformed
 
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
-        new ChangeOrder(idb,chosenOrderId).setVisible(true);
-    }//GEN-LAST:event_btnChangeActionPerformed
-
-    private void cmbOrderIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOrderIdActionPerformed
         String chosenOrderIdString = cmbOrderId.getSelectedItem().toString();
         chosenOrderId = parseInt(chosenOrderIdString);
-    }//GEN-LAST:event_cmbOrderIdActionPerformed
+        new ChangeOrder(idb,chosenOrderId).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnChangeActionPerformed
 
     public static void main(String[] args) throws InfException {
         try {

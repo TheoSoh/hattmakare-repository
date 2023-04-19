@@ -22,6 +22,11 @@ public class ChangeOrder extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.orderId = orderId;
+        setLblOrderDate();
+        setLblCurrentColor();
+        setLblCurrentSize();
+        setLblCurrentPrice();
+        setTxtCurrentDescription();
     }
 
     /**
@@ -57,6 +62,7 @@ public class ChangeOrder extends javax.swing.JFrame {
         txtCurrentDescription = new javax.swing.JTextArea();
         txtNewDescription = new javax.swing.JTextField();
         btnChangeDescription = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +118,13 @@ public class ChangeOrder extends javax.swing.JFrame {
         btnChangeDescription.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChangeDescriptionActionPerformed(evt);
+            }
+        });
+
+        btnBack.setText("Tillbaka");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -179,7 +192,10 @@ public class ChangeOrder extends javax.swing.JFrame {
                                     .addComponent(btnChangePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(226, 226, 226)
-                        .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -205,11 +221,11 @@ public class ChangeOrder extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblSize)
-                            .addComponent(lblCurrentSize, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblNewSize)
                                 .addComponent(txtNewSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnChangeSize)))
+                                .addComponent(btnChangeSize))
+                            .addComponent(lblCurrentSize, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPrice, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -231,7 +247,9 @@ public class ChangeOrder extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -245,12 +263,12 @@ public class ChangeOrder extends javax.swing.JFrame {
      
      try{
           
-         String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
+        String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
         String hatID = idb.fetchSingle(query);
          
-         idb.update("UPDATE Hat SET Color = '"+ newColor + "' where HatID = "+ "'" + hatID +"'");
-          JOptionPane.showMessageDialog(null, "Färg ändrad!");
-         
+        idb.update("UPDATE Hat SET Color = '"+ newColor + "' where HatID = "+ "'" + hatID +"'");
+        JOptionPane.showMessageDialog(null, "Färg ändrad!");
+        setLblCurrentColor(); 
          
      }catch(InfException e){
           JOptionPane.showMessageDialog(null,"databasfel!");
@@ -264,62 +282,126 @@ public class ChangeOrder extends javax.swing.JFrame {
             
         String newSize = txtNewSize.getText();
      
-     try{
+        try{
           
-        String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
-        String hatID = idb.fetchSingle(query);
-        int id = parseInt(hatID);
+            String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
+            String hatID = idb.fetchSingle(query);
+            int id = parseInt(hatID);
         
          
-         idb.update("UPDATE Hat SET Size = '"+ newSize + "' where HatID = "+ id +"");
-          JOptionPane.showMessageDialog(null, "Storlek ändrad!");
+            idb.update("UPDATE Hat SET Size = '"+ newSize + "' where HatID = "+ id +"");
+            JOptionPane.showMessageDialog(null, "Storlek ändrad!");
+            setLblCurrentSize();
          
+        }
+        catch(InfException e){
+        JOptionPane.showMessageDialog(null,"databasfel!");
          
-     }catch(InfException e){
-          JOptionPane.showMessageDialog(null,"databasfel!");
-         
-     }
+        }
     }//GEN-LAST:event_btnChangeSizeActionPerformed
 
     private void btnChangePriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePriceActionPerformed
             
         String newPrice = txtNewPrice.getText();
      
-     try{
+        try{
           
-        String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
-        String hatID = idb.fetchSingle(query);
+            String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
+            String hatID = idb.fetchSingle(query);
          
-         idb.update("UPDATE Hat SET Price = '"+ newPrice + "' where HatID = "+ "'" + hatID +"'");
-         idb.update("UPDATE `Order` SET Total_Price = '"+ newPrice + "' where OrderID = "+ "'" + orderId +"'");
-          JOptionPane.showMessageDialog(null, "Pris ändrat!");
+            idb.update("UPDATE Hat SET Price = '"+ newPrice + "' where HatID = "+ "'" + hatID +"'");
+            idb.update("UPDATE `Order` SET Total_Price = '"+ newPrice + "' where OrderID = "+ "'" + orderId +"'");
+            JOptionPane.showMessageDialog(null, "Pris ändrat!");
+            setLblCurrentPrice();
          
+        }
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null,"databasfel!");
          
-     }catch(InfException e){
-          JOptionPane.showMessageDialog(null,"databasfel!");
-         
-     }
+        }
     }//GEN-LAST:event_btnChangePriceActionPerformed
 
     private void btnChangeDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeDescriptionActionPerformed
               
         String newDescription = txtNewDescription.getText();
      
-     try{
+        try{
           
-        String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
-        String hatID = idb.fetchSingle(query);
+            String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
+            String hatID = idb.fetchSingle(query);
          
-         idb.update("UPDATE Hat SET Description = '"+ newDescription + "' where HatID = "+ "'" + hatID +"'");
-          JOptionPane.showMessageDialog(null, "Beskrivning ändrad!");
+            idb.update("UPDATE Hat SET Description = '"+ newDescription + "' where HatID = "+ "'" + hatID +"'");
+            JOptionPane.showMessageDialog(null, "Beskrivning ändrad!");
+            setTxtCurrentDescription();
          
-         
-     }catch(InfException e){
+        }
+        catch(InfException e){
           JOptionPane.showMessageDialog(null,"databasfel!");
-     }
+        }
     }//GEN-LAST:event_btnChangeDescriptionActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        new ChooseCustomerAndOrder(idb).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void setLblOrderDate() {
+        try{
+            String orderDateQuery = "select Order_date from `Order` where OrderID = " + orderId + ";";
+            String orderDate = idb.fetchSingle(orderDateQuery);
+            lblShowOrderDate.setText(orderDate);
+        }
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null,"databasfel!");
+        }
+    }
+    
+    private void setLblCurrentColor() {
+        try{
+            String colorQuery = "select Color from Hat, Hat_in_order, `Order` where Hat.HatID = Hat_in_order.HatID and `Order`.OrderID = Hat_in_order.OrderID and Hat_in_order.OrderID = " + orderId + ";";
+            String hatColor = idb.fetchSingle(colorQuery);
+            lblCurrentColor.setText(hatColor);
+        }
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null,"databasfel!");
+        }
+    }
+    
+    private void setLblCurrentSize() {
+        try{
+            String sizeQuery = "select Size from Hat, Hat_in_order, `Order` where Hat.HatID = Hat_in_order.HatID and `Order`.OrderID = Hat_in_order.OrderID and Hat_in_order.OrderID = " + orderId + ";";
+            String hatSize = idb.fetchSingle(sizeQuery);
+            lblCurrentSize.setText(hatSize);
+        }
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null,"databasfel!");
+        }
+    }
+    
+    private void setLblCurrentPrice() {
+        try{
+            String priceQuery = "select Total_Price from `Order` where OrderID = " + orderId + ";";
+            String totalPrice = idb.fetchSingle(priceQuery);
+            lblCurrentPrice.setText(totalPrice);
+        }
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null,"databasfel!");
+        }
+    }
+    
+    private void setTxtCurrentDescription() {
+        try{
+            String descriptionQuery = "select Description from Hat, Hat_in_order, `Order` where Hat.HatID = Hat_in_order.HatID and `Order`.OrderID = Hat_in_order.OrderID and Hat_in_order.OrderID = " + orderId + ";";
+            String hatDescription = idb.fetchSingle(descriptionQuery);
+            txtCurrentDescription.setText(hatDescription);
+        }
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null,"databasfel!");
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnChangeColor;
     private javax.swing.JButton btnChangeDescription;
     private javax.swing.JButton btnChangePrice;

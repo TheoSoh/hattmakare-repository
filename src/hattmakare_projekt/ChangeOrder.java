@@ -4,7 +4,9 @@
  */
 package hattmakare_projekt;
 
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 /**
  *
  * @author filippabostrom
@@ -48,6 +50,12 @@ public class ChangeOrder extends javax.swing.JFrame {
         lblNewPrice = new javax.swing.JLabel();
         txtNewPrice = new javax.swing.JTextField();
         btnChangePrice = new javax.swing.JButton();
+        lblDescription = new javax.swing.JLabel();
+        lblNewDescription = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtCurrentDescription = new javax.swing.JTextArea();
+        txtNewDescription = new javax.swing.JTextField();
+        btnChangeDescription = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,79 +71,122 @@ public class ChangeOrder extends javax.swing.JFrame {
         cmbColor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blå", "Brun", "Grå", "Grön", "Gul", "Guld", "Lila", "Orange", "Rosa", "Röd", "Silver", "Svart", "Turkos", "Violett", "Vit" }));
 
         btnChangeColor.setText("Ändra färg");
+        btnChangeColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeColorActionPerformed(evt);
+            }
+        });
 
         lblSize.setText("Nuvarande storlek:");
 
         lblNewSize.setText("Ny storlek:");
 
         btnChangeSize.setText("Ändra storlek");
+        btnChangeSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeSizeActionPerformed(evt);
+            }
+        });
 
         lblPrice.setText("Nuvarande pris:");
 
         lblNewPrice.setText("Nytt pris:");
 
         btnChangePrice.setText("Ändra pris");
+        btnChangePrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangePriceActionPerformed(evt);
+            }
+        });
+
+        lblDescription.setText("Nuvarande beskrivning:");
+
+        lblNewDescription.setText("Ny beskrivning:");
+
+        txtCurrentDescription.setColumns(20);
+        txtCurrentDescription.setRows(5);
+        jScrollPane1.setViewportView(txtCurrentDescription);
+
+        btnChangeDescription.setText("Ändra beskrivning");
+        btnChangeDescription.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeDescriptionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(162, 162, 162))
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblColor)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lblCurrentColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblOrderDate)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lblShowOrderDate, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblSize)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblCurrentSize, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(lblNewColor)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmbColor, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblDescription)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblNewDescription)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNewDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnChangeDescription))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblNewSize)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtNewSize, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(lblColor)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(lblCurrentColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(lblOrderDate)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(lblShowOrderDate, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblSize)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lblCurrentSize, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(35, 35, 35)
+                                                .addComponent(lblNewColor)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(cmbColor, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(33, 33, 33)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(lblNewSize)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(txtNewSize, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(lblNewPrice)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(txtNewPrice))))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblNewPrice)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtNewPrice))))))
+                                        .addComponent(lblPrice)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblCurrentPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnChangeColor, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnChangeSize)
+                                    .addComponent(btnChangePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblPrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblCurrentPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnChangeColor, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnChangeSize)
-                    .addComponent(btnChangePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addGap(226, 226, 226)
+                        .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -152,44 +203,142 @@ public class ChangeOrder extends javax.swing.JFrame {
                                 .addComponent(btnChangeColor)))
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblSize)
-                                .addComponent(lblCurrentSize, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblSize)
+                            .addComponent(lblCurrentSize, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblNewSize)
                                 .addComponent(txtNewSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnChangeSize)))
                         .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPrice)
-                            .addComponent(lblCurrentPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPrice, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblCurrentPrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblNewPrice)
                         .addComponent(txtNewPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnChangePrice)))
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(lblDescription))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNewDescription)
+                            .addComponent(txtNewDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnChangeDescription)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeColorActionPerformed
+     
+       
+        
+        String newColor = cmbColor.getSelectedItem().toString();
+     
+     try{
+          
+         String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
+        String hatID = idb.fetchSingle(query);
+         
+         idb.update("UPDATE Hat SET Color = '"+ newColor + "' where HatID = "+ "'" + hatID +"'");
+          JOptionPane.showMessageDialog(null, "Färg ändrad!");
+         
+         
+     }catch(InfException e){
+          JOptionPane.showMessageDialog(null,"databasfel!");
+         
+     }
+     
+     
+    }//GEN-LAST:event_btnChangeColorActionPerformed
+
+    private void btnChangeSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeSizeActionPerformed
+            
+        String newSize = txtNewSize.getText();
+     
+     try{
+          
+        String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
+        String hatID = idb.fetchSingle(query);
+         
+         idb.update("UPDATE Hat SET Size = '"+ newSize + "' where HatID = "+ "'" + hatID +"'");
+          JOptionPane.showMessageDialog(null, "Storlek ändrad!");
+         
+         
+     }catch(InfException e){
+          JOptionPane.showMessageDialog(null,"databasfel!");
+         
+     }
+    }//GEN-LAST:event_btnChangeSizeActionPerformed
+
+    private void btnChangePriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePriceActionPerformed
+            
+        String newPrice = txtNewPrice.getText();
+     
+     try{
+          
+        String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
+        String hatID = idb.fetchSingle(query);
+         
+         idb.update("UPDATE Hat SET Price = '"+ newPrice + "' where HatID = "+ "'" + hatID +"'");
+         idb.update("UPDATE `Order` SET Total_Price = '"+ newPrice + "' where OrderID = "+ "'" + orderId +"'");
+          JOptionPane.showMessageDialog(null, "Pris ändrat!");
+         
+         
+     }catch(InfException e){
+          JOptionPane.showMessageDialog(null,"databasfel!");
+         
+     }
+    }//GEN-LAST:event_btnChangePriceActionPerformed
+
+    private void btnChangeDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeDescriptionActionPerformed
+              
+        String newDescription = txtNewDescription.getText();
+     
+     try{
+          
+        String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
+        String hatID = idb.fetchSingle(query);
+         
+         idb.update("UPDATE Hat SET Description = '"+ newDescription + "' where HatID = "+ "'" + hatID +"'");
+          JOptionPane.showMessageDialog(null, "Beskrivning ändrad!");
+         
+         
+     }catch(InfException e){
+          JOptionPane.showMessageDialog(null,"databasfel!");
+     }
+    }//GEN-LAST:event_btnChangeDescriptionActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangeColor;
+    private javax.swing.JButton btnChangeDescription;
     private javax.swing.JButton btnChangePrice;
     private javax.swing.JButton btnChangeSize;
     private javax.swing.JComboBox<String> cmbColor;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblColor;
     private javax.swing.JLabel lblCurrentColor;
     private javax.swing.JLabel lblCurrentPrice;
     private javax.swing.JLabel lblCurrentSize;
+    private javax.swing.JLabel lblDescription;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblNewColor;
+    private javax.swing.JLabel lblNewDescription;
     private javax.swing.JLabel lblNewPrice;
     private javax.swing.JLabel lblNewSize;
     private javax.swing.JLabel lblOrderDate;
     private javax.swing.JLabel lblPrice;
     private javax.swing.JLabel lblShowOrderDate;
     private javax.swing.JLabel lblSize;
+    private javax.swing.JTextArea txtCurrentDescription;
+    private javax.swing.JTextField txtNewDescription;
     private javax.swing.JTextField txtNewPrice;
     private javax.swing.JTextField txtNewSize;
     // End of variables declaration//GEN-END:variables

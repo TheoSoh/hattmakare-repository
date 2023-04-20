@@ -37,14 +37,14 @@ public class UserPage extends javax.swing.JFrame {
         lblHeaderSecond = new javax.swing.JLabel();
         btnRegisterCustomer = new javax.swing.JButton();
         btnRegisterOrder = new javax.swing.JButton();
-        btnChangeOrderInfo = new javax.swing.JButton();
         btnShowOrderInfo = new javax.swing.JButton();
         btnShowCustomerInfo = new javax.swing.JButton();
         btnChangeInfoCustomer = new javax.swing.JButton();
         btnChangeOrderStatus = new javax.swing.JButton();
         btnShowStatistics = new javax.swing.JButton();
-        btnCreateInvoice = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
+        btnCreateInvoice = new javax.swing.JButton();
+        btnChangeOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,8 +68,6 @@ public class UserPage extends javax.swing.JFrame {
             }
         });
 
-        btnChangeOrderInfo.setText("Ändra i order");
-
         btnShowOrderInfo.setText("Visa order");
         btnShowOrderInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,9 +88,21 @@ public class UserPage extends javax.swing.JFrame {
 
         btnShowStatistics.setText("Se statistik");
 
-        btnCreateInvoice.setText("Skapa faktura");
-
         btnPrint.setText("Skriv ut frakt och tullsedel");
+
+        btnCreateInvoice.setText("Skapa faktura");
+        btnCreateInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateInvoiceActionPerformed(evt);
+            }
+        });
+
+        btnChangeOrder.setText("Ändra i order");
+        btnChangeOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeOrderActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,8 +118,8 @@ public class UserPage extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnRegisterOrder)
-                                    .addComponent(btnChangeOrderInfo)
-                                    .addComponent(btnChangeOrderStatus))
+                                    .addComponent(btnChangeOrderStatus)
+                                    .addComponent(btnChangeOrder))
                                 .addGap(61, 61, 61)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnPrint)
@@ -147,10 +157,13 @@ public class UserPage extends javax.swing.JFrame {
                 .addGap(67, 67, 67)
                 .addComponent(btnRegisterOrder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnChangeOrderInfo)
-                    .addComponent(btnCreateInvoice))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCreateInvoice)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnChangeOrder)
+                        .addGap(10, 10, 10)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPrint)
                     .addComponent(btnChangeOrderStatus))
@@ -178,9 +191,19 @@ public class UserPage extends javax.swing.JFrame {
         new showCustomerInfo(idb).setVisible(true);
     }//GEN-LAST:event_btnShowCustomerInfoActionPerformed
 
+    private void btnCreateInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateInvoiceActionPerformed
+        // TODO add your handling code here:
+        new searchInvoice(idb, employeeIdet).setVisible(true);
+    }//GEN-LAST:event_btnCreateInvoiceActionPerformed
+
+    private void btnChangeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeOrderActionPerformed
+        // TODO add your handling code here:
+        new ChooseCustomerAndOrder(idb).setVisible(true);
+    }//GEN-LAST:event_btnChangeOrderActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangeInfoCustomer;
-    private javax.swing.JButton btnChangeOrderInfo;
+    private javax.swing.JButton btnChangeOrder;
     private javax.swing.JButton btnChangeOrderStatus;
     private javax.swing.JButton btnCreateInvoice;
     private javax.swing.JButton btnPrint;

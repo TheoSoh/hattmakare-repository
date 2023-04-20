@@ -176,11 +176,9 @@ public class searchOrder extends javax.swing.JFrame {
         lblError.setText("Vänligen välj en order för att kunna visa");
         } else{
             
-                String selectedOrderID = chosenOrder();
-                
+                String selectedOrderID = chosenOrder();               
                 new showOrder(idb, selectedOrderID).setVisible(true);
-                dispose();
-             
+                dispose();             
         }
         
     }//GEN-LAST:event_btnShowOrderActionPerformed

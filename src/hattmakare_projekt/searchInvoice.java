@@ -190,8 +190,7 @@ public class searchInvoice extends javax.swing.JFrame {
         lblError.setForeground(Color.red);
         lblError.setText("Vänligen välj en order för att kunna visa");
         } else{
-            
-           try {
+            try {
                String selectedOrderID = chosenOrder();
                String query = "Update `Order` SET Shipment_date = curdate() Where OrderID = '" + selectedOrderID + "'";
                

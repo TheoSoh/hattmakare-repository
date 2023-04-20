@@ -90,14 +90,14 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="50" max="32767" attributes="0"/>
+                              <EmptySpace pref="309" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="cmbChangeStatus" min="-2" pref="117" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblHatSketch" min="-2" pref="149" max="-2" attributes="0"/>
+                                      <Component id="lblHatSketch" min="-2" pref="258" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -144,7 +144,7 @@
                       <Component id="cmbChangeStatus" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="123" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblHatSize" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="lblSizeHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -167,7 +167,10 @@
                           <Component id="lblHatDescription" min="-2" pref="74" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="lblHatSketch" min="-2" pref="109" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="51" pref="51" max="-2" attributes="0"/>
+                      <Component id="lblHatSketch" min="-2" pref="160" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -176,7 +179,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblShippingDate" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblShippingDate" alignment="0" pref="136" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblTotalPriceHeadline" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblTotalPrice" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>

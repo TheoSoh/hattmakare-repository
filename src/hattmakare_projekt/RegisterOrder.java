@@ -30,7 +30,7 @@ public class RegisterOrder extends javax.swing.JFrame {
 
     private InfDB idb;
     private int employeeId;
-    private String pathImage;
+    private String pathImage = "Ingen skiss vald";
     
     
     /**
@@ -337,7 +337,7 @@ public class RegisterOrder extends javax.swing.JFrame {
                                     .addComponent(cboHatColor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cboHatAmount, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cboAllCustomers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblEstimatedCost)
                                     .addComponent(lblEstimatedTime)
@@ -369,7 +369,7 @@ public class RegisterOrder extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(lblEstimatedPriceError, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(25, Short.MAX_VALUE))))
+                        .addContainerGap(36, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(439, 439, 439)
                 .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -378,7 +378,7 @@ public class RegisterOrder extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBack)
@@ -692,6 +692,7 @@ public class RegisterOrder extends javax.swing.JFrame {
 
     private void btnRemoveImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveImageActionPerformed
         lblHatSketch.setIcon(null);
+        pathImage = "Ingen skiss vald";
     }//GEN-LAST:event_btnRemoveImageActionPerformed
 
 

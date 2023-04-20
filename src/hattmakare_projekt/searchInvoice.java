@@ -32,6 +32,8 @@ public class searchInvoice extends javax.swing.JFrame {
         fillCustomerBox();
         this.employeeIdet = employeeIdet;
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -170,6 +172,7 @@ public class searchInvoice extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_btnChooseCustomerActionPerformed
 
+    
     private void cmbChooseOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbChooseOrderActionPerformed
         // TODO add your handling code here:
         
@@ -188,9 +191,16 @@ public class searchInvoice extends javax.swing.JFrame {
         lblError.setText("Vänligen välj en order för att kunna visa");
         } else{
             
-            String selectedOrderID = chosenOrder();
-            new CreateInvoice(idb, selectedOrderID, employeeIdet).setVisible(true);
-            dispose();
+           try {
+               String selectedOrderID = chosenOrder();
+               String query = "Update `Order` SET Shipment_date = curdate() Where OrderID = '" + selectedOrderID + "'";
+               
+               idb.update(query);
+               new CreateInvoice(idb, selectedOrderID, employeeIdet).setVisible(true);
+               dispose();
+           } catch (InfException ex) {
+               Logger.getLogger(searchInvoice.class.getName()).log(Level.SEVERE, null, ex);
+           }
         }
     }//GEN-LAST:event_btnChooseOrderActionPerformed
 

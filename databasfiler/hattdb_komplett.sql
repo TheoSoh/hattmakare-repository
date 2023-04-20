@@ -161,7 +161,7 @@ CREATE TABLE `Order` (
 
 LOCK TABLES `Order` WRITE;
 /*!40000 ALTER TABLE `Order` DISABLE KEYS */;
-INSERT INTO `Order` VALUES (1,1,'','2023-03-31','',0,0,0,1,1,'Finns');
+INSERT INTO `Order` VALUES (1,1,500,'2023-03-31',null,0,0,0,1,1,'Finns');
 /*!40000 ALTER TABLE `Order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +214,7 @@ CREATE TABLE `Hat_in_order` (
 
 LOCK TABLES `Hat_in_order` WRITE;
 /*!40000 ALTER TABLE `Hat_in_order` DISABLE KEYS */;
-INSERT INTO `Hat_in_order` VALUES (331,178);
+INSERT INTO `Hat_in_order` VALUES (1,1);
 /*!40000 ALTER TABLE `Hat_in_order` ENABLE KEYS */;
 UNLOCK TABLES;
 

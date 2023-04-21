@@ -52,6 +52,7 @@ public class searchInvoice extends javax.swing.JFrame {
         cmbChooseOrder = new javax.swing.JComboBox<>();
         btnChooseOrder = new javax.swing.JButton();
         lblError = new javax.swing.JLabel();
+        btnBackToUserPage = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +91,13 @@ public class searchInvoice extends javax.swing.JFrame {
             }
         });
 
+        btnBackToUserPage.setText("Tillbaka");
+        btnBackToUserPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackToUserPageActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,7 +105,9 @@ public class searchInvoice extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
+                        .addContainerGap()
+                        .addComponent(btnBackToUserPage)
+                        .addGap(115, 115, 115)
                         .addComponent(lblFrameHeadline))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(147, 147, 147)
@@ -124,8 +134,13 @@ public class searchInvoice extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblFrameHeadline)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(lblFrameHeadline))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnBackToUserPage, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblChooseCustomerHeadline)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -203,6 +218,11 @@ public class searchInvoice extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnChooseOrderActionPerformed
 
+    private void btnBackToUserPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackToUserPageActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnBackToUserPageActionPerformed
+
    private void fillCustomerBox() {
         
          
@@ -223,6 +243,7 @@ public class searchInvoice extends javax.swing.JFrame {
     }   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBackToUserPage;
     private javax.swing.JButton btnChooseCustomer;
     private javax.swing.JButton btnChooseOrder;
     private javax.swing.JComboBox<String> cmbChooseCustomer;

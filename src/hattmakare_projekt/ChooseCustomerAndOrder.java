@@ -80,6 +80,7 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
         cmbOrderId = new javax.swing.JComboBox<>();
         cmbCustomerName = new javax.swing.JComboBox<>();
         btnChange = new javax.swing.JButton();
+        btnGoBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,38 +103,50 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
             }
         });
 
+        btnGoBack.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        btnGoBack.setText("Tillbaka");
+        btnGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(lblChooseCustomer))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(lblChooseOrder))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(cmbOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(cmbCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(97, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnChange)
                 .addGap(25, 25, 25))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(113, 113, 113)
+                            .addComponent(lblChooseCustomer))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(90, 90, 90)
+                            .addComponent(lblChooseOrder))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(161, 161, 161)
+                            .addComponent(cmbOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(cmbCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnGoBack, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
+                .addComponent(btnGoBack, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lblChooseCustomer)
                 .addGap(18, 18, 18)
                 .addComponent(cmbCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(lblChooseOrder)
                 .addGap(46, 46, 46)
                 .addComponent(cmbOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,6 +180,11 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnChangeActionPerformed
 
+    private void btnGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoBackActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnGoBackActionPerformed
+
     public static void main(String[] args) throws InfException {
         try {
             idb = new InfDB("hattdb","3306","hatta","hattkey");
@@ -182,6 +200,7 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChange;
+    private javax.swing.JButton btnGoBack;
     private javax.swing.JComboBox<String> cmbCustomerName;
     private javax.swing.JComboBox<String> cmbOrderId;
     private javax.swing.JLabel lblChooseCustomer;

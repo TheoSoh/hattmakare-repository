@@ -94,13 +94,13 @@ public class CreateInvoice extends javax.swing.JFrame {
         lblInvoiceHeadline.setText("Faktura");
 
         lblCompanyHeadline.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
-        lblCompanyHeadline.setText("Hattmakarna AB");
+        lblCompanyHeadline.setText("Otto och Judiths hattar");
 
         lblCompanyAdress.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        lblCompanyAdress.setText("Fakultetsgatan 1");
+        lblCompanyAdress.setText("Tyrolerhattsvägen 5");
 
         lblCompanyZipcode.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        lblCompanyZipcode.setText("702 81 Örebro");
+        lblCompanyZipcode.setText("123 45 Hattvik");
 
         lblCustomerHeadline.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
         lblCustomerHeadline.setText("Mottagare");
@@ -158,7 +158,7 @@ public class CreateInvoice extends javax.swing.JFrame {
         lblBetaluppgifter.setText("Betalningsuppgifter");
 
         lblBankgiro.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        lblBankgiro.setText("Bankgiro   123-4567");
+        lblBankgiro.setText("Bankgiro   1234-5678");
 
         lblOrderIDHeadline.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         lblOrderIDHeadline.setText("Order#");

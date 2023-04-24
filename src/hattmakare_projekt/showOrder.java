@@ -22,17 +22,20 @@ public class showOrder extends javax.swing.JFrame {
 
     private InfDB idb;
     private String selectedOrderID;
+    private final int employeeIdet;
     
     
     /**
      * Creates new form showOrder
      * @param idb
      * @param selectedOrderID
+     * @param employeeIdet
      */
-    public showOrder(InfDB idb, String selectedOrderID) {
+    public showOrder(InfDB idb, String selectedOrderID, int employeeIdet) {
         initComponents();
         this.idb = idb;
         this.selectedOrderID = selectedOrderID;
+        this.employeeIdet = employeeIdet;
         fillIDLabel();
         fillStatusLabel();
         fetchCustomer();
@@ -84,6 +87,9 @@ public class showOrder extends javax.swing.JFrame {
         lblCurrentStatus = new javax.swing.JLabel();
         lblChangeStatusHL = new javax.swing.JLabel();
         lblHatSketch = new javax.swing.JLabel();
+        btnInvoice = new javax.swing.JButton();
+        btnFraktsedel = new javax.swing.JButton();
+        btnTullsedel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,6 +131,22 @@ public class showOrder extends javax.swing.JFrame {
         });
 
         lblChangeStatusHL.setText("Ändra status");
+
+        btnInvoice.setText("Skapa Faktura");
+        btnInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInvoiceActionPerformed(evt);
+            }
+        });
+
+        btnFraktsedel.setText("Skapa Fraktsedel");
+        btnFraktsedel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFraktsedelActionPerformed(evt);
+            }
+        });
+
+        btnTullsedel.setText("Skapa Tullsedel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,11 +208,15 @@ public class showOrder extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(cmbChangeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(50, 50, 50))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(lblHatSketch, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10)))))))
+                                        .addGap(10, 10, 10))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnFraktsedel)
+                                            .addComponent(btnInvoice)
+                                            .addComponent(cmbChangeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnTullsedel))
+                                        .addGap(35, 35, 35)))))))
                 .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
@@ -220,7 +246,13 @@ public class showOrder extends javax.swing.JFrame {
                         .addComponent(lblChangeStatusHL)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbChangeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnInvoice)
+                .addGap(18, 18, 18)
+                .addComponent(btnFraktsedel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnTullsedel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHatSize, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSizeHeadline))
@@ -262,7 +294,7 @@ public class showOrder extends javax.swing.JFrame {
     
     private void btnBackToSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackToSearchActionPerformed
         
-        new searchOrder(idb).setVisible(true);
+        new searchOrder(idb, employeeIdet).setVisible(true);
         dispose();
         
     }//GEN-LAST:event_btnBackToSearchActionPerformed
@@ -307,6 +339,16 @@ public class showOrder extends javax.swing.JFrame {
         } 
         fillStatusLabel();
     }//GEN-LAST:event_cmbChangeStatusActionPerformed
+
+    private void btnInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvoiceActionPerformed
+        // TODO add your handling code here:
+        new CreateInvoice(idb, selectedOrderID, employeeIdet).setVisible(true);
+    }//GEN-LAST:event_btnInvoiceActionPerformed
+
+    private void btnFraktsedelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFraktsedelActionPerformed
+        // TODO add your handling code here:
+        new openFraktsedel(idb, selectedOrderID).setVisible(true);
+    }//GEN-LAST:event_btnFraktsedelActionPerformed
 
     private void fillIDLabel(){
         lblOrderID.setText(selectedOrderID);
@@ -461,6 +503,9 @@ public class showOrder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackToSearch;
+    private javax.swing.JButton btnFraktsedel;
+    private javax.swing.JButton btnInvoice;
+    private javax.swing.JButton btnTullsedel;
     private javax.swing.JComboBox<String> cmbChangeStatus;
     private javax.swing.JLabel lblAmount;
     private javax.swing.JLabel lblAmountHeadline;

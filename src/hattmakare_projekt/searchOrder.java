@@ -16,15 +16,18 @@ import oru.inf.InfException;
 public class searchOrder extends javax.swing.JFrame {
     
     private InfDB idb;
+    private int employeeIdet;
     
     /**
      * Creates new form searchOrder
      * @param idb
+     * @param employeeIdet
      */
-    public searchOrder(InfDB idb) {
+    public searchOrder(InfDB idb, int employeeIdet) {
         initComponents();
         this.idb = idb;
         fillCustomerBox();
+        this.employeeIdet = employeeIdet;
         
     }
 
@@ -150,6 +153,7 @@ public class searchOrder extends javax.swing.JFrame {
      
      return chosenOrderID;
  }
+ 
  private void fillCustomerBox() {
         
          
@@ -177,7 +181,7 @@ public class searchOrder extends javax.swing.JFrame {
         } else{
             
                 String selectedOrderID = chosenOrder();               
-                new showOrder(idb, selectedOrderID).setVisible(true);
+                new showOrder(idb, selectedOrderID, employeeIdet).setVisible(true);
                 dispose();             
         }
         
@@ -248,7 +252,7 @@ public class searchOrder extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new searchOrder(idb).setVisible(true);
+                new searchOrder(idb, employeeIdet).setVisible(true);
             }
         });
     }

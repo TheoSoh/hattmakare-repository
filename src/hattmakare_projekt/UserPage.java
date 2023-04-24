@@ -184,7 +184,7 @@ public class UserPage extends javax.swing.JFrame {
 
     private void btnShowOrderInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowOrderInfoActionPerformed
         // TODO add your handling code here:
-        new searchOrder(idb).setVisible(true);
+        new searchOrder(idb, employeeIdet).setVisible(true);
     }//GEN-LAST:event_btnShowOrderInfoActionPerformed
 
     private void btnShowCustomerInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowCustomerInfoActionPerformed

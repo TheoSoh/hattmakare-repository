@@ -211,7 +211,7 @@ public class searchInvoice extends javax.swing.JFrame {
                
                idb.update(query);
                new CreateInvoice(idb, selectedOrderID, employeeIdet).setVisible(true);
-               dispose();
+               
            } catch (InfException ex) {
                Logger.getLogger(searchInvoice.class.getName()).log(Level.SEVERE, null, ex);
            }

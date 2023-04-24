@@ -93,12 +93,17 @@
                               <EmptySpace pref="309" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="cmbChangeStatus" min="-2" pref="117" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
                                       <Component id="lblHatSketch" min="-2" pref="258" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="btnFraktsedel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnInvoice" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cmbChangeStatus" min="-2" pref="117" max="-2" attributes="0"/>
+                                          <Component id="btnTullsedel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -144,7 +149,13 @@
                       <Component id="cmbChangeStatus" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="123" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnInvoice" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnFraktsedel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnTullsedel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblHatSize" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="lblSizeHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -303,6 +314,30 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblHatSketch">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnInvoice">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Skapa Faktura"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInvoiceActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnFraktsedel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Skapa Fraktsedel"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFraktsedelActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTullsedel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Skapa Tullsedel"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTullsedelActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

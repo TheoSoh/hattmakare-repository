@@ -527,7 +527,8 @@ public class RegisterOrder extends javax.swing.JFrame {
     String pricePerHat = lblCostPerHat.getText().toString();
     String estimatedPrice = lblEstimatedTotalPrice.getText();
     String sketch = pathImage.toString();
-    
+    String materialCost = txtEstimatedMaterialCost.getText();
+    String hourPerHat = txtEstimatedTime.getText();
     
               lblResult.setForeground(Color.RED);
         if(cboAllCustomers.getSelectedItem().equals("Välj")) {
@@ -598,8 +599,7 @@ public class RegisterOrder extends javax.swing.JFrame {
         
         String nextOrderId = "(SELECT MAX(OrderID) FROM `Order`)";
        
-        String hatQuery = "INSERT INTO Hat (Size, Price, Color, Description, image) VALUES ('" + size + "', '" + pricePerHat + "', '" + color + "', '" + description + "', '" + sketch + "')";
-//        String hatQuery = "INSERT INTO Hat (Size,Price,Color,Description) VALUES ('" + size + "', null, '" + color + "', '" + description + "')";
+        String hatQuery = "INSERT INTO Hat (Size, Price, Color, Description, image, material_cost, hour_per_hat) VALUES ('" + size + "', '" + pricePerHat + "', '" + color + "', '" + description + "', '" + sketch + "', '" + materialCost + "', '" + hourPerHat + "')";
         
         String orderQuery = "INSERT INTO `Order` (Amount, Total_Price, Order_date, Shipment_date, Invoice_sent_status, Payment_status, Order_complete_status, Created_by_employee, Customer, Picture_exist) VALUES (" + amount + ", " + estimatedPrice + ", curdate(), null, 0, 0, 0, " + employeeId + ", " + customerInt + ", null)";
         

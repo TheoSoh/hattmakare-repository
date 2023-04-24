@@ -83,6 +83,11 @@ public class UserPage extends javax.swing.JFrame {
         });
 
         btnChangeInfoCustomer.setText("Ändra information om kund");
+        btnChangeInfoCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeInfoCustomerActionPerformed(evt);
+            }
+        });
 
         btnChangeOrderStatus.setText("Ändra status på order");
 
@@ -200,6 +205,10 @@ public class UserPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         new ChooseCustomerAndOrder(idb).setVisible(true);
     }//GEN-LAST:event_btnChangeOrderActionPerformed
+
+    private void btnChangeInfoCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeInfoCustomerActionPerformed
+        new ChangeCustomerInfo(idb).setVisible(true);
+    }//GEN-LAST:event_btnChangeInfoCustomerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangeInfoCustomer;

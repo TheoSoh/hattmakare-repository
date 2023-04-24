@@ -48,23 +48,18 @@ public class openTullsedel extends javax.swing.JFrame {
         lblInstructionSwedish = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         lblInstructionEnglish = new javax.swing.JLabel();
-        txtaeGift = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         lblGift = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtaeDocument = new javax.swing.JTextArea();
         lblDocument = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtaeSaleGoods = new javax.swing.JTextArea();
         lblSaleGoods = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtaeOther = new javax.swing.JTextArea();
         lblOther = new javax.swing.JLabel();
         lblShipmentDate = new javax.swing.JLabel();
         lblDateHeadline = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         btnGoBack = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtfldGift = new javax.swing.JTextField();
+        txtfldDocument = new javax.swing.JTextField();
+        txtfldSaleGoods = new javax.swing.JTextField();
+        txtfldOther = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,34 +80,14 @@ public class openTullsedel extends javax.swing.JFrame {
         lblInstructionEnglish.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         lblInstructionEnglish.setText("May be opened officially");
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        txtaeGift.setViewportView(jTextArea1);
-
         lblGift.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         lblGift.setText("Gåva/Gift");
-
-        txtaeDocument.setEditable(false);
-        txtaeDocument.setColumns(20);
-        txtaeDocument.setRows(5);
-        jScrollPane1.setViewportView(txtaeDocument);
 
         lblDocument.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         lblDocument.setText("Dokument/Document");
 
-        txtaeSaleGoods.setEditable(false);
-        txtaeSaleGoods.setColumns(20);
-        txtaeSaleGoods.setRows(5);
-        jScrollPane2.setViewportView(txtaeSaleGoods);
-
         lblSaleGoods.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         lblSaleGoods.setText("Sålda varor/Sale of goods");
-
-        txtaeOther.setEditable(false);
-        txtaeOther.setColumns(20);
-        txtaeOther.setRows(5);
-        jScrollPane3.setViewportView(txtaeOther);
 
         lblOther.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         lblOther.setText("Annat/Other");
@@ -129,13 +104,22 @@ public class openTullsedel extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtfldGift.setEditable(false);
+        txtfldGift.setBackground(new java.awt.Color(255, 255, 255));
+        txtfldGift.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtfldGiftActionPerformed(evt);
             }
         });
+
+        txtfldDocument.setEditable(false);
+        txtfldDocument.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtfldSaleGoods.setEditable(false);
+        txtfldSaleGoods.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtfldOther.setEditable(false);
+        txtfldOther.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,11 +142,11 @@ public class openTullsedel extends javax.swing.JFrame {
                                         .addGap(23, 23, 23)
                                         .addComponent(lblCdId))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtfldSaleGoods, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(9, 9, 9)
                                         .addComponent(lblSaleGoods)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtfldOther, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lblOther)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -171,11 +155,11 @@ public class openTullsedel extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblMainHeadline)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtaeGift, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtfldGift, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(8, 8, 8)
                                         .addComponent(lblGift)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtfldDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lblDocument)))
                                 .addGap(0, 0, Short.MAX_VALUE))))
@@ -187,10 +171,6 @@ public class openTullsedel extends javax.swing.JFrame {
                         .addComponent(btnGoBack))
                     .addComponent(jSeparator2))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,37 +188,29 @@ public class openTullsedel extends javax.swing.JFrame {
                 .addComponent(lblMainHeadline)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDeclarationNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblPostNord)
-                        .addComponent(lblCdId)
-                        .addComponent(lblDeclarationNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblCdId))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblInstructionSwedish)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblInstructionEnglish)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtaeGift, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblGift))
-                                    .addGap(3, 3, 3))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblDocument))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSaleGoods)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblGift)
+                    .addComponent(txtfldGift, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtfldDocument, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDocument))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSaleGoods)
+                    .addComponent(txtfldSaleGoods, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtfldOther, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblOther))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         pack();
@@ -259,9 +231,9 @@ public class openTullsedel extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnGoBackActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtfldGiftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfldGiftActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtfldGiftActionPerformed
 
     private void GenerateRandom(){
         Random number = new Random();
@@ -275,13 +247,8 @@ public class openTullsedel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGoBack;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblCdId;
     private javax.swing.JLabel lblDateHeadline;
     private javax.swing.JLabel lblDeclarationNumber;
@@ -294,9 +261,9 @@ public class openTullsedel extends javax.swing.JFrame {
     private javax.swing.JLabel lblPostNord;
     private javax.swing.JLabel lblSaleGoods;
     private javax.swing.JLabel lblShipmentDate;
-    private javax.swing.JTextArea txtaeDocument;
-    private javax.swing.JScrollPane txtaeGift;
-    private javax.swing.JTextArea txtaeOther;
-    private javax.swing.JTextArea txtaeSaleGoods;
+    private javax.swing.JTextField txtfldDocument;
+    private javax.swing.JTextField txtfldGift;
+    private javax.swing.JTextField txtfldOther;
+    private javax.swing.JTextField txtfldSaleGoods;
     // End of variables declaration//GEN-END:variables
 }

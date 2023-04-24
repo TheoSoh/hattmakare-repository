@@ -24,7 +24,7 @@ public class showCustomerInfo extends javax.swing.JFrame {
     private void fillCustomerBox() {
         
          
-        String query = "SELECT name FROM Customer";
+        String query = "SELECT Name FROM Customer";
         
         ArrayList <String> allaKundNamn;
         

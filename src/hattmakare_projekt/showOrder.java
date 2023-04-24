@@ -147,6 +147,11 @@ public class showOrder extends javax.swing.JFrame {
         });
 
         btnTullsedel.setText("Skapa Tullsedel");
+        btnTullsedel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTullsedelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -349,6 +354,11 @@ public class showOrder extends javax.swing.JFrame {
         // TODO add your handling code here:
         new openFraktsedel(idb, selectedOrderID).setVisible(true);
     }//GEN-LAST:event_btnFraktsedelActionPerformed
+
+    private void btnTullsedelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTullsedelActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnTullsedelActionPerformed
 
     private void fillIDLabel(){
         lblOrderID.setText(selectedOrderID);

@@ -252,7 +252,7 @@ public class openFraktsedel extends javax.swing.JFrame {
     
     private void fetchCustomerName(){
         try{
-            String query = "SELECT Name from Customer join `Order` O on Customer.CustomerID = O.Customer where OrderID = '" + lblCustomerID.getText() + "'";
+            String query = "SELECT Name from Customer join `Order` O on Customer.CustomerID = O.Customer where OrderID = '" + lblOrderID.getText() + "'";
             String result = idb.fetchSingle(query);
             lblCustomerName.setText(result);
         } catch (InfException ex) {
@@ -262,7 +262,7 @@ public class openFraktsedel extends javax.swing.JFrame {
     
     private void fetchCustomerStreet(){
         try{
-            String query = "SELECT Street from Address join `Order` O on Address.Customer = O.Customer where OrderID = '" + lblCustomerID.getText() + "'";
+            String query = "SELECT Street from Address join `Order` O on Address.Customer = O.Customer where OrderID = '" + lblOrderID.getText() + "'";
             String result = idb.fetchSingle(query);
             lblCustomerAdress.setText(result);
         } catch (InfException ex) {
@@ -272,7 +272,7 @@ public class openFraktsedel extends javax.swing.JFrame {
     
     private void fetchCustomerHouseNumber(){
         try{
-            String query = "SELECT House_number from Address join `Order` O on Address.Customer = O.Customer where OrderID = '" + lblCustomerID.getText() + "'";
+            String query = "SELECT House_number from Address join `Order` O on Address.Customer = O.Customer where OrderID = '" + lblOrderID.getText() + "'";
             String result = idb.fetchSingle(query);
             lblCustomerHouseNumber.setText(result);
         } catch (InfException ex) {
@@ -282,7 +282,7 @@ public class openFraktsedel extends javax.swing.JFrame {
     
     private void fetchShippingDate(){
         try{
-            String query = "Select Shipment_date from `Order` where OrderID = '"+ lblCustomerID.getText()+ "'";
+            String query = "Select Shipment_date from `Order` where OrderID = '"+ lblOrderID.getText()+ "'";
             String result = idb.fetchSingle(query);
             lblDate.setText(result);
         } catch (InfException ex){

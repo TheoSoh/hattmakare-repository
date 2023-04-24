@@ -46,25 +46,25 @@ public class openFraktsedel extends javax.swing.JFrame {
     private void initComponents() {
 
         btnGoBack = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblHeadline1 = new javax.swing.JLabel();
+        lblHeadline2 = new javax.swing.JLabel();
+        lblHeadline8 = new javax.swing.JLabel();
+        lblHeadline9 = new javax.swing.JLabel();
         lblOrderID = new javax.swing.JLabel();
         lblCustomerID = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblHeadline3 = new javax.swing.JLabel();
+        lblHeadline4 = new javax.swing.JLabel();
+        lblHeadline5 = new javax.swing.JLabel();
+        lblHeadline11 = new javax.swing.JLabel();
+        lblHeadline10 = new javax.swing.JLabel();
+        lblHeadline6 = new javax.swing.JLabel();
         lblCustomerName = new javax.swing.JLabel();
         lblCustomerAdress = new javax.swing.JLabel();
         lblCustomerHouseNumber = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel11 = new javax.swing.JLabel();
+        sep1 = new javax.swing.JSeparator();
+        lblHeadline7 = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lblStreckkod = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,39 +76,39 @@ public class openFraktsedel extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel1.setText("Fraktsedel Paket");
+        lblHeadline1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblHeadline1.setText("Fraktsedel Paket");
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
-        jLabel2.setText("From:");
+        lblHeadline2.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
+        lblHeadline2.setText("From:");
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
-        jLabel3.setText("CustNO:");
+        lblHeadline8.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
+        lblHeadline8.setText("CustNO:");
 
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
-        jLabel4.setText("OrdNO:");
+        lblHeadline9.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
+        lblHeadline9.setText("OrdNO:");
 
         lblOrderID.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
 
         lblCustomerID.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        jLabel5.setText("Ottos och Jutiths hattar");
+        lblHeadline3.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        lblHeadline3.setText("Ottos och Jutiths hattar");
 
-        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        jLabel6.setText("Tyrolerhattsvägen 5");
+        lblHeadline4.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        lblHeadline4.setText("Tyrolerhattsvägen 5");
 
-        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        jLabel7.setText("123 45 Hattvik");
+        lblHeadline5.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        lblHeadline5.setText("123 45 Hattvik");
 
-        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        jLabel8.setText("012-345 678");
+        lblHeadline11.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        lblHeadline11.setText("012-345 678");
 
-        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
-        jLabel9.setText("Phone:");
+        lblHeadline10.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        lblHeadline10.setText("Phone:");
 
-        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
-        jLabel10.setText("To:");
+        lblHeadline6.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
+        lblHeadline6.setText("To:");
 
         lblCustomerName.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
 
@@ -116,10 +116,10 @@ public class openFraktsedel extends javax.swing.JFrame {
 
         lblCustomerHouseNumber.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
 
-        jSeparator1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        sep1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
 
-        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
-        jLabel11.setText("Date:");
+        lblHeadline7.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
+        lblHeadline7.setText("Date:");
 
         lblDate.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
 
@@ -134,22 +134,22 @@ public class openFraktsedel extends javax.swing.JFrame {
                         .addComponent(btnGoBack, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(jLabel1)))
+                        .addComponent(lblHeadline1)))
                 .addContainerGap(74, Short.MAX_VALUE))
-            .addComponent(jSeparator1)
+            .addComponent(sep1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(lblHeadline2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3))
+                                .addComponent(lblHeadline8))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addComponent(lblHeadline3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4)))
+                                .addComponent(lblHeadline9)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -161,28 +161,28 @@ public class openFraktsedel extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
+                                .addComponent(lblHeadline4)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
+                                .addComponent(lblHeadline5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9)
+                                .addComponent(lblHeadline10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)))
+                                .addComponent(lblHeadline11)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel10)
+                                .addComponent(lblHeadline6)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(lblCustomerAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(lblCustomerHouseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(lblCustomerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel11)
+                            .addComponent(lblHeadline7)
                             .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblStreckkod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,29 +190,29 @@ public class openFraktsedel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnGoBack, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
+                .addComponent(lblHeadline1)
                 .addGap(2, 2, 2)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sep1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3))
+                        .addComponent(lblHeadline2)
+                        .addComponent(lblHeadline8))
                     .addComponent(lblCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
+                    .addComponent(lblHeadline9)
                     .addComponent(lblOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(lblHeadline3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblHeadline4, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
+                    .addComponent(lblHeadline5)
+                    .addComponent(lblHeadline11)
+                    .addComponent(lblHeadline10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
+                .addComponent(lblHeadline6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -220,11 +220,11 @@ public class openFraktsedel extends javax.swing.JFrame {
                     .addComponent(lblCustomerHouseNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 11, Short.MAX_VALUE)
                     .addComponent(lblCustomerAdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
+                .addComponent(lblHeadline7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblStreckkod, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -296,24 +296,24 @@ public class openFraktsedel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGoBack;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCustomerAdress;
     private javax.swing.JLabel lblCustomerHouseNumber;
     private javax.swing.JLabel lblCustomerID;
     private javax.swing.JLabel lblCustomerName;
     private javax.swing.JLabel lblDate;
+    private javax.swing.JLabel lblHeadline1;
+    private javax.swing.JLabel lblHeadline10;
+    private javax.swing.JLabel lblHeadline11;
+    private javax.swing.JLabel lblHeadline2;
+    private javax.swing.JLabel lblHeadline3;
+    private javax.swing.JLabel lblHeadline4;
+    private javax.swing.JLabel lblHeadline5;
+    private javax.swing.JLabel lblHeadline6;
+    private javax.swing.JLabel lblHeadline7;
+    private javax.swing.JLabel lblHeadline8;
+    private javax.swing.JLabel lblHeadline9;
     private javax.swing.JLabel lblOrderID;
+    private javax.swing.JLabel lblStreckkod;
+    private javax.swing.JSeparator sep1;
     // End of variables declaration//GEN-END:variables
 }

@@ -375,7 +375,16 @@ public class showOrder extends javax.swing.JFrame {
 
     private void btnTullsedelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTullsedelActionPerformed
         // TODO add your handling code here:
-        
+        try {
+               
+               String query = "Update `Order` SET Shipment_date = curdate() Where OrderID = '" + selectedOrderID + "'";
+               
+               idb.update(query);
+               new openTullsedel(idb, selectedOrderID).setVisible(true);
+               
+           } catch (InfException ex) {
+               Logger.getLogger(searchInvoice.class.getName()).log(Level.SEVERE, null, ex);
+           }
     }//GEN-LAST:event_btnTullsedelActionPerformed
 
     private void fillIDLabel(){

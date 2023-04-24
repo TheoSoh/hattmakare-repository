@@ -347,12 +347,30 @@ public class showOrder extends javax.swing.JFrame {
 
     private void btnInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvoiceActionPerformed
         // TODO add your handling code here:
-        new CreateInvoice(idb, selectedOrderID, employeeIdet).setVisible(true);
+        try {
+               
+               String query = "Update `Order` SET Shipment_date = curdate() Where OrderID = '" + selectedOrderID + "'";
+               
+               idb.update(query);
+               new CreateInvoice(idb, selectedOrderID, employeeIdet).setVisible(true);
+               
+           } catch (InfException ex) {
+               Logger.getLogger(searchInvoice.class.getName()).log(Level.SEVERE, null, ex);
+           }
     }//GEN-LAST:event_btnInvoiceActionPerformed
 
     private void btnFraktsedelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFraktsedelActionPerformed
         // TODO add your handling code here:
-        new openFraktsedel(idb, selectedOrderID).setVisible(true);
+        try {
+               
+               String query = "Update `Order` SET Shipment_date = curdate() Where OrderID = '" + selectedOrderID + "'";
+               
+               idb.update(query);
+               new openFraktsedel(idb, selectedOrderID).setVisible(true);
+               
+           } catch (InfException ex) {
+               Logger.getLogger(searchInvoice.class.getName()).log(Level.SEVERE, null, ex);
+           }
     }//GEN-LAST:event_btnFraktsedelActionPerformed
 
     private void btnTullsedelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTullsedelActionPerformed

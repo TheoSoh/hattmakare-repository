@@ -81,6 +81,7 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
         cmbCustomerName = new javax.swing.JComboBox<>();
         btnChange = new javax.swing.JButton();
         btnGoBack = new javax.swing.JButton();
+        lblErrorMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,12 +112,18 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
             }
         });
 
+        lblErrorMessage.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        lblErrorMessage.setForeground(new java.awt.Color(255, 0, 0));
+        lblErrorMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
+                .addComponent(lblErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(btnChange)
                 .addGap(25, 25, 25))
             .addGroup(layout.createSequentialGroup()
@@ -128,14 +135,15 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(90, 90, 90)
                             .addComponent(lblChooseOrder))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(161, 161, 161)
-                            .addComponent(cmbOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(cmbCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btnGoBack, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cmbOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(158, 158, 158))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,10 +156,12 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
                 .addComponent(cmbCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(lblChooseOrder)
-                .addGap(46, 46, 46)
+                .addGap(32, 32, 32)
                 .addComponent(cmbOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnChange)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnChange)
+                    .addComponent(lblErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -176,6 +186,10 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         String chosenOrderIdString = cmbOrderId.getSelectedItem().toString();
         chosenOrderId = parseInt(chosenOrderIdString);
+        if(isConfirmedOrCompletedOrder()) {
+            lblErrorMessage.setText("Ordern du valt är under produktion!");
+            return;
+        }
         new ChangeOrder(idb,chosenOrderId).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnChangeActionPerformed
@@ -184,19 +198,21 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnGoBackActionPerformed
-
-    public static void main(String[] args) throws InfException {
-        try {
-            idb = new InfDB("hattdb","3306","hatta","hattkey");
+    
+    private boolean isConfirmedOrCompletedOrder() {
+        boolean isCorC = false;
+        try{
+            String statusQuery = "select OrderID from `Order` where Payment_status = TRUE and OrderID = " + chosenOrderId + " or Order_complete_status = TRUE and OrderID = " + chosenOrderId + ";";
+            String statusResult = idb.fetchSingle(statusQuery);
+            if(statusResult != null) {
+                isCorC = true;
+            }
         }
-        catch (InfException ex)
-        {
-            Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
+        catch(InfException e) {
+            JOptionPane.showMessageDialog(null,"databasfel!");
         }
-        new ChooseCustomerAndOrder(idb).setVisible(true);
+        return isCorC;
     }
-    
-    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChange;
@@ -205,5 +221,6 @@ public class ChooseCustomerAndOrder extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbOrderId;
     private javax.swing.JLabel lblChooseCustomer;
     private javax.swing.JLabel lblChooseOrder;
+    private javax.swing.JLabel lblErrorMessage;
     // End of variables declaration//GEN-END:variables
 }

@@ -45,6 +45,7 @@ public class UserPage extends javax.swing.JFrame {
         btnPrint = new javax.swing.JButton();
         btnCreateInvoice = new javax.swing.JButton();
         btnChangeOrder = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,6 +110,13 @@ public class UserPage extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Visa arbetsfördelning");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,7 +132,8 @@ public class UserPage extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnRegisterOrder)
                                     .addComponent(btnChangeOrderStatus)
-                                    .addComponent(btnChangeOrder))
+                                    .addComponent(btnChangeOrder)
+                                    .addComponent(jButton1))
                                 .addGap(61, 61, 61)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnPrint)
@@ -159,7 +168,9 @@ public class UserPage extends javax.swing.JFrame {
                     .addComponent(btnShowStatistics))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnChangeInfoCustomer)
-                .addGap(67, 67, 67)
+                .addGap(26, 26, 26)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(btnRegisterOrder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,6 +221,11 @@ public class UserPage extends javax.swing.JFrame {
         new ChangeCustomerInfo(idb).setVisible(true);
     }//GEN-LAST:event_btnChangeInfoCustomerActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new showWorkload(idb).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangeInfoCustomer;
     private javax.swing.JButton btnChangeOrder;
@@ -221,6 +237,7 @@ public class UserPage extends javax.swing.JFrame {
     private javax.swing.JButton btnShowCustomerInfo;
     private javax.swing.JButton btnShowOrderInfo;
     private javax.swing.JButton btnShowStatistics;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblHeaderSecond;
     // End of variables declaration//GEN-END:variables

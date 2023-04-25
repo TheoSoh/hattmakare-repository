@@ -363,7 +363,7 @@ public class CreateInvoice extends javax.swing.JFrame {
 
     private void btnGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoBackActionPerformed
         // TODO add your handling code here:
-        new searchInvoice(idb, employeeIdet).setVisible(true);
+        
         dispose();
     }//GEN-LAST:event_btnGoBackActionPerformed
 

@@ -140,7 +140,7 @@ public class showCustomerInfo extends javax.swing.JFrame {
                 for (i = 0; i < rows.size(); i++) {
                     if ((rows.get(i).get("CustomerID") != null)) {
                         txtAreaInfo.append("Kund ID: " + (rows.get(i).get("CustomerID"))+ "\n");
-                        txtAreaInfo.append("Namn: " + (rows.get(i).get("Name"))+ "\n");
+                        txtAreaInfo.append("Namn: " + (rows.get(i).get("name"))+ "\n");
                         txtAreaInfo.append("Email: " + (rows.get(i).get("Email_address"))+ "\n");
                         txtAreaInfo.append("Gata: " + (rows.get(i).get("Street"))+ "\n");
                         txtAreaInfo.append("Husnummer: " + (rows.get(i).get("House_number"))+ "\n");

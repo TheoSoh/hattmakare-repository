@@ -99,7 +99,7 @@
                   </Group>
               </Group>
           </Group>
-          <Component id="lblStreckkod" alignment="0" max="32767" attributes="0"/>
+          <Component id="lblBarCode" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -146,9 +146,9 @@
               <Component id="lblHeadline7" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblDate" min="-2" pref="13" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="lblStreckkod" min="-2" pref="128" max="-2" attributes="0"/>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblBarCode" min="-2" pref="171" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -302,7 +302,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblStreckkod">
+    <Component class="javax.swing.JLabel" name="lblBarCode">
     </Component>
   </SubComponents>
 </Form>

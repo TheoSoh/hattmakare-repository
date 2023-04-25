@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -17,6 +18,7 @@ public class openFraktsedel extends javax.swing.JFrame {
 
     private InfDB idb;
     private String selectedOrderID;
+    ImageIcon imageBarCode = new ImageIcon("BarCode1.png");
   
     /**
      * Creates new form openFraktsedel
@@ -34,6 +36,8 @@ public class openFraktsedel extends javax.swing.JFrame {
         fetchCustomerStreet();
         fetchCustomerHouseNumber();
         fetchShippingDate();
+        this.setLocationRelativeTo(null);
+        lblBarCode.setIcon(imageBarCode);
     }
 
     /**
@@ -64,7 +68,7 @@ public class openFraktsedel extends javax.swing.JFrame {
         sep1 = new javax.swing.JSeparator();
         lblHeadline7 = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
-        lblStreckkod = new javax.swing.JLabel();
+        lblBarCode = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -182,7 +186,7 @@ public class openFraktsedel extends javax.swing.JFrame {
                             .addComponent(lblHeadline7)
                             .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addComponent(lblStreckkod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblBarCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,9 +227,9 @@ public class openFraktsedel extends javax.swing.JFrame {
                 .addComponent(lblHeadline7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblStreckkod, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblBarCode, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -296,6 +300,7 @@ public class openFraktsedel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGoBack;
+    private javax.swing.JLabel lblBarCode;
     private javax.swing.JLabel lblCustomerAdress;
     private javax.swing.JLabel lblCustomerHouseNumber;
     private javax.swing.JLabel lblCustomerID;
@@ -313,7 +318,6 @@ public class openFraktsedel extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeadline8;
     private javax.swing.JLabel lblHeadline9;
     private javax.swing.JLabel lblOrderID;
-    private javax.swing.JLabel lblStreckkod;
     private javax.swing.JSeparator sep1;
     // End of variables declaration//GEN-END:variables
 }

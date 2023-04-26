@@ -45,6 +45,7 @@ public class UserPage extends javax.swing.JFrame {
         btnPrint = new javax.swing.JButton();
         btnCreateInvoice = new javax.swing.JButton();
         btnChangeOrder = new javax.swing.JButton();
+        btnShowWorkload = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +91,11 @@ public class UserPage extends javax.swing.JFrame {
         });
 
         btnChangeOrderStatus.setText("Ändra status på order");
+        btnChangeOrderStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeOrderStatusActionPerformed(evt);
+            }
+        });
 
         btnShowStatistics.setText("Se statistik");
         btnShowStatistics.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +120,13 @@ public class UserPage extends javax.swing.JFrame {
             }
         });
 
+        btnShowWorkload.setText("Visa arbetsfördelning");
+        btnShowWorkload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowWorkloadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,7 +142,8 @@ public class UserPage extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnRegisterOrder)
                                     .addComponent(btnChangeOrderStatus)
-                                    .addComponent(btnChangeOrder))
+                                    .addComponent(btnChangeOrder)
+                                    .addComponent(btnShowWorkload))
                                 .addGap(61, 61, 61)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnPrint)
@@ -164,7 +178,9 @@ public class UserPage extends javax.swing.JFrame {
                     .addComponent(btnShowStatistics))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnChangeInfoCustomer)
-                .addGap(67, 67, 67)
+                .addGap(26, 26, 26)
+                .addComponent(btnShowWorkload)
+                .addGap(18, 18, 18)
                 .addComponent(btnRegisterOrder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,6 +235,14 @@ public class UserPage extends javax.swing.JFrame {
         new showStatistics(idb).setVisible(true);
     }//GEN-LAST:event_btnShowStatisticsActionPerformed
 
+    private void btnChangeOrderStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeOrderStatusActionPerformed
+        new searchOrder(idb,employeeIdet).setVisible(true);
+    }//GEN-LAST:event_btnChangeOrderStatusActionPerformed
+
+    private void btnShowWorkloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowWorkloadActionPerformed
+        new showWorkload(idb).setVisible(true);
+    }//GEN-LAST:event_btnShowWorkloadActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangeInfoCustomer;
     private javax.swing.JButton btnChangeOrder;
@@ -230,6 +254,7 @@ public class UserPage extends javax.swing.JFrame {
     private javax.swing.JButton btnShowCustomerInfo;
     private javax.swing.JButton btnShowOrderInfo;
     private javax.swing.JButton btnShowStatistics;
+    private javax.swing.JButton btnShowWorkload;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblHeaderSecond;
     // End of variables declaration//GEN-END:variables

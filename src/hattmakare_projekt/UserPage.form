@@ -35,7 +35,7 @@
                                   <Component id="btnRegisterOrder" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnChangeOrderStatus" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnChangeOrder" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnShowWorkload" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -85,7 +85,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnChangeInfoCustomer" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="btnShowWorkload" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnRegisterOrder" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -169,6 +169,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc4;ndra status p&#xe5; order"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChangeOrderStatusActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnShowStatistics">
       <Properties>
@@ -199,12 +202,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChangeOrderActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnShowWorkload">
       <Properties>
         <Property name="text" type="java.lang.String" value="Visa arbetsf&#xf6;rdelning"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowWorkloadActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

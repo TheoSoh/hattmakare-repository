@@ -49,6 +49,7 @@ public class searchOrder extends javax.swing.JFrame {
         btnChooseCustomer = new javax.swing.JButton();
         btnGoBack = new javax.swing.JButton();
         lblError = new javax.swing.JLabel();
+        lblHeadlineInfo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,6 +89,9 @@ public class searchOrder extends javax.swing.JFrame {
             }
         });
 
+        lblHeadlineInfo.setFont(new java.awt.Font("Helvetica Neue", 0, 11)); // NOI18N
+        lblHeadlineInfo.setText("Här kan du skapa faktura, tullsedel, fraktsedel eller ändra orderns status");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,12 +102,6 @@ public class searchOrder extends javax.swing.JFrame {
                         .addGap(96, 96, 96)
                         .addComponent(lblHeadline, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(cmbChooseCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(cmbChooseOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnGoBack))
                     .addGroup(layout.createSequentialGroup()
@@ -111,14 +109,24 @@ public class searchOrder extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblChooseCustomerHeadline)
                             .addComponent(lblChooseOrderHeadline)
-                            .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(95, 95, 95)
+                                .addComponent(btnShowOrder)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addComponent(btnChooseCustomer))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(btnShowOrder)))
-                .addContainerGap(76, Short.MAX_VALUE))
+                        .addGap(132, 132, 132)
+                        .addComponent(cmbChooseOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(cmbChooseCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(lblHeadlineInfo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +134,9 @@ public class searchOrder extends javax.swing.JFrame {
                 .addComponent(btnGoBack, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(lblHeadline, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(2, 2, 2)
+                .addComponent(lblHeadlineInfo)
+                .addGap(18, 18, 18)
                 .addComponent(lblChooseCustomerHeadline)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbChooseCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,10 +147,10 @@ public class searchOrder extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbChooseOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnShowOrder)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnShowOrder, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -234,6 +244,7 @@ public class searchOrder extends javax.swing.JFrame {
     private javax.swing.JLabel lblChooseOrderHeadline;
     private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblHeadline;
+    private javax.swing.JLabel lblHeadlineInfo;
     // End of variables declaration//GEN-END:variables
 
     void setVisible() {

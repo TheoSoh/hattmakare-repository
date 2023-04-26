@@ -74,6 +74,18 @@ CREATE TABLE `Customer` (
 LOCK TABLES `Customer` WRITE;
 /*!40000 ALTER TABLE `Customer` DISABLE KEYS */;
 INSERT INTO `Customer` VALUES (1,'Kurt Lupton');
+INSERT INTO `Customer` VALUES
+(2,'Elin Bergqvist'),
+(3,'Oscar Lindström'),
+(4,'Hanna Nilsson'),
+(5,'Lars Andersson'),
+(6,'Ida Johansson'),
+(7,'Erik Svensson'),
+(8,'Anna Karlsson'),
+(9,'Peter Gustafsson'),
+(10,'Sara Lundgren'),
+(11,'Johan Persson'),
+(12,'Emma Ahlström');
 /*!40000 ALTER TABLE `Customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,6 +139,18 @@ CREATE TABLE `Address` (
 LOCK TABLES `Address` WRITE;
 /*!40000 ALTER TABLE `Address` DISABLE KEYS */;
 INSERT INTO `Address` VALUES (1,'Grusvägen','14E',1);
+INSERT INTO `Address` VALUES
+(2,'Björkgatan','5A',2),
+(3,'Smedjegatan','17C',3),
+(4,'Lärkvägen','11B',4),
+(5,'Rosenvägen','2',5),
+(6,'Parkgatan','8',6),
+(7,'Kungsgatan','13D',7),
+(8,'Åsgatan','20',8),
+(9,'Furuvägen','6',9),
+(10,'Storgatan','12B',10),
+(11,'Ängsvägen','7',11),
+(12,'Vasagatan','3C',12);
 /*!40000 ALTER TABLE `Address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,7 +185,19 @@ CREATE TABLE `Order` (
 
 LOCK TABLES `Order` WRITE;
 /*!40000 ALTER TABLE `Order` DISABLE KEYS */;
-INSERT INTO `Order` VALUES (1,1,500,'2023-03-31',null,0,0,0,1,1,'Finns');
+INSERT INTO `Order` (`Amount`, `Total_Price`, `Order_date`, `Shipment_date`, `Invoice_sent_status`, `Payment_status`, `Order_complete_status`, `Created_by_employee`, `Customer`, `Picture_exist`)
+VALUES
+(3, 350, '2020-01-10', '2020-01-14', 1, 0, 0, 2, 7, 'nej'),
+(2, 150, '2020-02-15', '2020-02-20', 1, 1, 0, 3, 4, 'ja'),
+(3, 500, '2021-03-20', '2021-03-25', 0, 0, 0, 1, 9, 'nej'),
+(1, 750., '2021-04-01', '2021-04-05', 1, 1, 1, 1, 2, 'nej'),
+(2, 800, '2021-05-07', '2021-05-12', 0, 1, 0, 2, 10, 'ja'),
+(2, 2000, '2021-06-14', '2021-06-19', 1, 1, 1, 3, 3, 'nej'),
+(1, 450, '2022-07-21', '2022-07-26', 0, 0, 0, 1, 6, 'nej'),
+(3, 500, '2022-08-02', '2022-08-07', 1, 0, 0, 2, 1, 'ja'),
+(2, 550, '2022-09-18', '2022-09-23', 1, 1, 0, 1, 8, 'ja'),
+(2, 1000, '2022-10-25', '2022-10-30', 0, 1, 1, 2, 5, 'nej');
+
 /*!40000 ALTER TABLE `Order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,6 +214,9 @@ CREATE TABLE `Hat` (
   `Price` double DEFAULT NULL,
   `Color` varchar(20) NOT NULL,
   `Description` varchar(250) NOT NULL,
+  `image` varchar(250) NULL,
+  `material_cost` int NOT NULL,
+  `hour_per_hat` int NOT NULL,
   PRIMARY KEY (`HatID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_sv_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -188,7 +227,19 @@ CREATE TABLE `Hat` (
 
 LOCK TABLES `Hat` WRITE;
 /*!40000 ALTER TABLE `Hat` DISABLE KEYS */;
-INSERT INTO `Hat` VALUES (1,'41','1200','Red','A large red hat filled with flowers at the top. The hat should also have a white linen band around it.');
+INSERT INTO `Hat` (`Size`, `Price`, `Color`, `Description`, `image`, `material_cost`, `hour_per_hat`)
+VALUES
+(56.0, 300, 'Röd', 'Detta är en röd hatt', 'Ingen skiss vald', 100, 2),
+(60.5, 500, 'Blå', 'Detta är en blå hatt', 'Ingen skiss vald', 120, 3),
+(55.0, 250, 'Grön', 'Detta är en grön hatt', 'Ingen skiss vald', 90, 2),
+(58.0, 700, 'Gul', 'Detta är en gul hatt', 'Ingen skiss vald', 150, 4),
+(57.5, 600, 'Lila', 'Detta är en lila hatt', 'Ingen skiss vald', 130, 3),
+(59.0, 1000, 'Rosa', 'Detta är en rosa hatt', 'Ingen skiss vald', 180, 5),
+(54.5, 350, 'Svart', 'Detta är en svart hatt', 'Ingen skiss vald', 100, 2),
+(61.0, 800, 'Brun', 'Detta är en brun hatt', 'Ingen skiss vald', 140, 3),
+(53.5, 200, 'Vit', 'Detta är en vit hatt', 'Ingen skiss vald', 80, 2),
+(59.5, 900, 'Beige', 'Detta är en beige hatt', 'Ingen skiss vald', 160, 4);
+
 /*!40000 ALTER TABLE `Hat` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +265,30 @@ CREATE TABLE `Hat_in_order` (
 
 LOCK TABLES `Hat_in_order` WRITE;
 /*!40000 ALTER TABLE `Hat_in_order` DISABLE KEYS */;
-INSERT INTO `Hat_in_order` VALUES (1,1);
+INSERT INTO Hat_in_order (HatID, OrderID)
+VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 2),
+(6, 2),
+(7, 3),
+(9, 3),
+(10, 3),
+(1, 4),
+(5, 5),
+(6, 5),
+(2, 6),
+(3, 6),
+(8, 7),
+(1, 8),
+(4, 8),
+(5, 8),
+(6, 9),
+(8, 9),
+(2, 10),
+(3, 10);
+
 /*!40000 ALTER TABLE `Hat_in_order` ENABLE KEYS */;
 UNLOCK TABLES;
 

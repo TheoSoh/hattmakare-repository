@@ -11,8 +11,16 @@ import java.awt.Toolkit;
 import java.io.File;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -108,6 +116,67 @@ public class RegisterOrder extends javax.swing.JFrame {
             isEmpty = true;
         }
         return isEmpty;
+    }
+        
+        
+        public void sendEmail() {
+        
+        String pricePerHat = lblCostPerHat.getText().toString();
+        String customerName = cboAllCustomers.getSelectedItem().toString();
+        
+        
+        String query = "SELECT Email_address FROM Email WHERE Email.Customer "
+                + "IN (SELECT CustomerID FROM Customer WHERE Name = '" + customerName + "')";
+                              
+
+        String from = "josef.harknas@gmail.com";
+
+        String host = "smtp.gmail.com";
+
+        Properties properties = System.getProperties();
+
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+
+        // Skickar in användarnamn/mailadress och lösenord
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+            protected PasswordAuthentication getPasswordAuthentication() {
+
+                return new PasswordAuthentication("josef.harknas@gmail.com", "cdvlibazkgfkxxid");
+
+            }
+
+        });
+
+        session.setDebug(true);
+
+        try {
+
+            String to = idb.fetchSingle(query);
+            
+            MimeMessage message = new MimeMessage(session);
+
+            // Från
+            message.setFrom(new InternetAddress(from));
+            // Till
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+            message.setSubject("Orderbekräftelse");
+
+            message.setText("Hej, " + "\n" + "Tack för din förfrågan om att beställa en hatt från Otto och Judiths hattar. Hatten du önskar kommer att kosta " 
+                    + pricePerHat + " kr. För att beställa den vänligen svara på detta meddelande." + "\n" + "\n" + "Mvh Otto och Judith");
+
+            Transport.send(message);
+            JOptionPane.showMessageDialog(null, "Meddelandet har skickats till kunden!");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        } catch (InfException ex) {
+            Logger.getLogger(SendEmail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 
@@ -644,7 +713,7 @@ public class RegisterOrder extends javax.swing.JFrame {
         
             JOptionPane.showMessageDialog(null, "Ordern är registrerad!");
 
-              
+            sendEmail();
 
         }
         

@@ -112,6 +112,20 @@ CREATE TABLE `Email` (
 LOCK TABLES `Email` WRITE;
 /*!40000 ALTER TABLE `Email` DISABLE KEYS */;
 INSERT INTO `Email` VALUES (1,'Kurre.Lupton@gmail.com',1);
+INSERT INTO Email (Email_address, Customer)
+VALUES
+('elin.bergqvist@gmail.com', 2),
+('oscar.lindstrom@hotmail.com', 3),
+('hanna.nilsson@yahoo.com', 4),
+('lars.andersson@gmail.com', 5),
+('ida.johansson@outlook.com', 6),
+('erik.svensson@gmail.com', 7),
+('anna.karlsson@yahoo.com', 8),
+('peter.gustafsson@hotmail.com', 9),
+('sara.lundgren@gmail.com', 10),
+('johan.persson@yahoo.com', 11),
+('emma.ahlstrom@outlook.com', 12);
+
 /*!40000 ALTER TABLE `Email` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,12 +205,12 @@ VALUES
 (2, 150, '2020-02-15', '2020-02-20', 1, 1, 0, 3, 4, 'ja'),
 (3, 500, '2021-03-20', '2021-03-25', 0, 0, 0, 1, 9, 'nej'),
 (1, 750., '2021-04-01', '2021-04-05', 1, 1, 1, 1, 2, 'nej'),
-(2, 800, '2021-05-07', '2021-05-12', 0, 1, 0, 2, 10, 'ja'),
-(2, 2000, '2021-06-14', '2021-06-19', 1, 1, 1, 3, 3, 'nej'),
+(2, 800, '2022-05-07', '2022-05-12', 0, 1, 0, 2, 10, 'ja'),
+(2, 2000, '2022-06-14', '2022-06-19', 1, 1, 1, 3, 3, 'nej'),
 (1, 450, '2022-07-21', '2022-07-26', 0, 0, 0, 1, 6, 'nej'),
-(3, 500, '2022-08-02', '2022-08-07', 1, 0, 0, 2, 1, 'ja'),
-(2, 550, '2022-09-18', '2022-09-23', 1, 1, 0, 1, 8, 'ja'),
-(2, 1000, '2022-10-25', '2022-10-30', 0, 1, 1, 2, 5, 'nej');
+(3, 500, '2023-01-02', '2023-01-07', 1, 0, 0, 2, 1, 'ja'),
+(2, 550, '2023-02-18', '2023-02-23', 1, 1, 0, 1, 8, 'ja'),
+(2, 1000, '2023-03-25', '2023-03-30', 0, 1, 1, 2, 5, 'nej');
 
 /*!40000 ALTER TABLE `Order` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -124,6 +124,9 @@ public class showStatistics extends javax.swing.JFrame {
 
         lblError.setText("jLabel1");
 
+        txtAreaStatistics.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        txtAreaStatistics.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -243,11 +246,12 @@ public class showStatistics extends javax.swing.JFrame {
         
         if(cboStatChoice.getSelectedItem().equals("Arbetskraft"))
         {
-            try{
-             String query = "SELECT SUM(hour_per_hat) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+            try {
+            String query = "SELECT SUM(hour_per_hat) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
 
-             String result = idb.fetchSingle(query);
-             txtAreaStatistics.setText("Arbetskostnaden är " + result + " kronor");
+            String result = idb.fetchSingle(query);
+            int result1 = Integer.parseInt(result) * 800;
+            txtAreaStatistics.setText("Arbetskostnaden är " + result1 + " kronor");
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
         }

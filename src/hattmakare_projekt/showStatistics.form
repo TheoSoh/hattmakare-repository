@@ -233,6 +233,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="txtAreaStatistics">
+      <Properties>
+        <Property name="horizontalTextPosition" type="int" value="2"/>
+        <Property name="verticalTextPosition" type="int" value="1"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

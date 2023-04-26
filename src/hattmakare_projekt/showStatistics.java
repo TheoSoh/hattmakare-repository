@@ -4,18 +4,32 @@
  */
 package hattmakare_projekt;
 
+import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
 /**
  *
  * @author maccus
  */
 public class showStatistics extends javax.swing.JFrame {
+    private InfDB idb;
 
     /**
      * Creates new form showStatistics
+     * @param idb
      */
-    public showStatistics() {
+    public showStatistics(InfDB idb) {
         initComponents();
+        this.idb = idb;
+        
     }
+
+//    showStatistics(InfDB idb) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,31 +49,57 @@ public class showStatistics extends javax.swing.JFrame {
         lblChooseStatistics = new javax.swing.JLabel();
         cboStatChoice = new javax.swing.JComboBox<>();
         btnShowStats = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAreaStatistics = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        lblError = new javax.swing.JLabel();
+        txtAreaStatistics = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblStatisticsHeader.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         lblStatisticsHeader.setText("Visa statistik");
 
-        lblFromDate.setText("Från datum: (yyyy-mm-dd)");
+        lblFromDate.setText("Från datum:");
 
-        lblToDate.setText("Till datum: (yyyy-mm-dd)");
+        lblToDate.setText("Till datum:");
 
         lblChooseTimespan.setText("Välj tidsspann:");
 
+        txtFieldFromDate.setForeground(new java.awt.Color(153, 153, 153));
+        txtFieldFromDate.setText("yyyy-mm-dd");
+        txtFieldFromDate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFieldFromDateFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFieldFromDateFocusLost(evt);
+            }
+        });
         txtFieldFromDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFieldFromDateActionPerformed(evt);
             }
         });
 
+        txtFieldToDate.setForeground(new java.awt.Color(153, 153, 153));
+        txtFieldToDate.setText("yyyy-mm-dd");
+        txtFieldToDate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFieldToDateFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFieldToDateFocusLost(evt);
+            }
+        });
+
         lblChooseStatistics.setText("Typ av statistik:");
 
-        cboStatChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "Total Materialkostnad", "Totala Kostnader (materialkostnader + arbetskostnad)", "Totala Intäkter", "Antal Kunder", "Antal Ordrar", "Antal Sålda Hattar", "Snittpris Per Hatt", "Snittpris Per Order", "Visa allt" }));
+        cboStatChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "Total Materialkostnad", "Arbetskraft", "Totala Kostnader (materialkostnader + arbetskostnad)", "Totala Intäkter", "Antal Kunder", "Antal Ordrar", "Antal Sålda Hattar", "Snittpris Per Hatt", "Snittpris Per Order", "Visa allt" }));
+        cboStatChoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboStatChoiceActionPerformed(evt);
+            }
+        });
 
         btnShowStats.setText("Visa vald statistik");
         btnShowStats.addActionListener(new java.awt.event.ActionListener() {
@@ -67,10 +107,6 @@ public class showStatistics extends javax.swing.JFrame {
                 btnShowStatsActionPerformed(evt);
             }
         });
-
-        txtAreaStatistics.setColumns(20);
-        txtAreaStatistics.setRows(5);
-        jScrollPane1.setViewportView(txtAreaStatistics);
 
         jButton1.setText("Skriv ut...");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -80,6 +116,13 @@ public class showStatistics extends javax.swing.JFrame {
         });
 
         jButton2.setText("Tillbaka");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        lblError.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,32 +133,36 @@ public class showStatistics extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(3, 3, 3)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lblFromDate)
-                                            .addGap(18, 18, 18)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtFieldToDate)
-                                                .addComponent(txtFieldFromDate)))
-                                        .addComponent(btnShowStats, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblChooseStatistics)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cboStatChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(lblChooseTimespan))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                        .addContainerGap())
+                            .addComponent(lblChooseTimespan)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(98, 98, 98)
+                                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(26, 26, 26))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblStatisticsHeader)
-                        .addGap(285, 285, 285))))
+                        .addGap(285, 285, 285))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(5, 5, 5)
+                                        .addComponent(lblToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblChooseStatistics))
+                                .addGap(64, 64, 64)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtFieldToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboStatChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFieldFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnShowStats, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(lblFromDate)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addComponent(txtAreaStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -126,31 +173,33 @@ public class showStatistics extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(lblStatisticsHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jButton2)
                         .addGap(26, 26, 26)
-                        .addComponent(lblChooseTimespan)
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFieldFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFromDate))
-                        .addGap(32, 32, 32)
+                        .addComponent(lblChooseTimespan))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(lblStatisticsHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblFromDate)
+                            .addComponent(txtFieldFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtFieldToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblToDate))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboStatChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblChooseStatistics))
                         .addGap(30, 30, 30)
-                        .addComponent(btnShowStats)
-                        .addGap(0, 67, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblChooseStatistics)
+                            .addComponent(cboStatChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addComponent(btnShowStats))
+                    .addComponent(txtAreaStatistics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(lblError)
+                .addGap(18, 27, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -163,60 +212,257 @@ public class showStatistics extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFieldFromDateActionPerformed
 
     private void btnShowStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowStatsActionPerformed
-        // TODO add your handling code here:
+        String chosenStat = cboStatChoice.getSelectedItem().toString();
+        
+        txtAreaStatistics.setText("");
+        lblError.setForeground(Color.red);
+        
+        String fromDate = txtFieldFromDate.getText();
+        String toDate = txtFieldToDate.getText();
+        
+        
+        
+        
+        if(cboStatChoice.getSelectedItem().equals("Välj"))
+        {
+            lblError.setText("Vänligen välj statistiken du vill se information om");
+        }
+        
+        if(cboStatChoice.getSelectedItem().equals("Total Materialkostnad"))
+        {
+            try{
+             String query = "SELECT SUM(material_cost) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+
+             String result = idb.fetchSingle(query);
+             txtAreaStatistics.setText("Den totala materialkostnaden är " + result + " kronor");
+        } catch (InfException ex) {
+            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        }
+        
+        if(cboStatChoice.getSelectedItem().equals("Arbetskraft"))
+        {
+            try{
+             String query = "SELECT SUM(hour_per_hat) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+
+             String result = idb.fetchSingle(query);
+             txtAreaStatistics.setText("Arbetskostnaden är " + result + " kronor");
+        } catch (InfException ex) {
+            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        }
+        
+        if(cboStatChoice.getSelectedItem().equals("Totala Kostnader (materialkostnader + arbetskostnad)"))
+        {
+              try{
+             String materialQuery = "SELECT SUM(material_cost) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+             String materialResult = idb.fetchSingle(materialQuery);
+             double materialCost = Double.parseDouble(materialResult);
+
+             String hourQuery = "SELECT SUM(hour_per_hat) FROM Hat JOIN Hat_in_order ON Hat.HatID = Hat_in_order.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE `Order`.Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+             String hourResult = idb.fetchSingle(hourQuery);
+             double hourCost = Double.parseDouble(hourResult);
+             
+             double materialAndHour = materialCost + hourCost;
+
+             txtAreaStatistics.setText("Den totala kostnaden är " + materialAndHour + " kronor");
+        } catch (InfException ex) {
+            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        }
+        
+        if(cboStatChoice.getSelectedItem().equals("Totala Intäkter"))
+        {
+              try{
+             String query = "SELECT SUM(Total_Price) FROM `Order` WHERE Order_date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+
+             String result = idb.fetchSingle(query);
+             txtAreaStatistics.setText("Totala intäkter för den valda perioden är  " + result + " kronor");
+        } catch (InfException ex) {
+            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        }
+        
+        if(cboStatChoice.getSelectedItem().equals("Antal Kunder"))
+        {
+              try{
+             String query = "SELECT COUNT(DISTINCT Customer) FROM `Order` WHERE Order_date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+
+             String result = idb.fetchSingle(query);
+             txtAreaStatistics.setText("Antal unika kunder för den valda tidsperioden: " + result);
+        } catch (InfException ex) {
+            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        }
+        
+        if(cboStatChoice.getSelectedItem().equals("Antal Ordrar"))
+        {
+              try{
+                String query = "SELECT COUNT(*) FROM `Order` WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+
+             String result = idb.fetchSingle(query);
+             txtAreaStatistics.setText("Antal ordrar för den valda tidsperioden: " + result);
+        } catch (InfException ex) {
+            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        }
+        
+        if(cboStatChoice.getSelectedItem().equals("Antal Sålda Hattar"))
+        {
+              try{
+             String query = "SELECT SUM(amount) FROM `Order` WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+
+             String result = idb.fetchSingle(query);
+             txtAreaStatistics.setText("Antal sålda hattar för den valda tidsperioden är " + result);
+        } catch (InfException ex) {
+            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        }
+        
+        if(cboStatChoice.getSelectedItem().equals("Snittpris Per Hatt"))
+        {
+              try{
+        String query = "SELECT ROUND(AVG(Price), 1) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+
+             String result = idb.fetchSingle(query);
+             txtAreaStatistics.setText("Snittpriset för sålda hattar är " + result + " kronor");
+        } catch (InfException ex) {
+            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        }
+        
+          if(cboStatChoice.getSelectedItem().equals("Snittpris Per Order"))
+        {
+              try{
+                String query = "SELECT ROUND(AVG(Total_Price), 1) FROM `Order` WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+
+             String result = idb.fetchSingle(query);
+             txtAreaStatistics.setText("Snittpriset per order är " + result + " kronor");
+        } catch (InfException ex) {
+            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        }
+        
+        if(cboStatChoice.getSelectedItem().equals("Visa Allt"))
+        {
+         try{
+             String query = "SELECT SUM(material_cost) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+
+             String result = idb.fetchSingle(query);
+             txtAreaStatistics.setText("Den totala materialkostnaden är " + result + " kronor");}
+             
+             
+             catch (InfException ex) {
+            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+               
+        
     }//GEN-LAST:event_btnShowStatsActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(showStatistics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(showStatistics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(showStatistics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(showStatistics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void cboStatChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboStatChoiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboStatChoiceActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new showStatistics().setVisible(true);
-            }
-        });
-    }
+    private void txtFieldFromDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldFromDateFocusGained
+        if(txtFieldFromDate.getText().equals("yyyy-mm-dd"))
+        {
+            txtFieldFromDate.setText("");
+            txtFieldFromDate.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtFieldFromDateFocusGained
+
+    private void txtFieldFromDateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldFromDateFocusLost
+            if(txtFieldFromDate.getText().equals(""))
+             {
+            txtFieldFromDate.setText("yyyy-mm-dd");
+            txtFieldFromDate.setForeground(new Color(153,153,153));
+
+        }    }//GEN-LAST:event_txtFieldFromDateFocusLost
+
+    private void txtFieldToDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldToDateFocusGained
+        
+              if(txtFieldToDate.getText().equals("yyyy-mm-dd"))
+        {
+            txtFieldToDate.setText("");
+            txtFieldToDate.setForeground(new Color(0,0,0));
+
+        }
+    }//GEN-LAST:event_txtFieldToDateFocusGained
+
+    private void txtFieldToDateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldToDateFocusLost
+             if(txtFieldToDate.getText().equals(""))
+             {
+            txtFieldToDate.setText("yyyy-mm-dd");
+            txtFieldToDate.setForeground(new Color(153,153,153));
+
+        } 
+    }//GEN-LAST:event_txtFieldToDateFocusLost
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(showStatistics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(showStatistics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(showStatistics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(showStatistics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new showStatistics().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnShowStats;
     private javax.swing.JComboBox<String> cboStatChoice;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblChooseStatistics;
     private javax.swing.JLabel lblChooseTimespan;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblFromDate;
     private javax.swing.JLabel lblStatisticsHeader;
     private javax.swing.JLabel lblToDate;
-    private javax.swing.JTextArea txtAreaStatistics;
+    private javax.swing.JLabel txtAreaStatistics;
     private javax.swing.JTextField txtFieldFromDate;
     private javax.swing.JTextField txtFieldToDate;
     // End of variables declaration//GEN-END:variables

@@ -309,9 +309,9 @@ public class showOrder extends javax.swing.JFrame {
       
         if(cmbChangeStatus.getSelectedItem().toString().equals("Förfrågan")){
             try {
-                idb.update("UPDATE `Order` SET Order_complete_status = FALSE WHERE OrderID = '" + lblOrderID.getText() + "'");
-                idb.update("UPDATE `Order` SET Payment_status = FALSE WHERE OrderID = '" + lblOrderID.getText() + "'");
-                idb.update("UPDATE `Order` SET Invoice_sent_status = TRUE WHERE OrderID = '" + lblOrderID.getText() + "'");
+                idb.update("UPDATE `Order` SET Order_complete_status = FALSE WHERE OrderID = '" + lblOrderID.getText() + "';");
+                idb.update("UPDATE `Order` SET Payment_status = FALSE WHERE OrderID = '" + lblOrderID.getText() + "';");
+                idb.update("UPDATE `Order` SET Invoice_sent_status = TRUE WHERE OrderID = '" + lblOrderID.getText() + "';");
                 
             } catch (InfException ex) {
                 Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
@@ -321,9 +321,9 @@ public class showOrder extends javax.swing.JFrame {
             
             if(cmbChangeStatus.getSelectedItem().toString().equals("Beställning")){
                 try {
-                    idb.update("UPDATE `Order` SET Payment_status = TRUE WHERE OrderID = '" + lblOrderID.getText() + "'");
-                    idb.update("UPDATE `Order` SET Invoice_sent_status = FALSE WHERE OrderID = '" + lblOrderID.getText() + "'");
-                    idb.update("UPDATE `Order` SET Order_complete_status = FALSE WHERE OrderID = '" + lblOrderID.getText() + "'");
+                    idb.update("UPDATE `Order` SET Payment_status = TRUE WHERE OrderID = '" + lblOrderID.getText() + "';");
+                    idb.update("UPDATE `Order` SET Invoice_sent_status = FALSE WHERE OrderID = '" + lblOrderID.getText() + "';");
+                    idb.update("UPDATE `Order` SET Order_complete_status = FALSE WHERE OrderID = '" + lblOrderID.getText() + "';");
                 } catch (InfException ex) {
                     Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -331,9 +331,9 @@ public class showOrder extends javax.swing.JFrame {
             } else {
                 if(cmbChangeStatus.getSelectedItem().toString().equals("Skickad")){
                     try {
-                        idb.update("UPDATE `Order` SET Invoice_sent_status = FALSE WHERE OrderID = '" + lblOrderID.getText() + "'");
-                        idb.update("UPDATE `Order` SET Payment_status = FALSE WHERE OrderID = '" + lblOrderID.getText() + "'");
-                        idb.update("UPDATE `Order` SET Order_complete_status = TRUE WHERE OrderID = '" + lblOrderID.getText() + "'");
+                        idb.update("UPDATE `Order` SET Invoice_sent_status = FALSE WHERE OrderID = '" + lblOrderID.getText() + "';");
+                        idb.update("UPDATE `Order` SET Payment_status = FALSE WHERE OrderID = '" + lblOrderID.getText() + "';");
+                        idb.update("UPDATE `Order` SET Order_complete_status = TRUE WHERE OrderID = '" + lblOrderID.getText() + "';");
                     
                     } catch (InfException ex) {
                         

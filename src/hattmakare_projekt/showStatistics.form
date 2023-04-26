@@ -28,41 +28,46 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblFromDate" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtFieldToDate" max="32767" attributes="0"/>
-                                              <Component id="txtFieldFromDate" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Component id="btnShowStats" alignment="0" min="-2" pref="460" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                  <Component id="lblToDate" min="-2" pref="147" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="lblChooseStatistics" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="cboStatChoice" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
                           <Component id="lblChooseTimespan" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                              <Component id="lblError" min="-2" pref="173" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="342" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="lblStatisticsHeader" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="285" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                      <Component id="lblToDate" min="-2" pref="89" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="lblChooseStatistics" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtFieldToDate" min="-2" pref="152" max="-2" attributes="0"/>
+                                  <Component id="cboStatChoice" min="-2" pref="155" max="-2" attributes="0"/>
+                                  <Component id="txtFieldFromDate" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                                  <Component id="btnShowStats" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                              <Component id="lblFromDate" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="45" max="32767" attributes="0"/>
+                      <Component id="txtAreaStatistics" min="-2" pref="437" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -78,37 +83,41 @@
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Component id="lblStatisticsHeader" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="lblChooseTimespan" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtFieldFromDate" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblFromDate" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Component id="lblStatisticsHeader" min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblFromDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFieldFromDate" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtFieldToDate" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblToDate" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cboStatChoice" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblChooseStatistics" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblChooseStatistics" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cboStatChoice" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="btnShowStats" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="67" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="txtAreaStatistics" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <Component id="lblError" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="18" pref="27" max="32767" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -126,12 +135,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblFromDate">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fr&#xe5;n datum: (yyyy-mm-dd)"/>
+        <Property name="text" type="java.lang.String" value="Fr&#xe5;n datum:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblToDate">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Till datum: (yyyy-mm-dd)"/>
+        <Property name="text" type="java.lang.String" value="Till datum:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblChooseTimespan">
@@ -140,11 +149,29 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFieldFromDate">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="yyyy-mm-dd"/>
+      </Properties>
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtFieldFromDateFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtFieldFromDateFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldFromDateActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFieldToDate">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="yyyy-mm-dd"/>
+      </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtFieldToDateFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtFieldToDateFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblChooseStatistics">
       <Properties>
@@ -154,20 +181,24 @@
     <Component class="javax.swing.JComboBox" name="cboStatChoice">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="10">
+          <StringArray count="11">
             <StringItem index="0" value="V&#xe4;lj"/>
             <StringItem index="1" value="Total Materialkostnad"/>
-            <StringItem index="2" value="Totala Kostnader (materialkostnader + arbetskostnad)"/>
-            <StringItem index="3" value="Totala Int&#xe4;kter"/>
-            <StringItem index="4" value="Antal Kunder"/>
-            <StringItem index="5" value="Antal Ordrar"/>
-            <StringItem index="6" value="Antal S&#xe5;lda Hattar"/>
-            <StringItem index="7" value="Snittpris Per Hatt"/>
-            <StringItem index="8" value="Snittpris Per Order"/>
-            <StringItem index="9" value="Visa allt"/>
+            <StringItem index="2" value="Arbetskraft"/>
+            <StringItem index="3" value="Totala Kostnader (materialkostnader + arbetskostnad)"/>
+            <StringItem index="4" value="Totala Int&#xe4;kter"/>
+            <StringItem index="5" value="Antal Kunder"/>
+            <StringItem index="6" value="Antal Ordrar"/>
+            <StringItem index="7" value="Antal S&#xe5;lda Hattar"/>
+            <StringItem index="8" value="Snittpris Per Hatt"/>
+            <StringItem index="9" value="Snittpris Per Order"/>
+            <StringItem index="10" value="Visa allt"/>
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboStatChoiceActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -180,21 +211,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowStatsActionPerformed"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="txtAreaStatistics">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Skriv ut..."/>
@@ -207,6 +223,16 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Tillbaka"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblError">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtAreaStatistics">
     </Component>
   </SubComponents>
 </Form>

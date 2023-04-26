@@ -4,6 +4,8 @@
  */
 package hattmakare_projekt;
 
+//Payment_status = TRUE & order_complete_status = TRUE
+
 import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
@@ -63,6 +65,7 @@ public class ChangeOrder extends javax.swing.JFrame {
         txtNewDescription = new javax.swing.JTextField();
         btnChangeDescription = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        lblErrorMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,6 +131,10 @@ public class ChangeOrder extends javax.swing.JFrame {
             }
         });
 
+        lblErrorMessage.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        lblErrorMessage.setForeground(new java.awt.Color(255, 0, 0));
+        lblErrorMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,11 +198,13 @@ public class ChangeOrder extends javax.swing.JFrame {
                                     .addComponent(btnChangeSize)
                                     .addComponent(btnChangePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -203,7 +212,9 @@ public class ChangeOrder extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(18, 18, 18)
+                .addComponent(lblErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -247,7 +258,7 @@ public class ChangeOrder extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addGap(27, 27, 27))
         );
@@ -256,30 +267,37 @@ public class ChangeOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnChangeColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeColorActionPerformed
-     
-       
         
         String newColor = cmbColor.getSelectedItem().toString();
      
-     try{
+        try{
           
-        String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
-        String hatID = idb.fetchSingle(query);
+            String query = "Select HatID from Hat_in_order where OrderID = " + orderId + ";";
+            String hatID = idb.fetchSingle(query);
+            
+            idb.update("UPDATE Hat SET Color = '"+ newColor + "' where HatID = "+ "'" + hatID +"'");
+            JOptionPane.showMessageDialog(null, "Färg ändrad!");
+            setLblCurrentColor(); 
          
-        idb.update("UPDATE Hat SET Color = '"+ newColor + "' where HatID = "+ "'" + hatID +"'");
-        JOptionPane.showMessageDialog(null, "Färg ändrad!");
-        setLblCurrentColor(); 
-         
-     }catch(InfException e){
+        }
+        catch(InfException e){
           JOptionPane.showMessageDialog(null,"databasfel!");
          
-     }
+        }
      
      
     }//GEN-LAST:event_btnChangeColorActionPerformed
 
     private void btnChangeSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeSizeActionPerformed
-            
+        
+        if(txtNewSize.getText().isEmpty()) {
+            lblErrorMessage.setText("Ange ny storlek!");
+            return;
+        }
+        if(!txtNewSize.getText().matches("[0-9]+")) {
+            lblErrorMessage.setText("Ange stoleken i heltalssiffror!");
+            return;
+        }
         String newSize = txtNewSize.getText();
      
         try{
@@ -301,7 +319,15 @@ public class ChangeOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChangeSizeActionPerformed
 
     private void btnChangePriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePriceActionPerformed
-            
+        
+        if(txtNewPrice.getText().isEmpty()) {
+            lblErrorMessage.setText("Ange nytt pris!");
+            return;
+        }
+        if(!txtNewPrice.getText().matches("[0-9]+")) {
+            lblErrorMessage.setText("Ange priset i heltalssiffror!");
+            return;
+        }
         String newPrice = txtNewPrice.getText();
      
         try{
@@ -322,7 +348,11 @@ public class ChangeOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChangePriceActionPerformed
 
     private void btnChangeDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeDescriptionActionPerformed
-              
+        
+        if(txtNewDescription.getText().isEmpty()) {
+            lblErrorMessage.setText("Ange ny beskrivning!");
+            return;
+        }
         String newDescription = txtNewDescription.getText();
      
         try{
@@ -413,6 +443,7 @@ public class ChangeOrder extends javax.swing.JFrame {
     private javax.swing.JLabel lblCurrentPrice;
     private javax.swing.JLabel lblCurrentSize;
     private javax.swing.JLabel lblDescription;
+    private javax.swing.JLabel lblErrorMessage;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblNewColor;
     private javax.swing.JLabel lblNewDescription;

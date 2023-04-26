@@ -76,7 +76,7 @@ public class SendEmail extends javax.swing.JFrame {
 
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication("josef.harknas@gmail.com", "xoczocgvotxuwloq");
+                return new PasswordAuthentication("josef.harknas@gmail.com", "cdvlibazkgfkxxid");
 
             }
 

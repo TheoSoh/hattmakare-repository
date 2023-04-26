@@ -26,91 +26,105 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblOrderDateHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblShippmentDateHeadline" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblShippingDate" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="lblOrderDate" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lblTotalPriceHeadline" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblTotalPrice" min="-2" pref="73" max="-2" attributes="0"/>
+                  <Component id="lblOrderDateHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblShippmentDateHeadline" pref="133" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblOrderDate" min="-2" pref="91" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="377" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="lblDescriptionHeadline" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblHatDescription" max="32767" attributes="0"/>
+                      <Component id="lblShippingDate" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace pref="304" max="32767" attributes="0"/>
+                      <Component id="lblTotalPriceHeadline" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Component id="lblTotalPrice" min="-2" pref="73" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblColorHeadline" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="lblHatColor" min="-2" pref="127" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="btnBackToSearch" pref="0" max="32767" attributes="0"/>
-                                  <Component id="lblCustomerNameHeadline" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="lblColorHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblSizeHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblAmountHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblPictureHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnBackToSearch" min="-2" pref="67" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblSizeHeadline" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="lblHatSize" min="-2" pref="127" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                      <Component id="lblOrderIDHeadline" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="lblOrderID" min="-2" pref="67" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lblPictureStatus" pref="127" max="32767" attributes="0"/>
-                                          <Component id="lblCustomerName" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="lblHatColor" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="lblHatSize" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="lblAmount" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblAmountHeadline" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="lblAmount" min="-2" pref="127" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="lblOrderIDHeadline" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lblOrderID" min="-2" pref="67" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lblChangeStatusHL" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="lblStatusHeadline" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="lblCurrentStatus" min="-2" pref="83" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="lblDescriptionHeadline" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lblHatDescription" min="-2" pref="259" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblCustomerNameHeadline" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="lblCustomerName" min="-2" pref="127" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblStatusHeadline" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblCurrentStatus" min="-2" pref="83" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblPictureHeadline" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lblHatSketch" min="-2" pref="258" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="309" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblHatSketch" min="-2" pref="258" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnFraktsedel" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnInvoice" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cmbChangeStatus" min="-2" pref="117" max="-2" attributes="0"/>
-                                          <Component id="btnTullsedel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="btnFraktsedel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnInvoice" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmbChangeStatus" min="-2" pref="117" max="-2" attributes="0"/>
+                                  <Component id="btnTullsedel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblChangeStatusHL" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -123,15 +137,17 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblOrderIDHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                      <Component id="lblOrderIDHeadline" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnBackToSearch" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                                  </Group>
                                   <Component id="lblStatusHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblOrderID" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="btnBackToSearch" min="-2" pref="23" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblCustomerNameHeadline" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCustomerName" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblCustomerNameHeadline" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCustomerName" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="lblCurrentStatus" min="-2" pref="34" max="-2" attributes="0"/>
@@ -155,7 +171,7 @@
               <Component id="btnFraktsedel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnTullsedel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblHatSize" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="lblSizeHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -167,15 +183,18 @@
                           <Component id="lblAmount" min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="lblAmountHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblPictureHeadline" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblPictureStatus" min="-2" pref="19" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblDescriptionHeadline" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblHatDescription" min="-2" pref="74" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblDescriptionHeadline" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblHatDescription" min="-2" pref="74" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="lblPictureHeadline" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -188,16 +207,16 @@
                   <Component id="lblOrderDateHeadline" min="-2" max="-2" attributes="0"/>
                   <Component id="lblOrderDate" min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblShippingDate" alignment="0" pref="136" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblTotalPriceHeadline" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblTotalPrice" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="lblTotalPriceHeadline" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTotalPrice" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="lblShippmentDateHeadline" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="lblShippingDate" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -259,6 +278,9 @@
     <Component class="javax.swing.JLabel" name="lblAmount">
     </Component>
     <Component class="javax.swing.JLabel" name="lblHatDescription">
+      <Properties>
+        <Property name="verticalAlignment" type="int" value="1"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTotalPrice">
     </Component>
@@ -271,8 +293,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Bild:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblPictureStatus">
     </Component>
     <Component class="javax.swing.JLabel" name="lblOrderDate">
     </Component>

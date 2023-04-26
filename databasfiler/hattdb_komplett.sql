@@ -112,6 +112,20 @@ CREATE TABLE `Email` (
 LOCK TABLES `Email` WRITE;
 /*!40000 ALTER TABLE `Email` DISABLE KEYS */;
 INSERT INTO `Email` VALUES (1,'Kurre.Lupton@gmail.com',1);
+INSERT INTO Email (Email_address, Customer)
+VALUES
+('elin.bergqvist@gmail.com', 2),
+('oscar.lindstrom@hotmail.com', 3),
+('hanna.nilsson@yahoo.com', 4),
+('lars.andersson@gmail.com', 5),
+('ida.johansson@outlook.com', 6),
+('erik.svensson@gmail.com', 7),
+('anna.karlsson@yahoo.com', 8),
+('peter.gustafsson@hotmail.com', 9),
+('sara.lundgren@gmail.com', 10),
+('johan.persson@yahoo.com', 11),
+('emma.ahlstrom@outlook.com', 12);
+
 /*!40000 ALTER TABLE `Email` ENABLE KEYS */;
 UNLOCK TABLES;
 

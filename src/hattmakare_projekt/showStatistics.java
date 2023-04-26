@@ -354,13 +354,16 @@ public class showStatistics extends javax.swing.JFrame {
         
         if(cboStatChoice.getSelectedItem().equals("Visa Allt"))
         {
-              try{
-                        
-                  );
-        } catch (InfException ex) {
-            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null,  ex);
-        }
+         try{
+             String query = "SELECT SUM(material_cost) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
 
+             String result = idb.fetchSingle(query);
+             txtAreaStatistics.setText("Den totala materialkostnaden är " + result + " kronor");}
+             
+             
+             catch (InfException ex) {
+            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
                
         

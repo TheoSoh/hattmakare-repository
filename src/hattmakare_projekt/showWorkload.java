@@ -41,11 +41,15 @@ public class showWorkload extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaeShowOrder = new javax.swing.JTextArea();
         cmbChooseEmployee = new javax.swing.JComboBox<>();
+        lblIDHeadline = new javax.swing.JLabel();
+        lblDateHeadline = new javax.swing.JLabel();
+        lblNameHeadline = new javax.swing.JLabel();
+        btnGoBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblMainHeadline.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblMainHeadline.setText("Visa arbetsbelastning");
+        lblMainHeadline.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblMainHeadline.setText("Visa pågående ordrar per anställd");
 
         lblChooseEmployeeHeadline.setText("Välj vilken hattmakares arbetsbelastningen som ska visas");
 
@@ -60,38 +64,73 @@ public class showWorkload extends javax.swing.JFrame {
             }
         });
 
+        lblIDHeadline.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
+        lblIDHeadline.setText("OrderID");
+
+        lblDateHeadline.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
+        lblDateHeadline.setText("Datum");
+
+        lblNameHeadline.setFont(new java.awt.Font("Helvetica Neue", 1, 10)); // NOI18N
+        lblNameHeadline.setText("Kundnamn");
+
+        btnGoBack.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        btnGoBack.setText("Tillbaka");
+        btnGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblMainHeadline)
-                        .addGap(66, 66, 66))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblChooseEmployeeHeadline)
-                        .addGap(38, 38, 38))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cmbChooseEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(151, 151, 151))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMainHeadline)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblChooseEmployeeHeadline)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblIDHeadline)
+                                            .addGap(41, 41, 41)
+                                            .addComponent(lblDateHeadline)
+                                            .addGap(75, 75, 75)
+                                            .addComponent(lblNameHeadline))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(cmbChooseEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 73, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnGoBack, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
+                .addComponent(btnGoBack, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblMainHeadline)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblChooseEmployeeHeadline)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbChooseEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIDHeadline)
+                    .addComponent(lblDateHeadline)
+                    .addComponent(lblNameHeadline))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
 
         pack();
@@ -105,16 +144,45 @@ public class showWorkload extends javax.swing.JFrame {
         ArrayList<HashMap<String, String>> searchedOrders;
         String chosenEmployee = cmbChooseEmployee.getSelectedItem().toString();
         try{
-            if(chosenEmployee.equals("Judith")){
-                String queryJudith = "SELECT `order`.OrderID, customer.Name, o.Order_date\n" +
-                "FROM `order`, customer\n" +
-                "JOIN `order` o on customer.CustomerID = o.Customer\n" +
-                "JOIN employee e on e.EmployeeID = o.Created_by_employee\n" +
-                "WHERE EmployeeID = '1'";
+            if(chosenEmployee.equals("Otto")){
+                String queryOtto = "select distinct OrderID, Order_date, Customer.Name from `Order`, Customer, Employee where Created_by_employee = Employee.EmployeeID and `Order`.Customer = Customer.CustomerID and EmployeeID = 1 and Order_complete_status = 0";
+                searchedOrders = idb.fetchRows(queryOtto);
+                
+                for (HashMap<String, String> oneOrder:searchedOrders){
+                    txtaeShowOrder.append(oneOrder.get("OrderID"));
+                    txtaeShowOrder.append("            ");
+                    txtaeShowOrder.append(oneOrder.get("Order_date"));
+                    txtaeShowOrder.append("            ");
+                    txtaeShowOrder.append(oneOrder.get("Name"));
+                    txtaeShowOrder.append("\n");
+                }
+            } else {
+                if(chosenEmployee.equals("Judith")){
+                String queryJudith = "select distinct OrderID, Order_date, Customer.Name from `Order`, Customer, Employee where Created_by_employee = Employee.EmployeeID and `Order`.Customer = Customer.CustomerID and EmployeeID = 2 and Order_complete_status = 0";
                 searchedOrders = idb.fetchRows(queryJudith);
                 
                 for (HashMap<String, String> oneOrder:searchedOrders){
-                    txtaeShowOrder.setText(oneOrder.get("OrderID" + "Name"));
+                    txtaeShowOrder.append(oneOrder.get("OrderID"));
+                    txtaeShowOrder.append("            ");
+                    txtaeShowOrder.append(oneOrder.get("Order_date"));
+                    txtaeShowOrder.append("            ");
+                    txtaeShowOrder.append(oneOrder.get("Name"));
+                    txtaeShowOrder.append("\n");
+                }
+            } else{
+                    if(chosenEmployee.equals("Barnbarn")){
+                String queryBarnbarn = "select distinct OrderID, Order_date, Customer.Name from `Order`, Customer, Employee where Created_by_employee = Employee.EmployeeID and `Order`.Customer = Customer.CustomerID and EmployeeID = 3 and Order_complete_status = 0";
+                searchedOrders = idb.fetchRows(queryBarnbarn);
+                
+                for (HashMap<String, String> oneOrder:searchedOrders){
+                    txtaeShowOrder.append(oneOrder.get("OrderID"));
+                    txtaeShowOrder.append("            ");
+                    txtaeShowOrder.append(oneOrder.get("Order_date"));
+                    txtaeShowOrder.append("            ");
+                    txtaeShowOrder.append(oneOrder.get("Name"));
+                    txtaeShowOrder.append("\n");
+                }
+            }
                 }
             }
             
@@ -124,13 +192,22 @@ public class showWorkload extends javax.swing.JFrame {
            }
     }//GEN-LAST:event_cmbChooseEmployeeActionPerformed
 
+    private void btnGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoBackActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnGoBackActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGoBack;
     private javax.swing.JComboBox<String> cmbChooseEmployee;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblChooseEmployeeHeadline;
+    private javax.swing.JLabel lblDateHeadline;
+    private javax.swing.JLabel lblIDHeadline;
     private javax.swing.JLabel lblMainHeadline;
+    private javax.swing.JLabel lblNameHeadline;
     private javax.swing.JTextArea txtaeShowOrder;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,6 +9,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import java.awt.print.*;
+import java.text.*;
+import javax.swing.JOptionPane;
+import javax.swing.JCheckBox;
+//import javafx.print.Printer;
+import javax.swing.JTextArea;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+
 
 /**
  *
@@ -52,7 +64,8 @@ public class showStatistics extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         lblError = new javax.swing.JLabel();
-        txtAreaStatistics = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAreaStatistics = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,10 +135,10 @@ public class showStatistics extends javax.swing.JFrame {
             }
         });
 
-        lblError.setText("jLabel1");
-
-        txtAreaStatistics.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        txtAreaStatistics.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        txtAreaStatistics.setEditable(false);
+        txtAreaStatistics.setColumns(20);
+        txtAreaStatistics.setRows(5);
+        jScrollPane1.setViewportView(txtAreaStatistics);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,41 +148,38 @@ public class showStatistics extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblChooseTimespan)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(98, 98, 98)
-                                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(26, 26, 26))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 334, Short.MAX_VALUE)
                         .addComponent(lblStatisticsHeader)
                         .addGap(285, 285, 285))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblChooseTimespan)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(5, 5, 5)
-                                        .addComponent(lblToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblChooseStatistics))
-                                .addGap(64, 64, 64)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFieldToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cboStatChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtFieldFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnShowStats, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(lblFromDate)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                        .addComponent(txtAreaStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(5, 5, 5)
+                                                .addComponent(lblToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(lblChooseStatistics))
+                                        .addGap(64, 64, 64)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtFieldToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cboStatChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtFieldFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnShowStats, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(3, 3, 3)
+                                        .addComponent(lblFromDate))
+                                    .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1)))
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,13 +208,13 @@ public class showStatistics extends javax.swing.JFrame {
                             .addComponent(lblChooseStatistics)
                             .addComponent(cboStatChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
-                        .addComponent(btnShowStats))
-                    .addComponent(txtAreaStatistics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41)
-                .addComponent(lblError)
-                .addGap(18, 27, Short.MAX_VALUE)
+                        .addComponent(btnShowStats)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -215,17 +225,26 @@ public class showStatistics extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFieldFromDateActionPerformed
 
     private void btnShowStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowStatsActionPerformed
-        String chosenStat = cboStatChoice.getSelectedItem().toString();
+    //  String chosenStat = cboStatChoice.get
         
-        txtAreaStatistics.setText("");
+    //    txtAreaStatistics.setText("");
         lblError.setForeground(Color.red);
         
         String fromDate = txtFieldFromDate.getText();
         String toDate = txtFieldToDate.getText();
         
         
-        
-        
+             String query = "SELECT ROUND(AVG(Total_Price), 1) FROM `Order` WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";             
+             String query1 = "SELECT SUM(Total_Price) FROM `Order` WHERE Order_date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+             String query2 = "SELECT COUNT(DISTINCT Customer) FROM `Order` WHERE Order_date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+             String query3 = "SELECT COUNT(*) FROM `Order` WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+             String query4 = "SELECT SUM(amount) FROM `Order` WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+             String query5 = "SELECT ROUND(AVG(Price), 1) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+             String query6 = "SELECT SUM(material_cost) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+             String query7 = "SELECT SUM(hour_per_hat) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+             String materialQuery = "SELECT SUM(material_cost) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+             String hourQuery = "SELECT SUM(hour_per_hat) FROM Hat JOIN Hat_in_order ON Hat.HatID = Hat_in_order.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE `Order`.Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+         
         if(cboStatChoice.getSelectedItem().equals("Välj"))
         {
             lblError.setText("Vänligen välj statistiken du vill se information om");
@@ -234,10 +253,9 @@ public class showStatistics extends javax.swing.JFrame {
         if(cboStatChoice.getSelectedItem().equals("Total Materialkostnad"))
         {
             try{
-             String query = "SELECT SUM(material_cost) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
 
-             String result = idb.fetchSingle(query);
-             txtAreaStatistics.setText("Den totala materialkostnaden är " + result + " kronor");
+             String materialCostResult = idb.fetchSingle(query6);
+             txtAreaStatistics.setText("Den totala materialkostnaden är " + materialCostResult + " kronor");
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -246,12 +264,10 @@ public class showStatistics extends javax.swing.JFrame {
         
         if(cboStatChoice.getSelectedItem().equals("Arbetskraft"))
         {
-            try {
-            String query = "SELECT SUM(hour_per_hat) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+            try{
 
-            String result = idb.fetchSingle(query);
-            int result1 = Integer.parseInt(result) * 800;
-            txtAreaStatistics.setText("Arbetskostnaden är " + result1 + " kronor");
+             String workloadResult = idb.fetchSingle(query7);
+             txtAreaStatistics.setText("Arbetskostnaden är " + workloadResult + " kronor");
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -261,16 +277,11 @@ public class showStatistics extends javax.swing.JFrame {
         if(cboStatChoice.getSelectedItem().equals("Totala Kostnader (materialkostnader + arbetskostnad)"))
         {
               try{
-             String materialQuery = "SELECT SUM(material_cost) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
              String materialResult = idb.fetchSingle(materialQuery);
+             String hourResult = idb.fetchSingle(hourQuery);            
              double materialCost = Double.parseDouble(materialResult);
-
-             String hourQuery = "SELECT SUM(hour_per_hat) FROM Hat JOIN Hat_in_order ON Hat.HatID = Hat_in_order.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE `Order`.Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
-             String hourResult = idb.fetchSingle(hourQuery);
-             double hourCost = Double.parseDouble(hourResult);
-             
+             double hourCost = Double.parseDouble(hourResult);            
              double materialAndHour = materialCost + hourCost;
-
              txtAreaStatistics.setText("Den totala kostnaden är " + materialAndHour + " kronor");
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
@@ -281,10 +292,8 @@ public class showStatistics extends javax.swing.JFrame {
         if(cboStatChoice.getSelectedItem().equals("Totala Intäkter"))
         {
               try{
-             String query = "SELECT SUM(Total_Price) FROM `Order` WHERE Order_date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
-
-             String result = idb.fetchSingle(query);
-             txtAreaStatistics.setText("Totala intäkter för den valda perioden är  " + result + " kronor");
+             String totalRevenuesResult = idb.fetchSingle(query1);
+             txtAreaStatistics.setText("Totala intäkter för den valda perioden är  " + totalRevenuesResult + " kronor");
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -294,10 +303,9 @@ public class showStatistics extends javax.swing.JFrame {
         if(cboStatChoice.getSelectedItem().equals("Antal Kunder"))
         {
               try{
-             String query = "SELECT COUNT(DISTINCT Customer) FROM `Order` WHERE Order_date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
 
-             String result = idb.fetchSingle(query);
-             txtAreaStatistics.setText("Antal unika kunder för den valda tidsperioden: " + result);
+             String customersResult = idb.fetchSingle(query2);
+             txtAreaStatistics.setText("Antal unika kunder för den valda tidsperioden: " + customersResult);
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -307,10 +315,9 @@ public class showStatistics extends javax.swing.JFrame {
         if(cboStatChoice.getSelectedItem().equals("Antal Ordrar"))
         {
               try{
-                String query = "SELECT COUNT(*) FROM `Order` WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
 
-             String result = idb.fetchSingle(query);
-             txtAreaStatistics.setText("Antal ordrar för den valda tidsperioden: " + result);
+             String ordersResult = idb.fetchSingle(query3);
+             txtAreaStatistics.setText("Antal ordrar för den valda tidsperioden: " + ordersResult);
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -320,10 +327,9 @@ public class showStatistics extends javax.swing.JFrame {
         if(cboStatChoice.getSelectedItem().equals("Antal Sålda Hattar"))
         {
               try{
-             String query = "SELECT SUM(amount) FROM `Order` WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
 
-             String result = idb.fetchSingle(query);
-             txtAreaStatistics.setText("Antal sålda hattar för den valda tidsperioden är " + result);
+             String soldHatsResult = idb.fetchSingle(query4);
+             txtAreaStatistics.setText("Antal sålda hattar för den valda tidsperioden är " + soldHatsResult);
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -333,10 +339,9 @@ public class showStatistics extends javax.swing.JFrame {
         if(cboStatChoice.getSelectedItem().equals("Snittpris Per Hatt"))
         {
               try{
-        String query = "SELECT ROUND(AVG(Price), 1) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
 
-             String result = idb.fetchSingle(query);
-             txtAreaStatistics.setText("Snittpriset för sålda hattar är " + result + " kronor");
+             String avgPriceResult = idb.fetchSingle(query5);
+             txtAreaStatistics.setText("Snittpriset för sålda hattar är " + avgPriceResult + " kronor");
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -346,35 +351,65 @@ public class showStatistics extends javax.swing.JFrame {
           if(cboStatChoice.getSelectedItem().equals("Snittpris Per Order"))
         {
               try{
-                String query = "SELECT ROUND(AVG(Total_Price), 1) FROM `Order` WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
-
-             String result = idb.fetchSingle(query);
-             txtAreaStatistics.setText("Snittpriset per order är " + result + " kronor");
+             String avgOrderResult = idb.fetchSingle(query);
+             txtAreaStatistics.setText("Snittpriset per order är " + avgOrderResult + " kronor");
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         }
         
-        if(cboStatChoice.getSelectedItem().equals("Visa Allt"))
+        if(cboStatChoice.getSelectedItem().equals("Visa allt"))
         {
          try{
-             String query = "SELECT SUM(material_cost) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
-
-             String result = idb.fetchSingle(query);
-             txtAreaStatistics.setText("Den totala materialkostnaden är " + result + " kronor");}
+             String avgOrderResult = idb.fetchSingle(query);
+             String avgPriceResult = idb.fetchSingle(query5);
+             String soldHatsResult = idb.fetchSingle(query4);
+             String ordersResult = idb.fetchSingle(query3);
+             String materialCostResult = idb.fetchSingle(query6);
+             String workloadResult = idb.fetchSingle(query7);
+             String totalRevenuesResult = idb.fetchSingle(query1);
+             String customersResult = idb.fetchSingle(query2);
+             String materialResult = idb.fetchSingle(materialQuery);
+             String hourResult = idb.fetchSingle(hourQuery);
              
-             
-             catch (InfException ex) {
+             double materialCost = Double.parseDouble(materialResult);
+             double hourCost = Double.parseDouble(hourResult);            
+             double materialAndHour = materialCost + hourCost;                       
+                        
+                        txtAreaStatistics.setText("All statistik för tidsperioden: "+ fromDate + "  -  "+ toDate + ":" + "\n" + " " + "\n" +
+                        "Total materialkostnad för tidsperioden: " + materialCostResult + "kr" + "\n" + 
+                        "Totala kostnader för tidsperioden (inkl. arbetskostnad): " + materialAndHour + "kr" + "\n" + 
+                        "Totala intäkter för tidsperioden: " + totalRevenuesResult +  "kr" + "\n" + 
+                        "Arbetskostnaden för vald tidsperiod var: " + workloadResult +  "kr" + "\n" + 
+                        "Antal unika kunder under tidsperioden: " + customersResult +  "st" + "\n" + 
+                        "Antal inkomna ordrar under vald tidsperiod: " + ordersResult +  "st" + "\n" + 
+                        "Antal sålda hattar under vald tidsperiod: " + soldHatsResult +  "st" + "\n" + 
+                        "Snittpris per hatt under vald tidsperiod: " + avgPriceResult +  "kr" + "\n" + 
+                        "Snittpris per order under vald tidsperiod: " + avgOrderResult +  "kr" + "\n" + 
+                        "-----------------------------------------"+ "\n");
+                        
+         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
-               
-        
+              
+         }  
+    }                                            
+
     }//GEN-LAST:event_btnShowStatsActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+       // TODO add your handling code here:
+                // TODO add your handling code here:
+      try{
+        txtAreaStatistics.print();
+        
+}
+      catch (java.awt.print.PrinterException e)
+      {
+          System.err.format("Ingen skrivare hittades", e.getMessage());
+}
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cboStatChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboStatChoiceActionPerformed
@@ -460,13 +495,14 @@ public class showStatistics extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboStatChoice;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblChooseStatistics;
     private javax.swing.JLabel lblChooseTimespan;
     private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblFromDate;
     private javax.swing.JLabel lblStatisticsHeader;
     private javax.swing.JLabel lblToDate;
-    private javax.swing.JLabel txtAreaStatistics;
+    private javax.swing.JTextArea txtAreaStatistics;
     private javax.swing.JTextField txtFieldFromDate;
     private javax.swing.JTextField txtFieldToDate;
     // End of variables declaration//GEN-END:variables

@@ -92,6 +92,11 @@ public class UserPage extends javax.swing.JFrame {
         btnChangeOrderStatus.setText("Ändra status på order");
 
         btnShowStatistics.setText("Se statistik");
+        btnShowStatistics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowStatisticsActionPerformed(evt);
+            }
+        });
 
         btnPrint.setText("Skriv ut frakt och tullsedel");
 
@@ -209,6 +214,10 @@ public class UserPage extends javax.swing.JFrame {
     private void btnChangeInfoCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeInfoCustomerActionPerformed
         new ChangeCustomerInfo(idb).setVisible(true);
     }//GEN-LAST:event_btnChangeInfoCustomerActionPerformed
+
+    private void btnShowStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowStatisticsActionPerformed
+        new showStatistics(idb).setVisible(true);
+    }//GEN-LAST:event_btnShowStatisticsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangeInfoCustomer;

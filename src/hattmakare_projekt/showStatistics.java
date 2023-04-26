@@ -5,8 +5,6 @@
 package hattmakare_projekt;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
@@ -21,6 +19,7 @@ public class showStatistics extends javax.swing.JFrame {
 
     /**
      * Creates new form showStatistics
+     * @param idb
      */
     public showStatistics(InfDB idb) {
         initComponents();
@@ -50,32 +49,52 @@ public class showStatistics extends javax.swing.JFrame {
         lblChooseStatistics = new javax.swing.JLabel();
         cboStatChoice = new javax.swing.JComboBox<>();
         btnShowStats = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAreaStatistics = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         lblError = new javax.swing.JLabel();
+        txtAreaStatistics = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblStatisticsHeader.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         lblStatisticsHeader.setText("Visa statistik");
 
-        lblFromDate.setText("Från datum: (yyyy-mm-dd)");
+        lblFromDate.setText("Från datum:");
 
-        lblToDate.setText("Till datum: (yyyy-mm-dd)");
+        lblToDate.setText("Till datum:");
 
         lblChooseTimespan.setText("Välj tidsspann:");
 
+        txtFieldFromDate.setForeground(new java.awt.Color(153, 153, 153));
+        txtFieldFromDate.setText("yyyy-mm-dd");
+        txtFieldFromDate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFieldFromDateFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFieldFromDateFocusLost(evt);
+            }
+        });
         txtFieldFromDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFieldFromDateActionPerformed(evt);
             }
         });
 
+        txtFieldToDate.setForeground(new java.awt.Color(153, 153, 153));
+        txtFieldToDate.setText("yyyy-mm-dd");
+        txtFieldToDate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFieldToDateFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFieldToDateFocusLost(evt);
+            }
+        });
+
         lblChooseStatistics.setText("Typ av statistik:");
 
-        cboStatChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "Total Materialkostnad", "Totala Kostnader (materialkostnader + arbetskostnad)", "Totala Intäkter", "Antal Kunder", "Antal Ordrar", "Antal Sålda Hattar", "Snittpris Per Hatt", "Snittpris Per Order", "Visa allt" }));
+        cboStatChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "Total Materialkostnad", "Arbetskraft", "Totala Kostnader (materialkostnader + arbetskostnad)", "Totala Intäkter", "Antal Kunder", "Antal Ordrar", "Antal Sålda Hattar", "Snittpris Per Hatt", "Snittpris Per Order", "Visa allt" }));
         cboStatChoice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboStatChoiceActionPerformed(evt);
@@ -89,10 +108,6 @@ public class showStatistics extends javax.swing.JFrame {
             }
         });
 
-        txtAreaStatistics.setColumns(20);
-        txtAreaStatistics.setRows(5);
-        jScrollPane1.setViewportView(txtAreaStatistics);
-
         jButton1.setText("Skriv ut...");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +116,11 @@ public class showStatistics extends javax.swing.JFrame {
         });
 
         jButton2.setText("Tillbaka");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         lblError.setText("jLabel1");
 
@@ -113,35 +133,36 @@ public class showStatistics extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(3, 3, 3)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lblFromDate)
-                                            .addGap(18, 18, 18)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtFieldToDate)
-                                                .addComponent(txtFieldFromDate)))
-                                        .addComponent(btnShowStats, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblChooseStatistics)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cboStatChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(lblChooseTimespan)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(98, 98, 98)
                                 .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                        .addContainerGap())
+                        .addGap(26, 26, 26))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblStatisticsHeader)
-                        .addGap(285, 285, 285))))
+                        .addGap(285, 285, 285))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(5, 5, 5)
+                                        .addComponent(lblToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblChooseStatistics))
+                                .addGap(64, 64, 64)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtFieldToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboStatChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFieldFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnShowStats, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(lblFromDate)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addComponent(txtAreaStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -152,33 +173,33 @@ public class showStatistics extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(lblStatisticsHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jButton2)
                         .addGap(26, 26, 26)
-                        .addComponent(lblChooseTimespan)
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFieldFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFromDate))
-                        .addGap(32, 32, 32)
+                        .addComponent(lblChooseTimespan))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(lblStatisticsHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblFromDate)
+                            .addComponent(txtFieldFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtFieldToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblToDate))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboStatChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblChooseStatistics))
                         .addGap(30, 30, 30)
-                        .addComponent(btnShowStats)
-                        .addGap(41, 41, 41)
-                        .addComponent(lblError)
-                        .addGap(0, 9, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblChooseStatistics)
+                            .addComponent(cboStatChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addComponent(btnShowStats))
+                    .addComponent(txtAreaStatistics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(lblError)
+                .addGap(18, 27, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -214,6 +235,19 @@ public class showStatistics extends javax.swing.JFrame {
 
              String result = idb.fetchSingle(query);
              txtAreaStatistics.setText("Den totala materialkostnaden är " + result + " kronor");
+        } catch (InfException ex) {
+            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        }
+        
+        if(cboStatChoice.getSelectedItem().equals("Arbetskraft"))
+        {
+            try{
+             String query = "SELECT SUM(hour_per_hat) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+
+             String result = idb.fetchSingle(query);
+             txtAreaStatistics.setText("Arbetskostnaden är " + result + " kronor");
         } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -321,12 +355,10 @@ public class showStatistics extends javax.swing.JFrame {
         if(cboStatChoice.getSelectedItem().equals("Visa Allt"))
         {
               try{
-             String query = "SELECT SUM(material_cost) FROM Hat_in_order JOIN Hat ON Hat_in_order.HatID = Hat.HatID JOIN `Order` ON Hat_in_order.OrderID = `Order`.OrderID WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
-
-             String result = idb.fetchSingle(query);
-             txtAreaStatistics.setText("Den totala materialkostnaden är " + result + " kronor");
+                        
+                  );
         } catch (InfException ex) {
-            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null,  ex);
         }
 
         }
@@ -341,6 +373,45 @@ public class showStatistics extends javax.swing.JFrame {
     private void cboStatChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboStatChoiceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboStatChoiceActionPerformed
+
+    private void txtFieldFromDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldFromDateFocusGained
+        if(txtFieldFromDate.getText().equals("yyyy-mm-dd"))
+        {
+            txtFieldFromDate.setText("");
+            txtFieldFromDate.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtFieldFromDateFocusGained
+
+    private void txtFieldFromDateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldFromDateFocusLost
+            if(txtFieldFromDate.getText().equals(""))
+             {
+            txtFieldFromDate.setText("yyyy-mm-dd");
+            txtFieldFromDate.setForeground(new Color(153,153,153));
+
+        }    }//GEN-LAST:event_txtFieldFromDateFocusLost
+
+    private void txtFieldToDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldToDateFocusGained
+        
+              if(txtFieldToDate.getText().equals("yyyy-mm-dd"))
+        {
+            txtFieldToDate.setText("");
+            txtFieldToDate.setForeground(new Color(0,0,0));
+
+        }
+    }//GEN-LAST:event_txtFieldToDateFocusGained
+
+    private void txtFieldToDateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFieldToDateFocusLost
+             if(txtFieldToDate.getText().equals(""))
+             {
+            txtFieldToDate.setText("yyyy-mm-dd");
+            txtFieldToDate.setForeground(new Color(153,153,153));
+
+        } 
+    }//GEN-LAST:event_txtFieldToDateFocusLost
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -382,14 +453,13 @@ public class showStatistics extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboStatChoice;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblChooseStatistics;
     private javax.swing.JLabel lblChooseTimespan;
     private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblFromDate;
     private javax.swing.JLabel lblStatisticsHeader;
     private javax.swing.JLabel lblToDate;
-    private javax.swing.JTextArea txtAreaStatistics;
+    private javax.swing.JLabel txtAreaStatistics;
     private javax.swing.JTextField txtFieldFromDate;
     private javax.swing.JTextField txtFieldToDate;
     // End of variables declaration//GEN-END:variables

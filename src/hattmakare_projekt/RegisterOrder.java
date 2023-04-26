@@ -170,7 +170,7 @@ public class RegisterOrder extends javax.swing.JFrame {
                     + pricePerHat + " kr. För att beställa den vänligen svara på detta meddelande." + "\n" + "\n" + "Mvh Otto och Judith");
 
             Transport.send(message);
-            JOptionPane.showMessageDialog(null, "Meddelandet har skickats till kunden!");
+
         } catch (MessagingException mex) {
             mex.printStackTrace();
         } catch (InfException ex) {

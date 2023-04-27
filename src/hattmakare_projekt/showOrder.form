@@ -327,6 +327,9 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCurrentStatus">
+      <Properties>
+        <Property name="verticalAlignment" type="int" value="1"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblChangeStatusHL">
       <Properties>

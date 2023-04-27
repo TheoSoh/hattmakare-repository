@@ -130,6 +130,8 @@ public class showOrder extends javax.swing.JFrame {
             }
         });
 
+        lblCurrentStatus.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         lblChangeStatusHL.setText("Ändra status");
 
         btnInvoice.setText("Skapa Faktura");

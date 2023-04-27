@@ -233,6 +233,8 @@ public class showStatistics extends javax.swing.JFrame {
         String fromDate = txtFieldFromDate.getText();
         String toDate = txtFieldToDate.getText();
         
+        if(validateDateFormat(fromDate)&& (validateDateFormat(toDate))){
+        
         
              String query = "SELECT ROUND(AVG(Total_Price), 1) FROM `Order` WHERE Order_Date BETWEEN '" + fromDate + "' AND '" + toDate + "'";             
              String query1 = "SELECT SUM(Total_Price) FROM `Order` WHERE Order_date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
@@ -392,8 +394,8 @@ public class showStatistics extends javax.swing.JFrame {
          } catch (InfException ex) {
             Logger.getLogger(showOrder.class.getName()).log(Level.SEVERE, null, ex);
               
-         }  
-    }                                            
+         }  }
+        }                                           
 
     }//GEN-LAST:event_btnShowStatsActionPerformed
 
@@ -455,6 +457,18 @@ public class showStatistics extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private boolean validateDateFormat (String date) {
+    
+      // date = txtFieldFromDate.getText();
+     
+        
+        if (!date.matches("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$")){
+    
+            lblError.setText("Skriv in datum i formatet YYYY-MM-DD");
+             return false;
+    }
+        return true;
+   }
 //    /**
 //     * @param args the command line arguments
 //     */

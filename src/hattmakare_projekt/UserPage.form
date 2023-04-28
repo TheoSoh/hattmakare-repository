@@ -29,29 +29,26 @@
                       <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblHeaderSecond" min="-2" pref="181" max="-2" attributes="0"/>
-                          <Component id="btnRegisterCustomer" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnShowWorkload" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnRegisterOrder" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnChangeOrderStatus" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnChangeOrder" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnShowWorkload" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnRegisterCustomer" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="btnShowCustomerInfo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnChangeInfoCustomer" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="btnShowOrderInfo" pref="135" max="32767" attributes="0"/>
+                                          <Component id="btnShowStatistics" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                              <EmptySpace pref="73" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnPrint" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnCreateInvoice" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnShowCustomerInfo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnChangeInfoCustomer" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnShowOrderInfo" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnShowStatistics" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnChangeOrder" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <Component id="btnRegisterOrder" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -61,7 +58,7 @@
                       <Component id="lblHeader" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="290" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,34 +73,19 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnRegisterCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnShowOrderInfo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRegisterOrder" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnShowCustomerInfo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnShowStatistics" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnChangeOrder" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnChangeInfoCustomer" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="btnShowWorkload" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnRegisterOrder" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="btnCreateInvoice" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnChangeOrder" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnPrint" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnChangeOrderStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="129" max="32767" attributes="0"/>
+              <EmptySpace pref="246" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -143,7 +125,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnShowOrderInfo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Visa order"/>
+        <Property name="text" type="java.lang.String" value="Orderhantering"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowOrderInfoActionPerformed"/>
@@ -165,33 +147,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChangeInfoCustomerActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnChangeOrderStatus">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc4;ndra status p&#xe5; order"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChangeOrderStatusActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnShowStatistics">
       <Properties>
         <Property name="text" type="java.lang.String" value="Se statistik"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowStatisticsActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnPrint">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Skriv ut frakt och tullsedel"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnCreateInvoice">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Skapa faktura"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateInvoiceActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnChangeOrder">

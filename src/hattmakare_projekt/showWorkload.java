@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import oru.inf.InfException;
 import oru.inf.InfDB;
 
@@ -187,8 +188,9 @@ public class showWorkload extends javax.swing.JFrame {
             }
             
         }
-        catch (InfException ex) {
-               Logger.getLogger(searchInvoice.class.getName()).log(Level.SEVERE, null, ex);
+        catch (InfException e) {
+               JOptionPane.showMessageDialog(null, "System error");
+            System.out.println("Fel" + e.getMessage());
            }
     }//GEN-LAST:event_cmbChooseEmployeeActionPerformed
 

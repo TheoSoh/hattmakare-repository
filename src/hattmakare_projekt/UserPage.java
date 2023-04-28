@@ -40,10 +40,7 @@ public class UserPage extends javax.swing.JFrame {
         btnShowOrderInfo = new javax.swing.JButton();
         btnShowCustomerInfo = new javax.swing.JButton();
         btnChangeInfoCustomer = new javax.swing.JButton();
-        btnChangeOrderStatus = new javax.swing.JButton();
         btnShowStatistics = new javax.swing.JButton();
-        btnPrint = new javax.swing.JButton();
-        btnCreateInvoice = new javax.swing.JButton();
         btnChangeOrder = new javax.swing.JButton();
         btnShowWorkload = new javax.swing.JButton();
 
@@ -69,7 +66,7 @@ public class UserPage extends javax.swing.JFrame {
             }
         });
 
-        btnShowOrderInfo.setText("Visa order");
+        btnShowOrderInfo.setText("Orderhantering");
         btnShowOrderInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowOrderInfoActionPerformed(evt);
@@ -90,26 +87,10 @@ public class UserPage extends javax.swing.JFrame {
             }
         });
 
-        btnChangeOrderStatus.setText("Ändra status på order");
-        btnChangeOrderStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChangeOrderStatusActionPerformed(evt);
-            }
-        });
-
         btnShowStatistics.setText("Se statistik");
         btnShowStatistics.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowStatisticsActionPerformed(evt);
-            }
-        });
-
-        btnPrint.setText("Skriv ut frakt och tullsedel");
-
-        btnCreateInvoice.setText("Skapa faktura");
-        btnCreateInvoice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateInvoiceActionPerformed(evt);
             }
         });
 
@@ -137,29 +118,26 @@ public class UserPage extends javax.swing.JFrame {
                         .addGap(97, 97, 97)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblHeaderSecond, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegisterCustomer)
+                            .addComponent(btnShowWorkload)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnRegisterOrder)
-                                    .addComponent(btnChangeOrderStatus)
-                                    .addComponent(btnChangeOrder)
-                                    .addComponent(btnShowWorkload))
-                                .addGap(61, 61, 61)
+                                    .addComponent(btnRegisterCustomer)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnShowCustomerInfo)
+                                            .addComponent(btnChangeInfoCustomer))
+                                        .addGap(77, 77, 77)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btnShowOrderInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                            .addComponent(btnShowStatistics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnPrint)
-                                    .addComponent(btnCreateInvoice)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnShowCustomerInfo)
-                                    .addComponent(btnChangeInfoCustomer))
-                                .addGap(77, 77, 77)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnShowOrderInfo)
-                                    .addComponent(btnShowStatistics)))))
+                                    .addComponent(btnChangeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnRegisterOrder)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(87, 87, 87)
                         .addComponent(lblHeader)))
-                .addContainerGap(290, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,29 +149,18 @@ public class UserPage extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegisterCustomer)
-                    .addComponent(btnShowOrderInfo))
+                    .addComponent(btnShowOrderInfo)
+                    .addComponent(btnRegisterOrder))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnShowCustomerInfo)
-                    .addComponent(btnShowStatistics))
+                    .addComponent(btnShowStatistics)
+                    .addComponent(btnChangeOrder))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnChangeInfoCustomer)
                 .addGap(26, 26, 26)
                 .addComponent(btnShowWorkload)
-                .addGap(18, 18, 18)
-                .addComponent(btnRegisterOrder)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCreateInvoice)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnChangeOrder)
-                        .addGap(10, 10, 10)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPrint)
-                    .addComponent(btnChangeOrderStatus))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(246, Short.MAX_VALUE))
         );
 
         pack();
@@ -217,11 +184,6 @@ public class UserPage extends javax.swing.JFrame {
         new showCustomerInfo(idb).setVisible(true);
     }//GEN-LAST:event_btnShowCustomerInfoActionPerformed
 
-    private void btnCreateInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateInvoiceActionPerformed
-        // TODO add your handling code here:
-        new searchInvoice(idb, employeeIdet).setVisible(true);
-    }//GEN-LAST:event_btnCreateInvoiceActionPerformed
-
     private void btnChangeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeOrderActionPerformed
         // TODO add your handling code here:
         new ChooseCustomerAndOrder(idb).setVisible(true);
@@ -235,10 +197,6 @@ public class UserPage extends javax.swing.JFrame {
         new showStatistics(idb).setVisible(true);
     }//GEN-LAST:event_btnShowStatisticsActionPerformed
 
-    private void btnChangeOrderStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeOrderStatusActionPerformed
-        new searchOrder(idb,employeeIdet).setVisible(true);
-    }//GEN-LAST:event_btnChangeOrderStatusActionPerformed
-
     private void btnShowWorkloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowWorkloadActionPerformed
         new showWorkload(idb).setVisible(true);
     }//GEN-LAST:event_btnShowWorkloadActionPerformed
@@ -246,9 +204,6 @@ public class UserPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChangeInfoCustomer;
     private javax.swing.JButton btnChangeOrder;
-    private javax.swing.JButton btnChangeOrderStatus;
-    private javax.swing.JButton btnCreateInvoice;
-    private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnRegisterCustomer;
     private javax.swing.JButton btnRegisterOrder;
     private javax.swing.JButton btnShowCustomerInfo;

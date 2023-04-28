@@ -201,7 +201,7 @@ public class searchOrder extends javax.swing.JFrame {
         // TODO add your handling code here:
         String chosenCustomer = cmbChooseCustomer.getSelectedItem().toString();
         String query = "SELECT OrderID FROM `Order` JOIN customer on customer.CustomerID = `order`.Customer WHERE NAME = '" + chosenCustomer + "'";
-        
+        cmbChooseOrder.removeAllItems();
         ArrayList <String> allOrdersForCustomer  ;
         
         try {

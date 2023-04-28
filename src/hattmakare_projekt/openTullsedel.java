@@ -93,6 +93,7 @@ public class openTullsedel extends javax.swing.JFrame {
         lblCdId.setText("CD");
 
         lblDeclarationNumber.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblDeclarationNumber.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         lblInstructionSwedish.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         lblInstructionSwedish.setText("Får öppnas av myndigheter");
@@ -196,9 +197,9 @@ public class openTullsedel extends javax.swing.JFrame {
         jpanelPageLayout.setVerticalGroup(
             jpanelPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelPageLayout.createSequentialGroup()
-                .addContainerGap(248, Short.MAX_VALUE)
-                .addComponent(lblDeclarationNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
+                .addContainerGap(242, Short.MAX_VALUE)
+                .addComponent(lblDeclarationNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
             .addGroup(jpanelPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpanelPageLayout.createSequentialGroup()
                     .addContainerGap()
